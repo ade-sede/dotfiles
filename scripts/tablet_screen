@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Half copied from Aditya Shakya's powermenu.sh
+
+# theme selection I guess ?
+rofi_command="rofi"
+
+# Message
+msg() {
+	rofi
+}
+
+screenlist=$(xrandr | grep " connected" | cut -d " " -f 1)
+for screen in $screenlist ;
+	do options="${options}${screen}\n";
+done
+
+screen="$(echo -e "$options" | $rofi_command -p "Map tablet to screen: " -dmenu -selected-row 0)"
+
+echo $screen
+exec tablet $screen

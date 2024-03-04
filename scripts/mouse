@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+
+"""
+My mouse sensitivity is way too high by default
+"""
+
+from subprocess import run
+import os
+import re
+import argparse
+
+XINPUT_ID_REGEX = re.compile(r".*id=(\d*).*")
+
+parser = argparse.ArgumentParser()
+parser.add_argument("sensitivity", help="Float representing the new mouse sensitivity. Recommended: 0.25")
+args = parser.parse_args()
+sensitivity = args.sensitivity
+
+def get_xinput_id(name):
+    """
+    For any given device name (string), returns xinput internal id
+    (int).
+    """
+    handler = run("xinput", capture_output=True, check=True)
+    device_list = handler.stdout
+
+    for device in device_list.split(b"\n"):
+        device = str(device)
+        if name in device:
+            xinput_id = XINPUT_ID_REGEX.match(device).group(1)
+            return xinput_id
+    return -1
+
+mouse_id = get_xinput_id(os.environ["MOUSE"])
+print(mouse_id)
+output = run(["xinput", "set-prop", mouse_id, "Coordinate Transformation Matrix", args.sensitivity, "0", "0", "0", args.sensitivity, "0", "0", "0", "1"], check=True, capture_output=True)
+print(output)

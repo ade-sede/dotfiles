@@ -1,0 +1,18 @@
+[user]
+	name = 'Adrien DE SEDE'
+	email = adrien.de.sede@gmail.com
+	signingkey = E3BFA046CE882AAE
+[alias]
+	c = commit -a
+	s = status
+	d = diff
+	p = push
+	co = checkout
+	tree = log --all --pretty --oneline --graph
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[core]
+	excludesfile = $HOME/gitignore
+[commit]
+	gpgsign = true
