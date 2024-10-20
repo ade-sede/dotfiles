@@ -17,6 +17,7 @@ ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/Wallpaper ~/Wallpaper
 ln -s ~/.dotfiles/kitty ~/.config/kitty
 ln -s ~/.dotfiles/kanshi ~/.config/kanshi
+ln -s ~/.dotfiles/waybar ~/.config/waybar
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty/kitty-themes

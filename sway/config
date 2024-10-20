@@ -233,24 +233,24 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
+# bar {
+#     position top
+#
+#     # When the status_command prints a new line to stdout, swaybar updates.
+#     # The default just shows the current date and time.
+#     status_command while date +'%d-%m-%Y - %X'; do sleep 1; done
+#
+#     colors {
+#         statusline #ffffff
+#         background #000000
+#         inactive_workspace #000000 #000000 #ffffff
+#         focused_workspace #ffffff #000000 #ffffff
+#         active_workspace #000000 #000000 #ffffff
+#
+#     }
+# }
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%d-%m-%Y - %X'; do sleep 1; done
-
-    colors {
-        statusline #ffffff
-        background #000000
-        inactive_workspace #000000 #000000 #ffffff
-        focused_workspace #ffffff #000000 #ffffff
-        active_workspace #000000 #000000 #ffffff
-
-    }
-}
-
-
+exec waybar
 exec kanshi
 
 include @sysconfdir@/sway/config.d/*
