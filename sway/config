@@ -252,6 +252,7 @@ bindsym $mod+r mode "resize"
 
 exec waybar
 exec kanshi
+exec kwalletd5
 
 include @sysconfdir@/sway/config.d/*
 

@@ -1,7 +1,7 @@
 [user]
 	name = 'Adrien DE SEDE'
 	email = adrien.de.sede@gmail.com
-	signingkey = E3BFA046CE882AAE
+	signingkey = B2F94FA522D1A34DC3C3DF0AE3BFA046CE882AAE
 [alias]
 	c = commit -a
 	s = status
