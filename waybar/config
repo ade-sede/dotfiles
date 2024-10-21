@@ -1,7 +1,7 @@
 {
 	"layer": "top",
 		"modules-left": ["sway/workspaces", "sway/mode"],
-		"modules-right": ["battery", "clock"],
+		"modules-right": ["battery", "clock", "bluetooth", "tray"],
 		"sway/window": {
 			"max-length": 50
 		},
@@ -10,6 +10,12 @@
 			"format-icons": ["", "", "", "", ""]
 		},
 		"clock": {
-			"format-alt": "{:%a, %d. %b  %H:%M}"
+			"format": "{:%a, %d. %b  %H:%M}"
+		},
+		"tray": {
+			"spacing": 10
+		},
+		"bluetooth": {
+
 		}
 }
