@@ -144,6 +144,7 @@ exec swayidle -w \
     # We just use 1-10 as the default.
 
     # Some workspaces belong to different screens
+    # Sometimes my screen is DP-1
     workspace 0 output DP-1
     workspace 1 output DP-1
     workspace 2 output DP-1
@@ -152,6 +153,17 @@ exec swayidle -w \
     workspace 5 output DP-1
     workspace 6 output DP-1
     workspace 7 output DP-1
+
+    # Sometimes my screen is DP-3
+    workspace 0 output DP-3
+    workspace 1 output DP-3
+    workspace 2 output DP-3
+    workspace 3 output DP-3
+    workspace 4 output DP-3
+    workspace 5 output DP-3
+    workspace 6 output DP-3
+    workspace 7 output DP-3
+
     workspace 8 output eDP-1
     workspace 9 output eDP-1
 #
@@ -253,6 +265,15 @@ bindsym $mod+r mode "resize"
 exec waybar
 exec kanshi
 exec kwalletd5
+
+workspace 3
+exec vivaldi
+
+workspace 4
+exec kitty
+
+workspace 1
+exec conky
 
 include @sysconfdir@/sway/config.d/*
 
