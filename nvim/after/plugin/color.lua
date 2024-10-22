@@ -1,6 +1,6 @@
 local palettes = {
   carbonfox = {
-    bg0 = "#000000",
+    -- bg0 = "#000000",
     bg1 = "#000000",
   },
 }
