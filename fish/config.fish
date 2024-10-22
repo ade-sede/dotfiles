@@ -9,6 +9,7 @@ function man
 end
 
 set --universal nvm_default_version v22.2.0
+set -x GOPATH "$HOME/.go"
 set -x LANG en_US.UTF-8
 set -x NVM_DIR "$HOME/.nvm"
 set -x XDG_CONFIG_HOME ~/.config
@@ -21,6 +22,7 @@ set -x PATH "/var/lib/snapd/snap/bin:$PATH"
 set -x PATH "$HOME/.local/bin:$PATH"
 set -x PATH "$HOME/.pyenv/bin:$PATH"
 set -x PATH "/usr/local/go/bin:$PATH"
+set -x PATH "$GOPATH/bin:$PATH"
 set -x LIBRARY_PATH "$LIBRARY_PATH:/usr/local/lib"
 set -x LESS "-SRXF"
 set -x SSH_ASKPASS "/usr/bin/ksshaskpass"
