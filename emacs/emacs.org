@@ -606,29 +606,6 @@ parent frame."
 		projectile-project-root-files-top-down-recurring))
   (setq projectile-globally-ignored-file-suffixes (list ".o")))
 
-(projectile-register-project-type 'cubyn' ("Taskfile.dist.yml")
-                                  :project-file "Taskfile.dist.yml"
-				  :compile "task build"
-				  :test "task test"
-				  :run "task run"
-				  :install "task deps"
-				  :test-suffix ".spec")
-
-(projectile-register-project-type 'cubyn' ("Taskfile.yml")
-                                  :project-file "Taskfile.yml"
-				  :compile "task build"
-				  :test "task test"
-				  :run "task run"
-				  :install "task deps"
-				  :test-suffix ".spec")
-
-(projectile-register-project-type 'cubyn' ("Makefile")
-                                  :project-file "Makefile"
-				  :compile "make build"
-				  :test "make test"
-				  :run "make run"
-				  :install "make deps"
-				  :test-suffix ".spec")
 #+END_SRC
 * ibuffer
 #+BEGIN_SRC emacs-lisp
