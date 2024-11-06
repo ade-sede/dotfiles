@@ -10,6 +10,7 @@ end
 
 set --universal nvm_default_version v22.2.0
 set -x GOPATH "$HOME/.go"
+set -x GPG_TTY (tty)
 set -x LANG en_US.UTF-8
 set -x NVM_DIR "$HOME/.nvm"
 set -x XDG_CONFIG_HOME ~/.config
@@ -34,8 +35,13 @@ set -x VIMRC "$HOME/.config/nvim/init.vim"
 set -x ANSIBLE_NOCOWS 1
 # set -x ANSIBLE_COW_SELECTION random
 
-set -x OPENAI_API_KEY (cat ~/.openai-nvim-key | tr -d '\n')
-set -x ANTHROPIC_API_KEY (cat ~/.anthropic-nvim-key | tr -d '\n')
+if [ -e ~/.openai-nvim-key ]
+    set -x OPENAI_API_KEY (cat ~/.openai-nvim-key | tr -d '\n')
+end
+
+if [ -e ~/.anthropic-nvim-key ]
+    set -x ANTHROPIC_API_KEY (cat ~/.anthropic-nvim-key | tr -d '\n')
+end
 
 if [ $TERM = "xterm-kitty" ]
     alias ssh="kitty +kitten ssh"
@@ -46,7 +52,7 @@ if [ -e /usr/bin/fdfind ] && [ ! -e /usr/bin/fd ]
 end 
 
 alias bat="batcat"
-alias ls="exa --icons"
+alias ls="eza --icons"
 alias grep="grep --color"
 alias em="emacsclient -nw -a '' "
 alias vem="emacsclient -nc -a '' "
@@ -60,6 +66,9 @@ source ~/.config/fish/greeting.fish
 
 # set this_computer_mac (ip link show wlp0s20f3 | xargs | cut -d ' ' -f 17)
 
+# brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 pyenv init - | source
 bass source ~/.nvm/nvm.sh --no-use ';' nvm use $nvm_default_version > /dev/null
 starship init fish | source
@@ -72,5 +81,11 @@ if not string match -q -- $PNPM_HOME $PATH
 end
 # pnpm end
 
-source ~/.asdf/asdf.fish
-source /home/ade-sede/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+if [ -e ~/.asdf/asdf.fish ]
+    source ~/.asdf/asdf.fish
+end
+
+if [ -e /home/ade-sede/.opam/opam-init/init.fish ]
+    source /home/ade-sede/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+end
+
