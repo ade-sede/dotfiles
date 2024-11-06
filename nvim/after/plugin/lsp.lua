@@ -115,14 +115,14 @@ require("mason").setup({
 })
 
 require("mason-lspconfig").setup({
-  ensure_installed = {
-    "ts_ls",
-    "rust_analyzer",
-    "lua_ls",
-    "volar",
-    "gopls",
-    "elixirls",
-  },
+  -- ensure_installed = {
+  --   "ts_ls",
+  --   "rust_analyzer",
+  --   "lua_ls",
+  --   "volar",
+  --   "gopls",
+  --   "elixirls",
+  -- },
   handlers = {
     lsp.default_setup,
   },
