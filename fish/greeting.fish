@@ -36,6 +36,7 @@ else if [ $seed -eq 4 ]
     end
 else
     function fish_greeting
-	now
+	neofetch
+	# now
     end
 end
