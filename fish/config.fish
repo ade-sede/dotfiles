@@ -15,7 +15,7 @@ set -x LANG en_US.UTF-8
 set -x NVM_DIR "$HOME/.nvm"
 set -x XDG_CONFIG_HOME ~/.config
 set -x DOTFILES "$HOME/.dotfiles"
-set -x MAIL "adrien.de.sede@gmail.com"
+set -x MAIL "adrien.de-sede@alan.eu"
 set -x EDITOR "vim"
 set -x PATH "$DOTFILES/scripts:$PATH"
 set -x PATH "$HOME/.cargo/bin:$PATH"
@@ -51,7 +51,6 @@ if [ -e /usr/bin/fdfind ] && [ ! -e /usr/bin/fd ]
     alias fd="fdfind"
 end 
 
-alias bat="batcat"
 alias ls="eza --icons"
 alias grep="grep --color"
 alias em="emacsclient -nw -a '' "
