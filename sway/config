@@ -275,6 +275,8 @@ exec kitty
 workspace 1
 exec conky
 
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
 include @sysconfdir@/sway/config.d/*
 
 
