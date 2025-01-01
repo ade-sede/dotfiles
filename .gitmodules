@@ -1,0 +1,12 @@
+[submodule "AB-dotfiles"]
+	path = AB-dotfiles
+	url = https://github.com/Airblader/dotfiles-manjaro.git
+[submodule "powerline-fonts"]
+	path = powerline-fonts
+	url = https://github.com/powerline/fonts.git
+[submodule "nvim"]
+	path = nvim
+	url = https://github.com/jdhao/nvim-config.git
+[submodule "emacs/site-lisp/evil-org-mode"]
+	path = emacs/site-lisp/evil-org-mode
+	url = git@github.com:Somelauw/evil-org-mode.git

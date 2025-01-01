@@ -1,0 +1,901 @@
+#+AUTHOR: Adrien DE SEDE, with the help of everyone else on the vast internet
+#+STARTUP:  hidestars overview
+#+EMAIL: adrien.de.sede@gmail.com
+
+* Package manager
+  #+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "~/.emacs.d/plugins/yasnippet")
+  #+END_SRC
+
+  #+BEGIN_SRC emacs-lisp
+  (require 'package)
+  (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+  (package-initialize)
+  #+END_SRC
+
+* Straight
+#+BEGIN_SRC emacs-lisp
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+	(url-retrieve-synchronously
+	 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+	 'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+#+END_SRC
+* Quelpa
+#+BEGIN_SRC emacs-lisp
+(unless (package-installed-p 'quelpa)
+  (with-temp-buffer
+    (url-insert-file-contents "https://raw.githubusercontent.com/quelpa/quelpa/master/quelpa.el")
+    (eval-buffer)
+    (quelpa-self-upgrade)))
+#+END_SRC
+
+* Quelpa use-package
+
+#+BEGIN_SRC emacs-lisp
+(quelpa
+ '(quelpa-use-package
+   :fetcher git
+   :url "https://github.com/quelpa/quelpa-use-package.git"))
+(require 'quelpa-use-package)
+#+END_SRC
+
+* Version control
+  #+BEGIN_SRC emacs-lisp
+  (setq vc-follow-symlinks t)
+  #+END_SRC
+  
+* Magit
+  #+BEGIN_SRC emacs-lisp
+    (use-package magit
+      :ensure t
+      :bind (("M-g" . magit-status))
+      :config
+      (setq magit-process-finish-apply-ansi-colors t)
+      (global-auto-revert-mode t)
+      (setq auto-revert-check-vc-info t)
+      :init
+      (use-package with-editor :ensure t)
+
+      ;; Have magit-status go full screen and quit to previous
+      ;; configuration.  Taken from
+      ;; http://whattheemacsd.com/setup-magit.el-01.html#comment-748135498
+      ;; and http://irreal.org/blog/?p=2253
+      (defadvice magit-status (around magit-fullscreen activate)
+	(window-configuration-to-register :magit-fullscreen)
+	ad-do-it
+	(delete-other-windows))
+      (defadvice magit-quit-window (after magit-restore-screen activate)
+	(jump-to-register :magit-fullscreen))
+      :config
+      (remove-hook 'magit-status-sections-hook 'magit-insert-tags-header)
+      (remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-pushremote)
+      (remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-pushremote)
+      (remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-upstream)
+      (remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-upstream-or-recent))
+#+END_SRC
+
+* Style
+  No startup screen.
+  #+BEGIN_SRC emacs-lisp
+    (setq inhibit-startup-screen t)
+    (setq menu-bar-mode -1)
+    (setq toggle-scroll-bar -1)
+    (setq tool-bar-mode -1)
+  #+END_SRC
+
+** Font
+   Enable highlight and font coloring.
+   #+BEGIN_SRC emacs-lisp
+     (global-font-lock-mode)
+     (global-hi-lock-mode)
+   #+END_SRC
+
+   Font settings.
+   I do not remember which one of these lines is actually responsible
+   for displaying the font.
+   #+BEGIN_SRC emacs-lisp
+   (set-face-attribute 'default nil :font "JetBrains Mono Bold 24")
+   (setq default-frame-alist '((font . "JetBrains Mono Bold 24")))
+   #+END_SRC
+
+** Pretty symbols
+   Replacing some strings with symbols.
+   The function has to be called in the relevant modes for the symbols
+   to be loaded.
+
+   #+BEGIN_SRC emacs-lisp
+   (defun pretty-symbols (&optional args)
+     (setq prettify-symbols-alist
+	   (mapcan (lambda (x) (list x (cons (upcase (car x)) (cdr x))))
+		   '(("lambda" . "λ")
+		     ("TODO" . "")
+		     ("WAIT" . "")        
+		     ("PAUSED" . "")        
+		     ("ONGOING" . "")
+		     ("NOPE" . "")
+		     ("CANCELED" . "")
+		     ("DONE" . "")
+                     ("PLANNED" . "📅")
+		     ("[#A]" . "")
+		     ("[#B]" . "")
+		     ("[#C]" . "")
+		     ("[ ]" . "")
+		     ("[X]" . "")
+		     ("[-]" . "")
+		     ("#+begin_src" . ?)
+		     ("#+BEGIN_SRC" . ?)
+		     ("#+end_src" . ?)
+		     ("#+END_SRC" . ?)
+		     (":END:" . "―")
+		     ("#+begin_example" . ?)
+		     ("#+end_example" . ?)
+		     ("#+header:" . ?)
+		     ("#+name:" . ?﮸)
+		     ("#+results:" . ?)
+		     ("#+call:" . ?)
+		     (":properties:" . "")
+		     (":startup:" . "")
+		     (":logbook:" . ?))))
+     (prettify-symbols-mode 1))
+   (global-prettify-symbols-mode 1)
+   #+END_SRC
+
+** Theme
+   Load up theme.
+   GUI and TUI use different themes, because TUI only supports limited
+   colors.
+   #+BEGIN_SRC emacs-lisp
+   ;;(use-package rand-theme
+     ;;:config
+     ;;(setq rand-theme-wanted '(moe-light)))
+   
+   (defun load-graphical-env (frame)
+     ;; (load-theme 'moe-light 'NO-CONFIRM)
+     (load-theme 'moe-light 'NO-CONFIRM))
+
+   (defun load-term-env ()
+     (load-theme 'moe-light 'NO-CONFIRM))
+
+   (custom-set-faces
+    ;; '(org-hide ((t (:foreground "#292b2e"))))  ;; spacemacs-dark
+    '(org-hide ((t (:foreground "#FFFFFF"))))     ;; spacemacs-light
+    )
+   #+END_SRC
+
+   At startup, check for what type of frame is launched and launches
+   the theme.
+   #+BEGIN_SRC emacs-lisp
+     (defun try-loading-graphical-env ()
+       (if (display-graphic-p)
+	   (progn
+	     (message "Sucessfully creating a graphical window")
+	     (load-graphical-env t))
+	 (progn
+	   (message "Failed creating graphical window")
+	   (load-term-env))))
+   
+     (add-hook 'after-make-frame-functions 'load-graphical-env)
+     (add-hook 'server-switch-hook 'try-loading-graphical-env)
+   #+END_SRC
+
+   Dim unused buffers.
+   Doesn't work well with light themes.
+   #+BEGIN_SRC emacs-lisp
+     ;; (add-hook 'after-init-hook (lambda ()
+     ;;   (when (fboundp 'auto-dim-other-buffers-mode)
+     ;; 	(auto-dim-other-buffers-mode t))))
+   #+END_SRC
+
+** Scrolling
+   #+BEGIN_SRC emacs-lisp
+     (setq scroll-margin 3
+	   scroll-conservatively 10000
+	   scroll-step 1)
+   #+END_SRC
+
+** Mode line
+   I opted out of powerline because it is not nearly as configurable
+   as I'd like.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package spaceline-config
+       :config
+       (setq spaceline-anzu-p 1)
+       (setq spaceline-minor-modes-p nil)
+       (setq spaceline-buffer-size-p nil)
+       (setq spaceline-projectile-root-p 1)
+       (setq spaceline-buffer-modified-p nil)
+       (setq spaceline-buffer-position-p nil)
+       (setq spaceline-buffer-encoding-abbrev-p nil)
+       (setq spaceline-line-column-p nil)
+       (setq spaceline-version-control-p nil)
+       (setq spaceline-buffer-encoding-abbrev-p nil)
+       (setq powerline-default-separator "bar")
+       (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+       (spaceline-spacemacs-theme))
+   #+END_SRC
+
+** Current line
+#+BEGIN_SRC emacs-lisp
+;;(use-package hl-spotlight)
+#+END_SRC
+* Tree sitter
+#+BEGIN_SRC emacs-lisp
+(use-package tree-sitter-langs
+  :ensure t
+  :defer t)
+
+(use-package tree-sitter
+  :ensure t
+  :after tree-sitter-langs)
+#+END_SRC
+
+* Turbo log
+#+BEGIN_SRC emacs-lisp
+  (use-package turbo-log
+    :quelpa (turbo-log :fetcher github :repo "artawower/turbo-log.el")
+    :bind (("C-s-l" . turbo-log-print)
+	   ("C-s-i" . turbo-log-print-immediately)
+	   ("C-s-h" . turbo-log-comment-all-logs)
+	   ("C-s-s" . turbo-log-uncomment-all-logs)
+	   ("C-s-[" . turbo-log-paste-as-logger)
+	   ("C-s-]" . turbo-log-paste-as-logger-immediately)
+	   ("C-s-d" . turbo-log-delete-all-logs))
+    :config
+    (setq turbo-log-msg-format-template "\"🚀: %s\"")
+    (setq turbo-log-allow-insert-without-tree-sitter-p t))
+
+  ;;  :loggers ("console.log(%s)" "console.debug(%s)" "console.warn(%s)")
+  ;;  :jump-list ((class_declaration (method_definition "constructor")))
+  ;;  :identifier-node-types (identifier member_expression)
+  ;;  :post-insert-hook (prettier-prettify)
+  ;;  :msg-format-template "'🦄: %s'")
+#+END_SRC
+
+* Emojify
+#+BEGIN_SRC emacs-lisp
+(use-package emojify
+  :hook (after-init . global-emojify-mode))
+  #+END_SRC
+  
+* Indentation
+  Following this [[https://dougie.io/emacs/indentation/#using-tabs-or-spaces-in-different-files][this article]]
+  Generally speaking, indentation does give me a lot of trouble in Emacs.
+
+  Turns out using EditorConfig to configure indentation is way more convenient.
+  #+BEGIN_SRC emacs-lisp
+    (setq-default backward-delete-char-untabify-method 'hungry)
+    (setq evil-auto-indent t)
+  #+END_SRC
+  
+* General prog-mode stuff
+  #+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "DEL") 'backward-delete-char)
+  (add-hook 'prog-mode-hook (lambda () (subword-mode 1)))
+  #+END_SRC
+  
+  #+BEGIN_SRC emacs-lisp
+    (use-package git-gutter-fringe)
+  #+END_SRC
+  
+
+  Char \u2502 is a pipe symbol (|)
+  #+BEGIN_SRC emacs-lisp
+  (defvar linum-format "%4d ")
+  #+END_SRC
+
+  #+BEGIN_SRC emacs-lisp
+  ;; (add-hook 'prog-mode-hook (lambda () (linum-mode)))
+  (add-hook 'prog-mode-hook (lambda () (show-paren-mode)))
+  (add-hook 'prog-mode-hook (lambda () (flycheck-mode)))
+  (add-hook 'prog-mode-hook (lambda () (git-gutter-mode)))
+  #+END_SRC
+
+* Markdown
+  #+BEGIN_SRC emacs-lisp
+    (use-package markdown-mode
+        :hook ((markdown-mode . flyspell-mode)))
+  #+END_SRC
+
+* org-roam
+#+BEGIN_SRC emacs-lisp
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory (file-truename "~/org/roam"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ;; Dailies
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  (org-roam-db-autosync-mode))
+#+END_SRC
+
+* org
+  I've head ~org-bullets~ is no longer maintained and I should maybe look to switch to [[https://github.com/integral-dw/org-superstar-mode][org-superstar]]
+  #+BEGIN_SRC emacs-lisp
+    (use-package org-bullets
+      :config
+      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+    
+    (font-lock-add-keywords 'org-mode
+			    '(("^ +\\([-*]\\) "
+			       0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "‣")))))
+
+  #+END_SRC
+
+  #+BEGIN_SRC emacs-lisp
+  (use-package org
+    :mode (("\\.org$" . org-mode))
+    :hook (org-mode . flyspell-mode)
+    :hook (org-mode . pretty-symbols)
+    ;; :hook (org-mode . linum-mode)
+    :config
+    (setq org-src-tab-acts-natively t)
+    (setq org-src-preserve-indentation nil)
+    (setq org-edit-src-content-indentation 0)
+    (setq fill-column 100)
+    (setq org-log-into-drawer 'LOGBOOK)
+    :ensure org-plus-contrib)
+  #+END_SRC
+  _To future me:_
+  Click [[https://emacs.stackexchange.com/questions/12814/extending-org-mode-with-more-markups][this link]] if you want to add your own emphasis markers and
+  custom faces to org.
+
+  Latex option
+#+BEGIN_SRC emacs-lisp
+  ;; (add-to-list 'org-latex-classes
+  ;; 	     '("resume"
+  ;; 	       "\\documentclass{resume}"
+  ;; 	       ("\\begin{rSection}{%s}" . "\\begin{rSection}*{%s}")
+  ;; 	       ("\\begin{rSubsection}{%s}" . "\\begin{rSubsection}*{%s}")))
+#+END_SRC
+
+** COMMENT Style settings.
+- Change '-' to "•" in lists
+- Hiding emphasis markers and leading stars make is that in a title with multiple indentation, all the leading stars are replaced with the background color. If it doesn't work, check the theme settings
+- Change font and height for specific org regions
+#+BEGIN_SRC emacs-lisp
+  (font-lock-add-keywords 'org-mode
+			  '(("^ *\\([-]\\) "
+			      (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+  (setq org-hide-emphasis-markers t)
+  (setq org-hide-leading-stars t)
+
+  (let* ((variable-tuple '(:font "JetBrains Mono Bold")))
+      (custom-theme-set-faces
+      'user
+      `(org-level-8 ((t ( ,@variable-tuple))))
+      `(org-level-7 ((t ( ,@variable-tuple))))
+      `(org-level-6 ((t ( ,@variable-tuple))))
+      `(org-level-5 ((t ( ,@variable-tuple))))
+      `(org-level-4 ((t ( ,@variable-tuple :height 1.03))))
+      `(org-level-3 ((t ( ,@variable-tuple :height 1.08))))
+      `(org-level-2 ((t ( ,@variable-tuple :height 1.12))))
+      `(org-level-1 ((t ( ,@variable-tuple :height 1.20))))))
+    #+END_SRC
+
+* Miscellaneous
+** Backups
+   #+BEGIN_SRC emacs-lisp
+     (setq create-lockfiles nil)
+     (setq backup-directory-alist
+	   `((".*" . "~/.emacs.d/backup")))
+     (setq auto-save-file-name-transforms
+	   `((".*" ,"~/.emacs.d/auto_save" t)))
+   #+END_SRC
+
+** Closing buffers
+   No prompt to kill buffers even when there's a process attached and
+   still running.
+   #+BEGIN_SRC emacs-lisp
+     (setq kill-buffer-query-functions (delq 'process-kill-buffer-query-function kill-buffer-query-functions))
+   #+END_SRC
+
+* DAP
+  #+BEGIN_SRC emacs-lisp
+  (use-package dap-mode)
+  #+END_SRC
+  
+* Tabs
+  Not enabled by default, I don't need them most of the time
+  #+BEGIN_SRC emacs-lisp
+    ;; (tab-bar-mode 1)
+    (setq tab-bar-new-button-show nil)
+    (setq tab-bar-close-button-show nil)
+  #+END_SRC
+
+* Helm
+https://www.reddit.com/r/emacs/comments/jj269n/display_helm_frames_in_the_center_of_emacs/
+#+BEGIN_SRC emacs-lisp
+(defun my-helm-display-frame-center (buffer &optional resume)
+  "Display `helm-buffer' in a separate frame which centered in
+parent frame."
+  (if (not (display-graphic-p))
+      ;; Fallback to default when frames are not usable.
+      (helm-default-display-buffer buffer)
+    (setq helm--buffer-in-new-frame-p t)
+    (let* ((parent (selected-frame))
+	   (frame-pos (frame-position parent))
+	   (parent-left (car frame-pos))
+	   (parent-top (cdr frame-pos))
+	   (width (floor (* (frame-width parent) 0.8)))
+	   (height (/ (frame-height parent) 2))
+	   tab-bar-mode
+	   (default-frame-alist
+	     (if resume
+		 (buffer-local-value 'helm--last-frame-parameters
+				     (get-buffer buffer))
+	       `((parent . ,parent)
+		 (width . ,width)
+		 (height . ,height)
+		 (font . "JetBrains Mono Bold 24")
+		 (undecorated . ,helm-use-undecorated-frame-option)
+		 (left-fringe . 0)
+		 (right-fringe . 0)
+		 (tool-bar-lines . 0)
+		 (line-spacing . 0)
+		 (desktop-dont-save . t)
+		 (no-special-glyphs . t)
+		 (inhibit-double-buffering . t)
+		 (tool-bar-lines . 0)
+		 (internal-border-width . 2)
+		 (internal-border-color . "#8ce8ff")
+		 (left . ,(+ parent-left (/ (* (frame-char-width parent) (frame-width parent)) 10)))
+		 (top . ,(+ parent-top (/ (* (frame-char-height parent) (frame-height parent)) 4)))
+		 (title . "Helm")
+		 (vertical-scroll-bars . nil)
+		 (menu-bar-lines . 0)
+		 (fullscreen . nil)
+		 (visible . ,(null helm-display-buffer-reuse-frame))
+		 ;; (internal-border-width . ,(if IS-MAC 1 0))
+		 )))
+	   display-buffer-alist)
+      (set-face-background 'internal-border (face-foreground 'default))
+      (helm-display-buffer-popup-frame buffer default-frame-alist))
+    (helm-log-run-hook 'helm-window-configuration-hook)))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'display-buffer-alist
+                    `(,(rx bos "*helm" (* not-newline) "*" eos)
+                         (display-buffer-in-side-window)
+                         (inhibit-same-window . t)
+                         (window-height . 0.4)))
+#+END_SRC
+
+
+#+BEGIN_SRC emacs-lisp
+(use-package helm-config
+  :bind ("M-x" . 'helm-M-x)
+  :bind ("C-x b" . 'helm-mini)
+  :bind ("C-x r b" . 'helm-bookmarks)
+  :bind ("C-x C-f" . helm-find-files)
+  :bind ("C-x C-b" . helm-buffers-list)
+  :config
+  ;; (setq helm-display-function 'my-helm-display-frame-center)
+  ;; (setq helm-display-function 'helm-display-buffer-in-own-frame)
+  (setq helm-mode-fuzzy-match t)
+  (setq helm-always-two-windows nil))
+
+(use-package helm-projectile
+  :config (helm-projectile-on))
+#+END_SRC
+
+* RFC mode
+#+BEGIN_SRC emacs-lisp
+(use-package rfc-mode
+  :config
+  (setq rfc-mode-directory (expand-file-name "~/RFC/")))
+#+END_SRC
+
+* LUA
+#+BEGIN_SRC emacs-lisp
+(use-package lua-mode)
+#+END_SRC
+
+* fish
+#+BEGIN_SRC emacs-lisp
+(use-package fish-mode)
+#+END_SRC
+
+* Flyspell
+#+BEGIN_SRC emacs-lisp
+(use-package flyspell-correct
+  :after flyspell
+  :bind (:map flyspell-mode-map ("C-;" . flyspell-correct-wrapper)))
+(use-package flyspell-correct-popup
+  :after flyspell-correct)
+#+END_SRC
+
+* TOML
+#+BEGIN_SRC emacs-lisp
+(use-package toml-mode)
+#+END_SRC
+
+* SLIME
+#+BEGIN_SRC emacs-lisp
+(use-package slime
+  :config
+  (setq inferior-lisp-program "/usr/bin/sbcl --noinformation")
+  ;; (push 'slime-repl-ansi-color slime-contribs)
+  (slime-setup))
+#+END_SRC
+
+* cargo
+#+BEGIN_SRC emacs-lisp
+(use-package cargo
+  :hook (rust-mode . cargo-minor-mode))
+#+END_SRC
+
+* ruby
+#+BEGIN_SRC emacs-lisp
+(use-package ruby-mode
+  :mode "\\.rb\\'"
+  :interpreter "ruby"
+  :config
+  (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+  (setq ruby-indent-level 2))
+#+END_SRC
+
+* company
+#+BEGIN_SRC emacs-lisp
+(defun my-tab-completion ()
+  (interactive)
+  (or (copilot-accept-completion)
+      (company-indent-or-complete-common nil)))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
+
+(use-package company
+  :ensure t
+  :defer t
+  :init
+  (setq company-auto-complete nil)
+  :bind (:map company-active-map
+	      ("C-n" . company-complete-common-or-cycle)
+	      ("C-p" . company-select-previous-or-abort)
+	      ("<tab>" . my-tab-completion))
+  :bind (:map company-mode-map
+	      ("C-<tab>" . 'my-tab-completion))
+  :config
+  (setq company-global-modes '(not org-mode))
+  (global-company-mode))
+#+END_SRC
+
+* yasnippet
+#+BEGIN_SRC emacs-lisp
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+
+(use-package helm-c-yasnippet
+  :config (setq helm-yas-space-match-any-greedy t)
+  :bind ("C-c y" . helm-yas-complete))
+#+END_SRC
+
+* projectile
+#+BEGIN_SRC emacs-lisp
+(use-package projectile
+  :defer t
+  :bind (:map projectile-mode-map
+	      ("C-c p" . projectile-command-map))
+  :config
+  (setq projectile-indexing-method 'alien)
+  (setq projectile-enable-caching t)
+  (projectile-mode +1)
+  (setq projectile-project-root-files-top-down-recurring
+	(append '("compile_commands.json"
+		  ".ccls")
+		projectile-project-root-files-top-down-recurring))
+  (setq projectile-globally-ignored-file-suffixes (list ".o")))
+
+#+END_SRC
+* ibuffer
+#+BEGIN_SRC emacs-lisp
+(use-package ibuffer
+  :init
+  (add-hook 'ibuffer-hook (lambda ()
+			    (ibuffer-projectile-set-filter-groups)
+			    (unless (eq ibuffer-sorting-mode 'alphabetic)
+			      (ibuffer-do-sort-by-alphabetic)))))
+
+(use-package ibuffer-projectile)
+#+END_SRC
+
+* Flycheck
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'display-buffer-alist
+	     `(,(rx bos "*Flycheck errors*" eos)
+	       (display-buffer-reuse-window
+		display-buffer-in-side-window)
+	       (side            . bottom)
+	       (reusable-frames . visible)
+	       (window-height   . 0.33)))
+
+(use-package flycheck
+  :bind-keymap (("C-c f" . flycheck-command-map)))
+#+END_SRC
+
+* LSP
+#+BEGIN_SRC emacs-lisp
+(defvar-local my-flycheck-local-cache nil)
+(defun my-flycheck-local-checker-get (fn checker property)
+  ;; Only check the buffer local cache for the LSP checker, otherwise we get
+  ;; infinite loops.
+  (if (eq checker 'lsp)
+      (or (alist-get property my-flycheck-local-cache)
+          (funcall fn checker property))
+    (funcall fn checker property)))
+(advice-add 'flycheck-checker-get
+            :around 'my-flycheck-local-checker-get)
+
+(add-hook 'lsp-managed-mode-hook
+          (lambda ()
+            (when (derived-mode-p 'typescript-mode)
+              (setq my-flycheck-local-cache '((next-checkers . (javascript-eslint)))))))
+
+(use-package lsp-mode
+  :ensure t
+  :defer
+  :init
+  (setq lsp-ui-doc-show-with-cursor nil)
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (setq lsp-ui-sideline-update-mode 'line)
+  (setq lsp-signature-render-documentation nil)
+  (setq lsp-completion-show-detail t)
+  (setq lsp-completion-show-kind t)
+  (setq lsp-ui-flycheck-list-position 'bottom)
+  (setq lsp-ui-sideline-enable t)
+  (setq lsp-ui-sideline-show-symbol nil)
+  (setq lsp-ui-sideline-show-hover nil)
+  (setq lsp-ui-sideline-show-flycheck t)
+  (setq lsp-ui-sideline-show-code-actions nil)
+  (setq lsp-modeline-code-actions-enable t)
+  (setq lsp-enable-on-type-formatting t)
+  (setq lsp-ui-sideline-show-diagnostics t)
+  (setq lsp-modeline-diagnostics-enable t)
+  (setq lsp-enable-indentation t)
+  (setq lsp-diagnostic-clean-after-change t)
+  (setq lsp-enable-file-watchers t)
+  (setq lsp-file-watch-threshold 4000)
+  (setq lsp-ui-doc-enable t)
+  (setq lsp-eslint-auto-fix-on-save t)
+  :config
+  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+  (advice-add 'json-parse-string :around
+	      (lambda (orig string &rest rest)
+		(apply orig (s-replace "\\u0000" "" string)
+		       rest)))
+  (advice-add 'json-parse-buffer :around
+	      (lambda (oldfn &rest args)
+		(save-excursion 
+		  (while (search-forward "\\u0000" nil t)
+		    (replace-match "" nil t)))
+		(apply oldfn args))))
+		#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(use-package lsp-ui
+  :commands lsp-ui-mode
+  :hook ((python-mode . (lambda () (setq lsp-ui-doc-show-with-cursor nil))))
+  :config
+  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
+#+END_SRC
+
+* Jest
+#+BEGIN_SRC emacs-lisp
+(use-package jest)
+#+END_SRC
+* Typescript
+#+BEGIN_SRC emacs-lisp
+(use-package typescript-mode
+  :ensure t
+  :bind (:map lsp-command-map
+	      ("f f" . lsp-eslint-fix-all))
+  :hook ((typescript-mode . lsp)
+	 (before-save-hook . lsp-eslint-fix-all)
+         (typescript-mode . jest-minor-mode)))
+#+END_SRC
+* CSharp
+#+BEGIN_SRC emacs-lisp
+(use-package csharp-mode
+  :ensure t
+  :hook ((csharp-mode . lsp)))
+#+END_SRC
+* GDScript
+#+BEGIN_SRC emacs-lisp
+(use-package gdscript-mode
+  :config
+  (setq gdscript-godot-executable "/sbin/godot"))
+#+END_SRC
+* rust
+#+BEGIN_SRC emacs-lisp
+(use-package rust-mode
+  :config (setq lsp-rust-server 'rust-analyzer)
+  :hook ((rust-mode . pretty-symbols)
+	 (rust-mode . lsp)))
+#+END_SRC
+
+* kotlin
+#+BEGIN_SRC emacs-lisp
+(use-package kotlin-mode
+  :hook (kotlin-mode . lsp))
+#+END_SRC
+
+* python
+#+BEGIN_SRC emacs-lisp
+(use-package python-mode
+  :hook  ((python-mode . pretty-symbols)
+	  (python-mode . lsp)))
+
+#+END_SRC
+
+* vue
+Disable the very ugly background color
+#+BEGIN_SRC emacs-lisp
+(add-hook 'mmm-mode-hook
+	  (lambda ()
+	    (set-face-background 'mmm-default-submode-face nil)))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(use-package vue-mode
+  :mode "\\.vue\\'"
+  :config
+  ;; Editorconfig doesn't work for some reason
+  (setq js-indent-level 2)
+  (setq css-indent-offset 2)
+  :bind (:map lsp-command-map
+	      ("f f" . lsp-eslint-fix-all))
+  :hook  ((vue-mode-hook . lsp)
+	  (before-save-hook . lsp-eslint-fix-all)
+	  (vue-mode-hook . (lambda () (run-hooks 'prog-mode-hook)))))
+#+END_SRC
+
+* web-mode
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.tsx$" . web-mode))
+;; (use-package web-mode
+;;   :hook((web-mode . (lambda () (disable-tabs 2)))))
+
+#+END_SRC
+
+* C
+*** ccls
+#+BEGIN_SRC emacs-lisp
+(use-package ccls
+  :config
+  (setq ccls-executable "/usr/bin/ccls"))
+#+END_SRC
+*** c-mode
+#+BEGIN_SRC emacs-lisp
+
+(setq-default c-default-style "linux"
+	      c-basic-offset 4
+	      c-backspace-function 'backward-delete-char)
+
+(use-package flycheck-google-cpplint
+  :config
+  (setq flycheck-googlelint-filter "-build/include,-runtime/printf,whitespace/tab"))
+
+
+(use-package c-mode
+  :hook ((c-mode . lsp)
+	 (c-mode . hs-minor-mode)
+	 (c-mode . platformio-mode)))
+
+#+END_SRC 
+
+*** c++-mode
+#+BEGIN_SRC emacs-lisp
+(use-package c++-mode
+  :hook ((c++-mode . platformio-mode)
+	 (c++-mode . lsp)))
+
+#+END_SRC 
+
+* anzu
+#+BEGIN_SRC emacs-lisp
+(use-package anzu
+  :config
+  (global-anzu-mode 1))
+#+END_SRC
+
+* Dashboard
+#+BEGIN_SRC emacs-lisp
+(use-package dashboard
+  :ensure t
+  :config
+  (setq dashboard-startup-banner 'logo)
+  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+  (setq dashboard-items '((bookmarks . 4)
+			  (recents  . 3)
+			  (projects . 4)))
+
+  (setq dashboard-set-heading-icons t)
+  ;; (setq dashboard-set-file-icons t)
+  (setq dashboard-set-navigator t)
+
+  (dashboard-setup-startup-hook))
+#+END_SRC
+
+* leetcode
+#+BEGIN_SRC emacs-lisp
+(use-package leetcode
+  :config
+  (setq leetcode-prefer-language "python3")
+  (setq leetcode-prefer-sql "mysql")
+  (setq leetcode-save-solutions t)
+  (setq leetcode-directory "~/projects/leetcode"))
+#+END_SRC
+
+* Dired
+#+BEGIN_SRC emacs-lisp
+#+END_SRC
+
+* EditorConfig
+#+BEGIN_SRC emacs-lisp
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+#+END_SRC
+
+* All the icons
+#+BEGIN_SRC emacs-lisp
+(use-package all-the-icons
+  :config
+  ;; Make sure the icon fonts are good to go
+  (set-fontset-font t 'unicode (font-spec :family "all-the-icons") nil 'append)
+  (set-fontset-font t 'unicode (font-spec :family "file-icons") nil 'append)
+  (set-fontset-font t 'unicode (font-spec :family "Material Icons") nil 'append)
+  (set-fontset-font t 'unicode (font-spec :family "github-octicons") nil 'append)
+  (set-fontset-font t 'unicode (font-spec :family "FontAwesome") nil 'append)
+  (set-fontset-font t 'unicode (font-spec :family "Weather Icons") nil 'append))
+#+END_SRC
+
+* Copilot
+#+BEGIN_SRC emacs-lisp
+(use-package copilot
+  :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
+  :hook (prog-mode . copilot-mode)
+  :ensure t)
+#+END_SRC
+
+* SQL
+#+BEGIN_SRC emacs-lisp
+(use-package sql-mode
+  :bind (:map lsp-command-map
+	      ("c c" . lsp-sql-execute-paragraph))
+  :hook ((sql-mode . lsp)
+	 (sql-mode . sqlind-minor-mode)))
+
+(use-package ob-sql-mode
+  :ensure t)
+#+END_SRC
+
+
+* Go
+#+BEGIN_SRC emacs-lisp
+(use-package go-mode
+  :hook ((go-mode . lsp)))
+
+#+END_SRC

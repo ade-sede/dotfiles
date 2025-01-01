@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+
+"""
+By default, the my graphic tablet's screen is mapped to both my
+screens at the same time.
+Left half corresponds to my first screen.
+Right half corresponds to my second screen.
+This script is here to select which screen the tablet should be mapped to, using xinput
+"""
+
+from subprocess import run
+import re
+import argparse
+
+PEN_NAME = "10594 Pen Pen"
+XINPUT_ID_REGEX = re.compile(r".*id=(\d*).*")
+
+parser = argparse.ArgumentParser()
+parser.add_argument("screen", help="xrandr referance of the screen the tablet should be mapped to")
+args = parser.parse_args()
+screen = args.screen
+
+def get_xinput_id(name):
+    """
+    For any given device name (string), returns xinput internal id
+    (int).
+    """
+    handler = run("xinput", capture_output=True, check=True)
+    device_list = handler.stdout
+
+    for device in device_list.split(b"\n"):
+        device = str(device)
+        if name in device:
+            xinput_id = XINPUT_ID_REGEX.match(device).group(1)
+            return xinput_id
+    return -1
+
+pen_id = get_xinput_id(PEN_NAME)
+
+output = run(["xinput", "map-to-output", pen_id, screen], check=True, capture_output=True)
+print(output)

@@ -1,0 +1,24 @@
+[user]
+	name = 'Adrien DE SEDE'
+[alias]
+	c = commit -a
+	s = status
+	d = diff
+	p = push
+	co = checkout
+	tree = log --all --pretty --oneline --graph
+	lolp = log --graph --pretty=format:\"%C(yellow)%h%Creset%C(cyan)%C(bold)%d%Creset %C(cyan)(%cr)%Creset %C(green)%ce%Creset %s\"
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	lolap = log --graph --decorate --pretty=oneline --abbrev-commit --exclude='*prod*' --all
+	lolan = log --graph --decorate --pretty=oneline --abbrev-commit --all --name-status
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[core]
+	excludesfile = $HOME/gitignore
+[commit]
+	gpgsign = true
+
+[include]
+	path = ~/.gitconfig-local
