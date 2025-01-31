@@ -1,5 +1,8 @@
 background = 090200
 foreground = a4a1a1
 
-font-family = JetBrains Mono
+font-family = 'JetBrains Mono'
 font-size = 18
+
+keybind = unconsumed:command+a=esc:a
+keybind = unconsumed:command+g=esc:g
