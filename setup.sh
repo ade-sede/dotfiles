@@ -20,6 +20,7 @@ ln -s ~/.dotfiles/kitty ~/.config/kitty
 #ln -s ~/.dotfiles/waybar ~/.config/waybar
 #ln -s ~/.dotfiles/swaylock ~/.config/swaylock
 #ln -s ~/.dotfiles/conky ~/.config/conky
+ln -s ~/.dotfiles/ghostty ~/.config/ghostty
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty/kitty-themes
