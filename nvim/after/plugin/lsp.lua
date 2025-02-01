@@ -3,6 +3,8 @@
 -- https://github.com/ThePrimeagen/init.lua/blob/master/after/plugin/lsp.lua
 local lsp = require("lsp-zero")
 
+require("lspconfig").gleam.setup({})
+
 local cmp = require("cmp")
 local cmp_action = require("lsp-zero").cmp_action()
 local cmp_format = require("lsp-zero").cmp_format({ details = true })
