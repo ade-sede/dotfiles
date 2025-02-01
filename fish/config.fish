@@ -57,6 +57,10 @@ if [ -e /usr/bin/fdfind ] && [ ! -e /usr/bin/fd ]
     alias fd="fdfind"
 end 
 
+if [ -e /usr/bin/batcat ] && [ ! -e /usr/bin/bat ]
+    alias bat="batcat"
+end 
+
 
 alias grep="grep --color"
 alias em="emacsclient -nw -a '' "
