@@ -41,6 +41,12 @@ set -x VIMRC "$HOME/.config/nvim/init.vim"
 set -x ANSIBLE_NOCOWS 1
 # set -x ANSIBLE_COW_SELECTION random
 
+if [ -d ~/.zvm ]
+    set -x ZVM_INSTALL $HOME/.zvm/self
+    alias zvm $HOME/.zvm/self/zvm
+    set -x PATH $HOME/.zvm/bin:$PATH
+end
+
 if [ -e ~/.openai-nvim-key ]
     set -x OPENAI_API_KEY (cat ~/.openai-nvim-key | tr -d '\n')
 end
