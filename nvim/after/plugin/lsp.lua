@@ -1,4 +1,4 @@
-require("neodev").setup({})
+-- require("neodev").setup({}) -- disabled in favor of lazydev
 
 -- https://github.com/ThePrimeagen/init.lua/blob/master/after/plugin/lsp.lua
 local lsp = require("lsp-zero")
