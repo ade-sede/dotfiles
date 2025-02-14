@@ -2,6 +2,9 @@ local telescope = require("telescope")
 
 telescope.setup({
   require("telescope").setup({}),
+  defaults = {
+    preview = false,
+  },
 })
 
 telescope.load_extension("projects")
