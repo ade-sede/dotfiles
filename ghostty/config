@@ -5,5 +5,5 @@ font-family = 'JetBrains Mono'
 font-size = 18
 font-style = bold
 
-keybind = unconsumed:command+a=esc:a
+keybind = command+a=esc:a
 keybind = unconsumed:command+g=esc:g
