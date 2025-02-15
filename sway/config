@@ -265,11 +265,9 @@ bindsym $mod+r mode "resize"
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
-
 exec waybar
 exec kanshi
 exec kwalletd5
-
 
 workspace 3
 exec vivaldi
@@ -277,11 +275,12 @@ exec vivaldi
 workspace 4
 exec ghostty
 
-workspace 2
-exec XDG_CURRENT_DESKTOP=x11 discord --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland
-
 workspace 1
 exec conky
+
+exec flameshot
+exec nm-applet
+exec blueman-applet
 
 include @sysconfdir@/sway/config.d/*
 
