@@ -1,0 +1,36 @@
+[Discord]
+Description=Discord
+desktops=fd99f65b-fe19-45a8-a225-a959a5ae5caf
+desktopsrule=3
+wmclass=.*iscord
+wmclassmatch=3
+
+[Ghostty]
+Description=Ghostty
+desktops=3592a14f-cd7f-4f6d-90cf-86c47a89ce1d
+desktopsrule=3
+fullscreen=true
+fullscreenrule=3
+wmclass=.*ghostty.*
+wmclassmatch=3
+
+[New window settings]
+Description=New window settings
+screen=5
+screenrule=3
+wmclass=.*
+wmclassmatch=3
+
+[System Settings]
+Description=System Settings
+desktops=302b5319-8748-4793-8d8e-03b524ccd4c5
+desktopsrule=3
+wmclass=.*system settings.*
+wmclassmatch=3
+
+[Vivaldi]
+Description=Vivaldi
+desktops=375072f7-0a67-4044-9b16-1be95c2e4189
+desktopsrule=3
+wmclass=.*vivaldi.*
+wmclassmatch=3
