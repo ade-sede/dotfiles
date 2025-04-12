@@ -77,8 +77,8 @@ if type -q devbox
     refresh-global
 end
 if type -q bass
-    bass source ~/.nvm/nvm.sh --no-use ';' nvm install $nvm_default_version > /dev/null
-    bass source ~/.nvm/nvm.sh --no-use ';' nvm use $nvm_default_version > /dev/null
+    bass source ~/.nvm/nvm.sh --no-use ';' nvm install $nvm_default_version 2>&1 /dev/null
+    bass source ~/.nvm/nvm.sh --no-use ';' nvm use $nvm_default_version 2>&1 /dev/null
 end
 if [ -e ~/.config/fish/greeting.fish ]
     source ~/.config/fish/greeting.fish

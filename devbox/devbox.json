@@ -1,6 +1,7 @@
 {
 	"packages": [
 		"fzf@latest",
+		"neofetch@latest",
 		"starship@latest",
 		"direnv@latest",
 		"ripgrep@latest",
