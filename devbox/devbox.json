@@ -3,11 +3,16 @@
 		"fzf@latest",
 		"exa@latest",
 		"bat@latest",
+		"tmux@latest",
+		"cbonsai@latest",
 		"neovim@latest",
 		"neofetch@latest",
 		"starship@latest",
 		"direnv@latest",
 		"ripgrep@latest",
-		"python@3.10"
+		"python@3.10",
+		"fortune@latest",
+		"cowsay@latest",
+		"lolcat@latest"
 	]
 }
