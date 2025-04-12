@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-
-
 # Remove any existing config
 rm -rf ~/.config/fish
 rm -rf ~/.config/nvim

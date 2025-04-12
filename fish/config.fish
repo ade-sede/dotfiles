@@ -39,32 +39,25 @@ set -x SSH_ASKPASS_REQUIRE prefer
 set -U Z_CMD "j"
 set -U Z_OWNER $USER
 set -x VIMRC "$HOME/.config/nvim/init.vim"
-
+set -gx PNPM_HOME "/home/ade-sede/.local/share/pnpm"
 set -x ANSIBLE_NOCOWS 1
-# set -x ANSIBLE_COW_SELECTION random
-
 if [ -d ~/.zvm ]
     set -x ZVM_INSTALL $HOME/.zvm/self
     alias zvm $HOME/.zvm/self/zvm
     set -x PATH $HOME/.zvm/bin:$PATH
 end
-
 if [ -e ~/.openai-nvim-key ]
     set -x OPENAI_API_KEY (cat ~/.openai-nvim-key | tr -d '\n')
 end
-
 if [ -e ~/.anthropic-nvim-key ]
     set -x ANTHROPIC_API_KEY (cat ~/.anthropic-nvim-key | tr -d '\n')
 end
-
 if [ $TERM = "xterm-kitty" ]
     alias ssh="kitty +kitten ssh"
 end
-
 if [ -e /usr/bin/fdfind ] && [ ! -e /usr/bin/fd ]
     alias fd="fdfind"
 end 
-
 if [ -e /usr/bin/batcat ] && [ ! -e /usr/bin/bat ]
     alias bat="batcat"
 end 
@@ -78,38 +71,33 @@ alias v="nvim"
 alias gvim="neovide"
 alias kubectl="kubecolor"
 
-
-source ~/.config/fish/greeting.fish
-
-# set this_computer_mac (ip link show wlp0s20f3 | xargs | cut -d ' ' -f 17)
-
-bass source ~/.nvm/nvm.sh --no-use ';' nvm use $nvm_default_version > /dev/null
-
-# pnpm
-set -gx PNPM_HOME "/home/ade-sede/.local/share/pnpm"
-if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
+if type -q devbox
+    devbox global shellenv --init-hook | source
 end
-# pnpm end
-
+if type -q bass
+    bass source ~/.nvm/nvm.sh --no-use ';' nvm use $nvm_default_version > /dev/null
+end
+if [ -e ~/.config/fish/greeting.fish ]
+    source ~/.config/fish/greeting.fish
+end
 if [ -e ~/.asdf/asdf.fish ]
     source ~/.asdf/asdf.fish
 end
-
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
 if [ -e /home/ade-sede/.opam/opam-init/init.fish ]
     source /home/ade-sede/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 end
-
-# brew
 if [ -e /opt/homebrew/bin/brew ]
     eval (/opt/homebrew/bin/brew shellenv)
 end
-
-starship init fish | source
-direnv hook fish | source
-if type -q devbox
-	devbox global shellenv --init-hook | source
+if type -q starship
+  starship init fish | source
 end
-
-# fzf key bindings
-fzf --fish | source
+if type -q direnv
+  direnv hook fish | source
+end
+if type -q fzf
+  fzf --fish | source
+end

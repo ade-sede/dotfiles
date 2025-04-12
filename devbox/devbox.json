@@ -1,5 +1,8 @@
 {
 	"packages": [
+		"fzf@latest",
+		"starship@latest",
+		"direnv@latest",
 		"ripgrep@latest",
 		"python@3.10"
 	]
