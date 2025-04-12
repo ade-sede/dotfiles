@@ -1,0 +1,6 @@
+{
+	"packages": [
+		"ripgrep@latest",
+		"python@3.10"
+	]
+}

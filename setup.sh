@@ -22,6 +22,9 @@ ln -s ~/.dotfiles/kitty ~/.config/kitty
 #ln -s ~/.dotfiles/conky ~/.config/conky
 ln -s ~/.dotfiles/ghostty ~/.config/ghostty
 
+mkdir -p ~/.local/share/devbox/global/default
+ln -s ~/.dotfiles/devbox/devbox.json ~/.local/share/devbox/global/default
+
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty/kitty-themes
 
