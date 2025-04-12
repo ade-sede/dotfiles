@@ -88,8 +88,6 @@ alias kubectl="kubecolor"
 
 if type -q devbox
     devbox global shellenv --init-hook | source
-    devbox global install
-    refresh-global
 end
 if type -q bass
     bass source ~/.nvm/nvm.sh --no-use ';' nvm install $nvm_default_version > /dev/null 2>&1
