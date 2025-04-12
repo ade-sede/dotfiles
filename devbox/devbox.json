@@ -1,6 +1,9 @@
 {
 	"packages": [
 		"fzf@latest",
+		"exa@latest",
+		"bat@latest",
+		"neovim@latest",
 		"neofetch@latest",
 		"starship@latest",
 		"direnv@latest",
