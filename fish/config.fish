@@ -41,6 +41,21 @@ set -U Z_OWNER $USER
 set -x VIMRC "$HOME/.config/nvim/init.vim"
 set -gx PNPM_HOME "/home/ade-sede/.local/share/pnpm"
 set -x ANSIBLE_NOCOWS 1
+set -x LANG en_US.UTF-8
+set -x LC_CTYPE en_US.UTF-8
+set -x LC_MESSAGES en_US.UTF-8
+set -x LC_TIME fr_FR.UTF-8
+set -x LC_NUMERIC fr_FR.UTF-8
+set -x LC_MONETARY fr_FR.UTF-8
+set -x LC_PAPER fr_FR.UTF-8
+set -x LC_MEASUREMENT fr_FR.UTF-8
+set -x LC_COLLATE fr_FR.UTF-8
+set -x LC_NAME fr_FR.UTF-8
+set -x LC_ADDRESS fr_FR.UTF-8
+set -x LC_TELEPHONE fr_FR.UTF-8
+
+# Leave LC_ALL unset to allow individual category settings to take effect
+
 if [ -d ~/.zvm ]
     set -x ZVM_INSTALL $HOME/.zvm/self
     alias zvm $HOME/.zvm/self/zvm
@@ -77,8 +92,8 @@ if type -q devbox
     refresh-global
 end
 if type -q bass
-    bass source ~/.nvm/nvm.sh --no-use ';' nvm install $nvm_default_version 2>&1 /dev/null
-    bass source ~/.nvm/nvm.sh --no-use ';' nvm use $nvm_default_version 2>&1 /dev/null
+    bass source ~/.nvm/nvm.sh --no-use ';' nvm install $nvm_default_version > /dev/null 2>&1
+    bass source ~/.nvm/nvm.sh --no-use ';' nvm use $nvm_default_version > /dev/null 2>&1
 end
 if [ -e ~/.config/fish/greeting.fish ]
     source ~/.config/fish/greeting.fish
