@@ -73,8 +73,11 @@ alias kubectl="kubecolor"
 
 if type -q devbox
     devbox global shellenv --init-hook | source
+    devbox global install
+    refresh-global
 end
 if type -q bass
+    bass source ~/.nvm/nvm.sh --no-use ';' nvm install $nvm_default_version > /dev/null
     bass source ~/.nvm/nvm.sh --no-use ';' nvm use $nvm_default_version > /dev/null
 end
 if [ -e ~/.config/fish/greeting.fish ]
