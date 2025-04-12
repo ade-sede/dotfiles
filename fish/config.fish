@@ -14,6 +14,7 @@ set -x GPG_TTY (tty)
 set -x LANG en_US.UTF-8
 set -x NVM_DIR "$HOME/.nvm"
 set -x XDG_CONFIG_HOME ~/.config
+set -x XDG_DATA_HOME ~/.local/share
 set -x DOTFILES "$HOME/.dotfiles"
 if [ -d ~/.alan ]
 	alias ls="eza --icons"
@@ -106,6 +107,9 @@ end
 
 starship init fish | source
 direnv hook fish | source
+if type -q devbox
+	devbox global shellenv --init-hook | source
+end
 
 # fzf key bindings
 fzf --fish | source
