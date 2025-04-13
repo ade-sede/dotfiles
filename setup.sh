@@ -43,6 +43,7 @@ echo "Setting up plugins..."
 if [ ! -d ~/.tmux/plugins/tpm ]; then
   echo "Installing TPM..."
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  tmux run-shell ~/.tmux/plugins/tpm/bin/install_plugins
 else
   echo "TPM already installed"
   if [ "$OVERRIDE_EXISTING" = true ]; then
