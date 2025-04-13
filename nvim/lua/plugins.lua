@@ -1,5 +1,6 @@
 return {
   "EdenEast/nightfox.nvim",
+  "ayu-theme/ayu-vim",
   "navarasu/onedark.nvim",
   "wbthomason/packer.nvim",
   "Mofiqul/dracula.nvim",
