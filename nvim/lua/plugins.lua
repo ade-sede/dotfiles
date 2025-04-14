@@ -1,6 +1,7 @@
 return {
   "EdenEast/nightfox.nvim",
   "ayu-theme/ayu-vim",
+  { "projekt0n/github-nvim-theme", name = "github-theme" },
   "navarasu/onedark.nvim",
   "wbthomason/packer.nvim",
   "Mofiqul/dracula.nvim",
