@@ -34,6 +34,7 @@ set -x PATH "/usr/local/go/bin:$PATH"
 set -x PATH "$GOPATH/bin:$PATH"
 set -x LIBRARY_PATH "$LIBRARY_PATH:/usr/local/lib"
 set -x LESS "-SRXF"
+set -x SHELL (which fish)
 set -x SSH_ASKPASS "/usr/bin/ksshaskpass"
 set -x SSH_ASKPASS_REQUIRE prefer
 set -U Z_CMD "j"
