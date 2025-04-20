@@ -91,7 +91,6 @@ if type -q devbox
     devbox global shellenv --init-hook | source
 end
 if type -q bass
-    bass source ~/.nvm/nvm.sh --no-use ';' nvm install $nvm_default_version > /dev/null 2>&1
     bass source ~/.nvm/nvm.sh --no-use ';' nvm use $nvm_default_version > /dev/null 2>&1
 end
 if [ -e ~/.config/fish/greeting.fish ]
