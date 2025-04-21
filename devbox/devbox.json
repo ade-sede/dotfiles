@@ -14,6 +14,7 @@
     "cowsay@latest",
     "lolcat@latest",
     "xclip@latest",
-    "xsel@latest"
+    "xsel@latest",
+    "kitty@latest"
   ]
 }
