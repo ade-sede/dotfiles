@@ -1,17 +1,18 @@
 {
-	"packages": [
-		"fzf@latest",
-		"exa@latest",
-		"bat@latest",
-		"tmux@latest",
-		"cbonsai@latest",
-		"neovim@latest",
-		"neofetch@latest",
-		"starship@latest",
-		"direnv@latest",
-		"ripgrep@latest",
-		"fortune@latest",
-		"cowsay@latest",
-		"lolcat@latest"
-	]
+  "packages": [
+    "fzf@latest",
+    "exa@latest",
+    "bat@latest",
+    "tmux@latest",
+    "cbonsai@latest",
+    "neovim@latest",
+    "neofetch@latest",
+    "starship@latest",
+    "direnv@latest",
+    "ripgrep@latest",
+    "fortune@latest",
+    "cowsay@latest",
+    "lolcat@latest",
+    "xclip@latest"
+  ]
 }
