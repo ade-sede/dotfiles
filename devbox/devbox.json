@@ -13,6 +13,7 @@
     "fortune@latest",
     "cowsay@latest",
     "lolcat@latest",
-    "xclip@latest"
+    "xclip@latest",
+    "xsel@latest"
   ]
 }
