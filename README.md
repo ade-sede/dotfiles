@@ -49,18 +49,12 @@ This repository contains my personal dotfiles and NixOS configuration. The goal 
    ```
    This approach keeps the entire NixOS configuration within the dotfiles repository, not in /etc/.
 
-2. Install home-manager: 
-   ```
-   nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz home-manager
-   nix-channel --update
-   ```
-
-3. Apply configuration:
+2. Apply configuration:
    ```
    sudo nixos-rebuild switch
    ```
 
-4. To update just home-manager configuration:
+3. To update just home-manager configuration:
    ```
    home-manager switch
    ```
