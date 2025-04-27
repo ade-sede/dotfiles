@@ -8,7 +8,7 @@
   imports =
     [
       /etc/nixos/hardware-configuration.nix
-      /nix/var/nix/profiles/per-user/root/channels/home-manager/nixos/default.nix
+      <home-manager/nixos>
     ];
 
   # Bootloader.
