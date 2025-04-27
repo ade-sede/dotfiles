@@ -76,7 +76,7 @@ After setting up a new machine, upload your SSH and GPG keys to GitHub:
 ```fish
 # Add the SSH key to GitHub using GitHub CLI
 gh auth login  # First authenticate with GitHub if needed
-gh ssh-key add ~/.ssh/id_ed25519.pub -t "(hostname) (date +%Y-%m-%d)"
+gh ssh-key add ~/.ssh/id_ed25519.pub -t "koala-devbox" # Should be pushe automatically if it exists when login-in for the first time
 ```
 
 ### Upload GPG Key to GitHub
