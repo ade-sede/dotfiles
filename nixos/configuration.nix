@@ -35,7 +35,8 @@ in
   };
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.xserver.desktopManager.plasma6.enable = true;
   services.xserver.xkb = {
     layout = "us";
     variant = "";
@@ -69,9 +70,14 @@ in
 
   # Enable programs
   programs = {
-    firefox.enable = true;
     fish.enable = true;
   };
+  
+  # Enable font management
+  fonts.packages = with pkgs; [
+    nerdfonts
+    jetbrains-mono
+  ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
