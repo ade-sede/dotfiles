@@ -36,7 +36,7 @@ in
       
       if-shell "test -d ~/.alan" \
           "set -g default-shell '/opt/homebrew/bin/fish'" \
-          "set -g default-shell '/home/ade-sede/.nix-profile/bin/fish'"
+          "set -g default-shell '/etc/profiles/per-user/ade-sede/bin/fish'"
     '';
   };
 }

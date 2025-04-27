@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    bash
     vim
     wget
     nodejs
@@ -24,6 +25,7 @@
     cmake
     gnumake
     gcc
+    ripgrep
     # Custom Vivaldi with qt6 and wayland support
     (let
       customVivaldi = vivaldi.overrideAttrs (oldAttrs: {

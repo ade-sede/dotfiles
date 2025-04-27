@@ -73,12 +73,10 @@ in
     fish.enable = true;
   };
 
-  # Enable Bluetooth
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
   };
-  services.blueman.enable = true;
   
   # Enable font management
   fonts.packages = with pkgs; [
@@ -94,7 +92,6 @@ in
      exec ${pkgs.nodePackages.npm}/bin/npx @anthropic-ai/claude-code "$@"
    '')
    pinentry-qt
-   blueman
    # Home manager CLI tool is automatically included when using the NixOS module
   ];
 
