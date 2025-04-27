@@ -21,3 +21,4 @@ emacs/.emacs.d/.cache/
 vim/.vim/bundle
 vim/.vim/backup
 fish/fish_variables
+/secrets/

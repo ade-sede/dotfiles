@@ -12,6 +12,7 @@ in
       /etc/nixos/hardware-configuration.nix
       # Import Home Manager directly from the fetched tarball
       "${home-manager}/nixos"
+      ./docker.nix
     ];
 
   # Bootloader.

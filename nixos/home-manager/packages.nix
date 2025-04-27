@@ -26,6 +26,8 @@
     gnumake
     gcc
     ripgrep
+    docker
+    docker-compose
     # Custom Vivaldi with qt6 and wayland support
     (let
       customVivaldi = vivaldi.overrideAttrs (oldAttrs: {
