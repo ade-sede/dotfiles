@@ -1,17 +1,31 @@
 local telescope = require("telescope")
 
 telescope.setup({
-  require("telescope").setup({}),
   defaults = {
     preview = false,
   },
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    }
+  }
 })
 
+-- Always load projects extension
 telescope.load_extension("projects")
-telescope.load_extension("fzf")
+
+-- Defer fzf loading until it's built
+vim.defer_fn(function()
+  pcall(require('telescope').load_extension, 'fzf')
+end, 0)
 
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<c-Space>", telescope.extensions.projects.projects, {})
+vim.keymap.set("n", "<c-Space>", function() 
+  pcall(telescope.extensions.projects.projects)
+end, {})
 vim.keymap.set("n", "<c-p>", builtin.find_files, {})
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 vim.keymap.set("n", "<c-x>b", builtin.buffers, {})

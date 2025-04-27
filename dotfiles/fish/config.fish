@@ -35,8 +35,6 @@ set -x PATH "$GOPATH/bin:$PATH"
 set -x LIBRARY_PATH "$LIBRARY_PATH:/usr/local/lib"
 set -x LESS "-SRXF"
 set -x SHELL (which fish)
-set -x SSH_ASKPASS "/usr/bin/ksshaskpass"
-set -x SSH_ASKPASS_REQUIRE prefer
 set -U Z_CMD "j"
 set -U Z_OWNER $USER
 set -x VIMRC "$HOME/.config/nvim/init.vim"
@@ -67,9 +65,6 @@ if [ -e ~/.openai-nvim-key ]
 end
 if [ -e ~/.anthropic-nvim-key ]
     set -x ANTHROPIC_API_KEY (cat ~/.anthropic-nvim-key | tr -d '\n')
-end
-if [ $TERM = "xterm-kitty" ]
-    alias ssh="kitty +kitten ssh"
 end
 if [ -e /usr/bin/fdfind ] && [ ! -e /usr/bin/fd ]
     alias fd="fdfind"

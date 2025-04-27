@@ -45,7 +45,7 @@ return {
   },
   {
     "nvim-telescope/telescope-fzf-native.nvim",
-    build = "make",
+    build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
   },
   -- "folke/neodev.nvim", -- disabled to work with `lazydev`
   "gpanders/editorconfig.nvim",
