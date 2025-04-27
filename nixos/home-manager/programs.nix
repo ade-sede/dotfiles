@@ -38,6 +38,15 @@ in
         source ~/.dotfiles/dotfiles/fish/config.fish
       '';
     };
+
+    bat = {
+      enable = true;
+      config = {
+        theme = "GitHub";
+        style = "plain";
+        pager = "less -FR";
+      };
+    };
     
     neovim = {
       enable = true;
