@@ -1,14 +1,17 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
+let
+  # Automatically fetch Home Manager for NixOS 24.11
+  home-manager = builtins.fetchTarball {
+    url = "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
+  };
+in
 {
   imports =
     [
       /etc/nixos/hardware-configuration.nix
-      <home-manager/nixos>
+      # Import Home Manager directly from the fetched tarball
+      "${home-manager}/nixos"
     ];
 
   # Bootloader.
@@ -78,7 +81,7 @@
      exec ${pkgs.nodePackages.npm}/bin/npx @anthropic-ai/claude-code "$@"
    '')
    pinentry-qt
-   home-manager
+   # Home manager CLI tool is automatically included when using the NixOS module
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -106,7 +109,7 @@
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # on your system were taken. It's perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
@@ -116,6 +119,9 @@
   home-manager = {
     users.ade-sede = import ./home-manager/home.nix;
     backupFileExtension = "backup";
+    # This ensures the home-manager command is available
+    useGlobalPkgs = true;
+    useUserPackages = true;
   };
   
   # Ensure GPG key is generated during system rebuild
