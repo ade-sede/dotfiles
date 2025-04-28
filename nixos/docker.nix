@@ -1,9 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  modelConfig = "claude"; 
-  
-  configPath = "/home/ade-sede/.dotfiles/dotfiles/litellm/configs/${modelConfig}.yaml";
+  configPath = "/home/ade-sede/.dotfiles/dotfiles/litellm/config.yaml";
   secretsDir = "/home/ade-sede/.dotfiles/secrets";
   
   geminiKeyFile = "${secretsDir}/gemini_api_key.txt";

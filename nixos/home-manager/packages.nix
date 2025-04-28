@@ -5,7 +5,7 @@
     bash
     vim
     wget
-    nodejs
+    nodejs_22
     git
     tmux
     ghostty

@@ -92,6 +92,12 @@ in
    (pkgs.writeShellScriptBin "claude" ''
      exec ${pkgs.nodePackages.npm}/bin/npx @anthropic-ai/claude-code "$@"
    '')
+   (pkgs.writeShellScriptBin "codex" ''
+     # Inject fakes for use with litellm
+     export OPENAI_BASE_URL=''${OPENAI_BASE_URL:-"http://localhost:4000"}
+     export OPENAI_API_KEY=''${OPENAI_API_KEY:-"sk-litellm-proxy-fake-key"}
+     exec ${pkgs.nodePackages.npm}/bin/npx @openai/codex "$@"
+   '')
    pinentry-qt
    # Home manager CLI tool is automatically included when using the NixOS module
   ];

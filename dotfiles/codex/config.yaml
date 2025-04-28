@@ -1,0 +1,10 @@
+# Codex Configuration
+model: claude-3-5-sonnet
+
+# Path settings
+ignorePatterns:
+  - "node_modules"
+  - ".git"
+  - "dist"
+  - "build"
+  - "__pycache__"
