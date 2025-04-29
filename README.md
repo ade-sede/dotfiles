@@ -29,7 +29,23 @@ This repository contains my personal dotfiles and NixOS configuration. The goal 
    home-manager switch
    ```
 
-## NixOS Configuration Structure
+
+## Development
+
+### Pre-commit Hooks
+
+This repository uses pre-commit hooks to ensure code quality. To set up:
+
+```bash
+# Install pre-commit hooks
+pre-commit install
+```
+
+- automated format of nix files
+- gitleaks
+
+
+### NixOS Configuration Structure
 
 - `nixos/configuration.nix`: Main NixOS system configuration
 - `nixos/home-manager/`: Home Manager configuration files
@@ -40,7 +56,7 @@ This repository contains my personal dotfiles and NixOS configuration. The goal 
   - `variables.nix`: User identity variables used across configurations
   - `scripts/`: Scripts used by home-manager configurations
 
-## Repository Structure
+### Repository Structure
 
 - `/nixos/`: NixOS and Home Manager configurations
 - `/scripts/`: Utility scripts

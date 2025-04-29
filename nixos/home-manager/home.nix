@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "ade-sede";
@@ -18,10 +20,10 @@
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [];
-  
-  home.enableNixpkgsReleaseCheck = false; 
+
+  home.enableNixpkgsReleaseCheck = false;
   manual.manpages.enable = false;
-  
+
   home.sessionVariables = {
     GPG_TTY = "$(tty)";
   };

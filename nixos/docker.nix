@@ -1,18 +1,21 @@
-{ config, pkgs, lib, ... }:
-
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   configPath = "/home/ade-sede/.dotfiles/dotfiles/litellm/config.yaml";
   secretsDir = "/home/ade-sede/.dotfiles/secrets";
-  
+
   geminiKeyFile = "${secretsDir}/gemini_api_key.txt";
   claudeKeyFile = "${secretsDir}/anthropic_api_key.txt";
   openaiKeyFile = "${secretsDir}/openai_api_key.txt";
-  
-  readFileIfExists = file: 
+
+  readFileIfExists = file:
     if builtins.pathExists file
     then lib.strings.removeSuffix "\n" (builtins.readFile file)
     else "";
-    
+
   geminiKey = readFileIfExists geminiKeyFile;
   claudeKey = readFileIfExists claudeKeyFile;
   openaiKey = readFileIfExists openaiKeyFile;
@@ -30,9 +33,9 @@ in {
     };
   };
 
-  users.users.ade-sede.extraGroups = [ "docker" ];
+  users.users.ade-sede.extraGroups = ["docker"];
 
-  networking.firewall.allowedTCPPorts = [ 4000 ];
+  networking.firewall.allowedTCPPorts = [4000];
 
   virtualisation.oci-containers = {
     backend = "docker";
@@ -40,7 +43,7 @@ in {
       litellm-proxy = {
         image = "ghcr.io/berriai/litellm:main-latest";
         autoStart = false;
-        ports = [ "127.0.0.1:4000:4000" ];
+        ports = ["127.0.0.1:4000:4000"];
         volumes = [
           "${configPath}:/app/config.yaml"
         ];
@@ -49,7 +52,7 @@ in {
           ANTHROPIC_API_KEY = claudeKey;
           OPENAI_API_KEY = openaiKey;
         };
-        cmd = [ "--config" "/app/config.yaml" ];
+        cmd = ["--config" "/app/config.yaml"];
       };
     };
   };

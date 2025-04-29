@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
-
-let
-  userVars = import ./variables.nix;
-in
-
 {
+  config,
+  pkgs,
+  ...
+}: let
+  userVars = import ./variables.nix;
+in {
   imports = [
     ./git.nix
   ];
@@ -12,7 +12,7 @@ in
   programs = {
     fish = {
       enable = true;
-      
+
       plugins = [
         {
           name = "bass";
@@ -33,7 +33,7 @@ in
           };
         }
       ];
-      
+
       shellInit = ''
         source ~/.dotfiles/dotfiles/fish/config.fish
       '';
@@ -47,11 +47,11 @@ in
         pager = "less -FR";
       };
     };
-    
+
     neovim = {
       enable = true;
     };
-    
+
     starship = {
       enable = true;
     };
@@ -61,15 +61,15 @@ in
       matchBlocks."*" = {
         identityFile = "~/.ssh/id_ed25519";
       };
-      
+
       extraConfig = ''
         AddKeysToAgent yes
       '';
-      
+
       userKnownHostsFile = "~/.ssh/known_hosts";
     };
 
-    gpg = { 
+    gpg = {
       enable = true;
       settings = {
         no-greeting = true;
@@ -93,6 +93,6 @@ in
       $DRY_RUN_CMD mkdir -p $VERBOSE_ARG ~/.ssh
     '';
   };
-  
+
   home.enableNixpkgsReleaseCheck = false;
 }

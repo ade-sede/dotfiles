@@ -3,3 +3,11 @@ repos:
     rev: v8.22.1
     hooks:
       - id: gitleaks
+
+  - repo: local
+    hooks:
+      - id: alejandra
+        name: alejandra
+        entry: alejandra
+        language: system
+        files: \.nix$

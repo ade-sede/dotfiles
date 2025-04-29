@@ -1,20 +1,21 @@
-{ config, pkgs, lib, ... }:
-
-let
-  userVars = import ./variables.nix;
-in
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  userVars = import ./variables.nix;
+in {
   programs.git = {
     enable = true;
     userName = userVars.userName;
     userEmail = userVars.userEmail;
-    
+
     signing = {
       signByDefault = true;
       key = null;
     };
-    
+
     aliases = {
       c = "commit -a";
       s = "status";
@@ -28,11 +29,11 @@ in
       lolap = "log --graph --decorate --pretty=oneline --abbrev-commit --exclude='*prod*' --all";
       lolan = "log --graph --decorate --pretty=oneline --abbrev-commit --all --name-status";
     };
-    
+
     extraConfig = {
       core = {
         askPass = "";
-        excludesfile = "$HOME/gitignore"; 
+        excludesfile = "$HOME/gitignore";
       };
       user.useConfigOnly = true;
       init.defaultBranch = "main";

@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
-
-let
-  tmux-switch-pane = pkgs.writeScriptBin "tmux-switch-pane.sh" (builtins.readFile ./scripts/tmux-switch-pane.sh);
-in
 {
-  home.packages = [ tmux-switch-pane ];
+  config,
+  pkgs,
+  ...
+}: let
+  tmux-switch-pane = pkgs.writeScriptBin "tmux-switch-pane.sh" (builtins.readFile ./scripts/tmux-switch-pane.sh);
+in {
+  home.packages = [tmux-switch-pane];
   programs.tmux = {
     enable = true;
     prefix = "C-a";
@@ -33,7 +34,7 @@ in
       set-option -g visual-silence off
       set-window-option -g monitor-activity off
       set-option -g bell-action none
-      
+
       if-shell "test -d ~/.alan" \
           "set -g default-shell '/opt/homebrew/bin/fish'" \
           "set -g default-shell '/etc/profiles/per-user/ade-sede/bin/fish'"
