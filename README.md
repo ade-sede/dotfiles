@@ -67,6 +67,41 @@ To add a new dotfile to be managed by Home Manager:
 2. Add a symlink entry in `home-manager/dotfiles.nix`
 3. Apply changes with `home-manager switch`
 
+## Managing NixOS Generations
+
+### Listing Generations
+
+List all available system generations:
+```bash
+sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
+```
+
+### Deleting Old Generations
+
+Remove old system generations to free up disk space:
+
+```bash
+# Delete all generations older than 14 days
+sudo nix-collect-garbage --delete-older-than 14d
+
+# Delete specific generations
+sudo nix-env --delete-generations --profile /nix/var/nix/profiles/system 123 124 125
+
+# Delete all generations except the current one
+sudo nix-env --delete-generations --profile /nix/var/nix/profiles/system old
+```
+
+### Updating Boot Menu
+
+After deleting old generations, update the boot menu to remove entries for deleted generations:
+
+```bash
+# Update GRUB bootloader configuration
+sudo nixos-rebuild boot
+```
+
+This removes old entries from the boot menu and reclaims disk space used by old system configurations.
+
 ## Setting Up GitHub Access
 
 After setting up a new machine, upload your SSH and GPG keys to GitHub:

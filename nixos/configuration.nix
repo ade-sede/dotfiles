@@ -1,10 +1,25 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   # Automatically fetch Home Manager for NixOS 24.11
   home-manager = builtins.fetchTarball {
     url = "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
   };
+  
+  # API key handling
+  secretsDir = "/home/ade-sede/.dotfiles/secrets";
+  geminiKeyFile = "${secretsDir}/gemini_api_key.txt";
+  claudeKeyFile = "${secretsDir}/anthropic_api_key.txt";
+  openaiKeyFile = "${secretsDir}/openai_api_key.txt";
+  
+  readFileIfExists = file: 
+    if builtins.pathExists file
+    then lib.strings.removeSuffix "\n" (builtins.readFile file)
+    else "";
+    
+  geminiKey = readFileIfExists geminiKeyFile;
+  claudeKey = readFileIfExists claudeKeyFile;
+  openaiKey = readFileIfExists openaiKeyFile;
 in
 {
   imports =
@@ -93,9 +108,11 @@ in
      exec ${pkgs.nodePackages.npm}/bin/npx @anthropic-ai/claude-code "$@"
    '')
    (pkgs.writeShellScriptBin "codex" ''
-     # Inject fakes for use with litellm
-     export OPENAI_BASE_URL=''${OPENAI_BASE_URL:-"http://localhost:4000"}
-     export OPENAI_API_KEY=''${OPENAI_API_KEY:-"sk-litellm-proxy-fake-key"}
+     # Set API keys from values read by Nix
+     export ANTHROPIC_API_KEY="${claudeKey}"
+     export OPENAI_API_KEY="${openaiKey}" 
+     export GEMINI_API_KEY="${geminiKey}"
+     export FAKE_LITELLM_KEY="sk-litellm-proxy-fake-key"
      exec ${pkgs.nodePackages.npm}/bin/npx @openai/codex "$@"
    '')
    pinentry-qt

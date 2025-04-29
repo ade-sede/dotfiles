@@ -22,3 +22,6 @@ vim/.vim/bundle
 vim/.vim/backup
 fish/fish_variables
 /secrets/
+dotfiles/codex/history.json
+dotfiles/codex/sessions/
+dotfiles/codex/update-check.json

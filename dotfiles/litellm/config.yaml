@@ -3,32 +3,58 @@ model_list:
   - model_name: claude-3-5-sonnet 
     litellm_params:
       model: anthropic/claude-3-5-sonnet-20240620
-      
+    rpm: 2000
+    tpm: 1000000
+    
   - model_name: claude-3-5-sonnet-20240620
     litellm_params:
       model: anthropic/claude-3-5-sonnet-20240620
-      
+    rpm: 2000
+    tpm: 1000000
+    
   - model_name: claude-3-7-sonnet
     litellm_params:
       model: anthropic/claude-3-7-sonnet-20250219
+    rpm: 1500
+    tpm: 750000
 
   # OpenAI models
   - model_name: gpt-4o
     litellm_params:
       model: openai/gpt-4o
+    rpm: 500
 
   # Gemini models
   - model_name: gemini-pro
     litellm_params:
       model: gemini/gemini-pro
+    rpm: 500
+    
+  - model_name: gemini-2.0-flash
+    litellm_params:
+      model: gemini/gemini-2.0-flash
+    rpm: 2000
+    tpm: 4000000
+    
+  - model_name: gemini-flash-lite
+    litellm_params:
+      model: gemini/gemini-flash-lite
+    rpm: 4000
+    tpm: 4000000
 
 environment_variables:
   ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
   OPENAI_API_KEY: ${OPENAI_API_KEY}
   GEMINI_API_KEY: ${GEMINI_API_KEY}
+  ANTHROPIC_TIER: "tier_2"
   
 litellm_settings:
   drop_params: True
-  num_retries: 3
-  routing_strategy: simple-shuffle
-  allowed_fails: 1
+  num_retries: 5
+  request_timeout: 60
+  fallbacks: [{"anthropic/claude-3-7-sonnet-20250219": ["anthropic/claude-3-5-sonnet-20240620"]}]
+  allowed_fails: 3
+
+router_settings:
+  routing_strategy: least-busy
+  timeout: 90
