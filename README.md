@@ -2,6 +2,33 @@
 
 This repository contains my personal dotfiles and NixOS configuration. The goal is to provide a fully reproducible system setup with the absolute minimum of manual steps required.
 
+## Setup
+
+1. Replace the global NixOS configuration with a reference to this repository:
+   
+   Replace all content in `/etc/nixos/configuration.nix` with:
+   ```nix
+   { config, pkgs, ... }:
+
+   {
+     imports =
+       [
+         /home/ade-sede/.dotfiles/nixos/configuration.nix
+       ];
+   }
+   ```
+   This approach keeps the entire NixOS configuration within the dotfiles repository, not in /etc/.
+
+2. Apply configuration:
+   ```
+   sudo nixos-rebuild switch
+   ```
+
+3. ~To update just home-manager configuration:~ Currently broken
+   ```
+   home-manager switch
+   ```
+
 ## NixOS Configuration Structure
 
 - `nixos/configuration.nix`: Main NixOS system configuration
@@ -32,32 +59,6 @@ This repository contains my personal dotfiles and NixOS configuration. The goal 
   - `starship.toml`: Starship prompt configuration
 - `/Wallpaper/`: Wallpaper images
 
-## Setup
-
-1. Replace the global NixOS configuration with a reference to this repository:
-   
-   Replace all content in `/etc/nixos/configuration.nix` with:
-   ```nix
-   { config, pkgs, ... }:
-
-   {
-     imports =
-       [
-         /home/ade-sede/.dotfiles/nixos/configuration.nix
-       ];
-   }
-   ```
-   This approach keeps the entire NixOS configuration within the dotfiles repository, not in /etc/.
-
-2. Apply configuration:
-   ```
-   sudo nixos-rebuild switch
-   ```
-
-3. To update just home-manager configuration:
-   ```
-   home-manager switch
-   ```
 
 ## Add New Dotfiles
 
