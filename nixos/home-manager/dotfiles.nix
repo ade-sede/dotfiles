@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # Symlink dotfiles from the repository
   home.file = {
     ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/ade-sede/.dotfiles/dotfiles/nvim";
     ".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "/home/ade-sede/.dotfiles/dotfiles/git/.gitconfig";

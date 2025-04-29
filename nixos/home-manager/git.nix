@@ -12,7 +12,7 @@ in
     
     signing = {
       signByDefault = true;
-      key = null; # Use default key from GPG
+      key = null;
     };
     
     aliases = {

@@ -92,17 +92,7 @@ in
       $DRY_RUN_CMD mkdir -p $VERBOSE_ARG ~/.config
       $DRY_RUN_CMD mkdir -p $VERBOSE_ARG ~/.ssh
     '';
-    
-    generateSSHKey = config.lib.dag.entryAfter ["createDirs"] ''
-      if [ ! -f ~/.ssh/id_ed25519 ]; then
-        $DRY_RUN_CMD ${pkgs.openssh}/bin/ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N "" -C "${userVars.userEmail}"
-      fi
-    '';
-
-    generateGPGKey = config.lib.dag.entryAfter ["createDirs"] ''
-      if ! ${pkgs.gnupg}/bin/gpg --list-secret-keys | grep -q "${userVars.userEmail}"; then
-        $DRY_RUN_CMD ${pkgs.gnupg}/bin/gpg --batch --passphrase "" --quick-generate-key "${userVars.userName} <${userVars.userEmail}>" ed25519 sign never
-      fi
-    '';
   };
+  
+  home.enableNixpkgsReleaseCheck = false;
 }

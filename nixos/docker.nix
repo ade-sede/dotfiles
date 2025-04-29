@@ -19,7 +19,15 @@ let
 in {
   virtualisation.docker = {
     enable = true;
-    enableOnBoot = true;
+    enableOnBoot = false;
+    daemon.settings = {
+      "log-driver" = "local";
+      "log-opts" = {
+        "max-size" = "10m";
+        "max-file" = "3";
+      };
+      "storage-driver" = "overlay2";
+    };
   };
 
   users.users.ade-sede.extraGroups = [ "docker" ];
@@ -31,7 +39,7 @@ in {
     containers = {
       litellm-proxy = {
         image = "ghcr.io/berriai/litellm:main-latest";
-        autoStart = true;
+        autoStart = false;
         ports = [ "127.0.0.1:4000:4000" ];
         volumes = [
           "${configPath}:/app/config.yaml"

@@ -1,12 +1,10 @@
 { config, pkgs, lib, ... }:
 
 let
-  # Automatically fetch Home Manager for NixOS 24.11
   home-manager = builtins.fetchTarball {
     url = "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
   };
   
-  # API key handling
   secretsDir = "/home/ade-sede/.dotfiles/secrets";
   geminiKeyFile = "${secretsDir}/gemini_api_key.txt";
   claudeKeyFile = "${secretsDir}/anthropic_api_key.txt";
@@ -25,12 +23,10 @@ in
   imports =
     [
       /etc/nixos/hardware-configuration.nix
-      # Import Home Manager directly from the fetched tarball
       "${home-manager}/nixos"
       ./docker.nix
     ];
 
-  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -52,7 +48,7 @@ in
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
-  services.xserver.desktopManager.plasma6.enable = true;
+  services.desktopManager.plasma6.enable = true;
   services.xserver.xkb = {
     layout = "us";
     variant = "";
@@ -66,12 +62,6 @@ in
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   users.users.ade-sede = {
@@ -84,7 +74,6 @@ in
     shell = pkgs.fish;
   };
 
-  # Enable programs
   programs = {
     fish.enable = true;
   };
@@ -93,22 +82,13 @@ in
     enable = true;
     powerOnBoot = true;
   };
-  
-  # Enable font management
-  fonts.packages = with pkgs; [
-    nerdfonts
-    jetbrains-mono
-  ];
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-   # Keep only system-wide packages here
    (pkgs.writeShellScriptBin "claude" ''
      exec ${pkgs.nodePackages.npm}/bin/npx @anthropic-ai/claude-code "$@"
    '')
    (pkgs.writeShellScriptBin "codex" ''
-     # Set API keys from values read by Nix
      export ANTHROPIC_API_KEY="${claudeKey}"
      export OPENAI_API_KEY="${openaiKey}" 
      export GEMINI_API_KEY="${geminiKey}"
@@ -116,12 +96,8 @@ in
      exec ${pkgs.nodePackages.npm}/bin/npx @openai/codex "$@"
    '')
    pinentry-qt
-   # Home manager CLI tool is automatically included when using the NixOS module
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
   programs.gnupg = {
     agent = {
       enable = true;
@@ -131,44 +107,71 @@ in
     package = pkgs.gnupg;
   };
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It's perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 
-  # Home Manager configuration
   home-manager = {
     users.ade-sede = import ./home-manager/home.nix;
     backupFileExtension = "backup";
-    # This ensures the home-manager command is available
     useGlobalPkgs = true;
     useUserPackages = true;
   };
   
-  # Ensure GPG key is generated during system rebuild
-  system.activationScripts.generateGpgKey = {
-    text = ''
-      # Get username and email from variables.nix
-      userName=$(grep 'userName =' ${./home-manager/variables.nix} | cut -d'"' -f2)
-      userEmail=$(grep 'userEmail =' ${./home-manager/variables.nix} | cut -d'"' -f2)
-      
-      # Generate ED25519 GPG key if it doesn't exist
-      if ! ${pkgs.gnupg}/bin/gpg --list-secret-keys | grep -q "$userEmail"; then
-        cat > /tmp/gpg-gen-key.batch << EOF
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+      max-jobs = "auto";
+      cores = 0;
+      fsync-metadata = false;
+      connect-timeout = 5;
+      log-lines = 25;
+      min-free = 128000000;
+      max-free = 1000000000;
+    };
+    
+    daemonCPUSchedPolicy = "batch";
+    daemonIOSchedPriority = 7;
+    extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true
+    '';
+  };
+  
+  nix.nrBuildUsers = 32;
+  
+  systemd = {
+    extraConfig = ''
+      DefaultTimeoutStartSec=15s
+      DefaultTimeoutStopSec=10s
+      DefaultStartLimitIntervalSec=10s
+      DefaultStartLimitBurst=5
+    '';
+    
+    network.wait-online.enable = false;
+    user.services.dbus.startLimitBurst = 500;
+    
+    services = {
+      generate-gpg-key = {
+        enable = false;
+        description = "Generate GPG key if it doesn't exist";
+        wantedBy = [ "default.target" ];
+        partOf = [ "graphical-session.target" ];
+        after = [ "network.target" ];
+        
+        startLimitIntervalSec = 0;
+        serviceConfig = {
+          Type = "oneshot";
+          User = "ade-sede";
+          RemainAfterExit = true;
+        };
+        
+        script = ''
+          userName=$(grep 'userName =' ${./home-manager/variables.nix} | cut -d'"' -f2)
+          userEmail=$(grep 'userEmail =' ${./home-manager/variables.nix} | cut -d'"' -f2)
+          
+          if ! ${pkgs.gnupg}/bin/gpg --list-secret-keys | grep -q "$userEmail"; then
+            echo "Generating GPG key for $userEmail (this will only happen once)"
+            cat > /tmp/gpg-gen-key.batch << EOF
 %echo Generating GPG key
 Key-Type: EDDSA
 Key-Curve: ed25519
@@ -183,10 +186,41 @@ Expire-Date: 0
 %commit
 %echo GPG key generation completed
 EOF
-        ${pkgs.gnupg}/bin/gpg --batch --generate-key /tmp/gpg-gen-key.batch
-        rm -f /tmp/gpg-gen-key.batch
-      fi
-    '';
-    deps = [];
+            ${pkgs.gnupg}/bin/gpg --batch --generate-key /tmp/gpg-gen-key.batch
+            rm -f /tmp/gpg-gen-key.batch
+          else
+            echo "GPG key for $userEmail already exists, nothing to do"
+            exit 0
+          fi
+        '';
+      };
+      
+      generate-ssh-key = {
+        enable = false;
+        description = "Generate SSH key if it doesn't exist";
+        wantedBy = [ "default.target" ];
+        partOf = [ "graphical-session.target" ];
+        after = [ "network.target" ];
+        
+        startLimitIntervalSec = 0;
+        serviceConfig = {
+          Type = "oneshot";
+          User = "ade-sede";
+          RemainAfterExit = true;
+        };
+        
+        script = ''
+          userEmail=$(grep 'userEmail =' ${./home-manager/variables.nix} | cut -d'"' -f2)
+          
+          if [ ! -f /home/ade-sede/.ssh/id_ed25519 ]; then
+            echo "Generating SSH key (this will only happen once)"
+            ${pkgs.openssh}/bin/ssh-keygen -t ed25519 -f /home/ade-sede/.ssh/id_ed25519 -N "" -C "$userEmail"
+          else
+            echo "SSH key already exists, nothing to do"
+            exit 0
+          fi
+        '';
+      };
+    };
   };
 }
