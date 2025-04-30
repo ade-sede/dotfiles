@@ -1,8 +1,14 @@
 {
   config,
   pkgs,
+  lib,
   ...
-}: {
+}: let
+  secrets = import ../secrets.nix { inherit pkgs lib; };
+  geminiKey = secrets.apiKeys.geminiKey;
+  claudeKey = secrets.apiKeys.claudeKey;
+  openaiKey = secrets.apiKeys.openaiKey;
+in {
   home.packages = with pkgs; [
     bash
     vim
@@ -10,13 +16,12 @@
     nodejs_22
     git
     tmux
-    ghostty
-    discord
     starship
     curl
     fzf
     python3
     python311Packages.pip
+    python311Packages.mdformat
     eza
     github-cli
     bat
@@ -33,22 +38,16 @@
     nixfmt-classic
     alejandra
     pre-commit
-    (
-      let
-        customVivaldi = vivaldi.overrideAttrs (oldAttrs: {
-          buildPhase =
-            builtins.replaceStrings
-            ["for f in libGLESv2.so libqt5_shim.so ; do"]
-            ["for f in libGLESv2.so libqt5_shim.so libqt6_shim.so ; do"]
-            oldAttrs.buildPhase;
-        });
-      in
-        customVivaldi.override {
-          qt5 = qt6;
-          commandLineArgs = ["--ozone-platform=wayland"];
-          proprietaryCodecs = true;
-          enableWidevine = true;
-        }
-    )
+    
+    (pkgs.writeShellScriptBin "claude" ''
+      exec ${pkgs.nodePackages.npm}/bin/npx @anthropic-ai/claude-code "$@"
+    '')
+    (pkgs.writeShellScriptBin "codex" ''
+      export ANTHROPIC_API_KEY="${claudeKey}"
+      export OPENAI_API_KEY="${openaiKey}"
+      export GEMINI_API_KEY="${geminiKey}"
+      export FAKE_LITELLM_KEY="sk-litellm-proxy-fake-key"
+      exec ${pkgs.nodePackages.npm}/bin/npx @openai/codex "$@"
+    '')
   ];
 }

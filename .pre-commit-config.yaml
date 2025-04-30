@@ -11,3 +11,9 @@ repos:
         entry: alejandra
         language: system
         files: \.nix$
+        
+      - id: mdformat
+        name: mdformat
+        entry: mdformat
+        language: system
+        files: \.md$
