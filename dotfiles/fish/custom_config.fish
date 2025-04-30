@@ -88,8 +88,8 @@ end
 if type -q bass
     bass source ~/.nvm/nvm.sh --no-use ';' nvm use $nvm_default_version > /dev/null 2>&1
 end
-if [ -e ~/.config/fish/greeting.fish ]
-    source ~/.config/fish/greeting.fish
+if [ -e ~/.dotfiles/dotfiles/fish/scripts/greeting.fish ]
+    source ~/.dotfiles/dotfiles/fish/scripts/greeting.fish
 end
 if [ -e ~/.asdf/asdf.fish ]
     source ~/.asdf/asdf.fish

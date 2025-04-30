@@ -36,9 +36,9 @@ model_list:
     rpm: 2000
     tpm: 4000000
     
-  - model_name: gemini-flash-lite
+  - model_name: gemini-2.0-flash-lite
     litellm_params:
-      model: gemini/gemini-flash-lite
+      model: gemini/gemini-2.0-flash-lite
     rpm: 4000
     tpm: 4000000
 

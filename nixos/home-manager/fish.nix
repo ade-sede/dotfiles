@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   programs.fish = {
@@ -28,7 +29,7 @@
     ];
 
     shellInit = ''
-      source ~/.dotfiles/dotfiles/fish/config.fish
+      source ~/.dotfiles/dotfiles/fish/custom_config.fish
     '';
   };
 }

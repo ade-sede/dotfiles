@@ -33,5 +33,6 @@
     ./dotfiles.nix
     ./programs.nix
     ./tmux.nix
+    ./meme.nix
   ];
 }
