@@ -10,6 +10,7 @@
   openaiKey = secrets.apiKeys.openaiKey;
 in {
   home.packages = with pkgs; [
+    unzip
     bash
     vim
     wget
@@ -38,6 +39,7 @@ in {
     nixfmt-classic
     alejandra
     pre-commit
+    go
     
     (pkgs.writeShellScriptBin "claude" ''
       exec ${pkgs.nodePackages.npm}/bin/npx @anthropic-ai/claude-code "$@"

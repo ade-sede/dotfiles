@@ -25,3 +25,5 @@ fish/fish_variables
 dotfiles/codex/history.json
 dotfiles/codex/sessions/
 dotfiles/codex/update-check.json
+
+**/.claude/settings.local.json

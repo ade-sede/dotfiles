@@ -2,7 +2,7 @@
 
 This repository contains my personal dotfiles and NixOS configuration. The goal is to provide a fully reproducible system setup with the absolute minimum of manual steps required.
 
-## Setup
+## Getting started on a machine running NixOS
 
 ### 1. Replace the global NixOS configuration with a reference to this repository:
 
@@ -49,10 +49,26 @@ rm gpg_github_key.asc
 
 ## Managing packages
 
+### Installing new packages
+
 Define the packages directly in nix:
 
 - `nixos/home-manager/packages.nix` for user level packages
 - `nixos/desktop.nix` for system level packages (preferred for GUI applications)
+
+Once the configuration file is updated, build the config and switch to it.
+
+If they are defined at the home-manager level:
+
+```bash
+home-manager switch
+```
+
+If they are defined at the system level:
+
+```bash
+sudo nixos-rebuild switch
+```
 
 ### Adding a NPM package through nix
 

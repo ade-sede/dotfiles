@@ -12,6 +12,7 @@
   
   environment.systemPackages = with pkgs; [
     pinentry-qt
+    home-manager
   ];
 
   programs.gnupg = {
