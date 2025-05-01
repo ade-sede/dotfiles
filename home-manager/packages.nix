@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   ...
@@ -10,38 +9,50 @@
   openaiKey = secrets.apiKeys.openaiKey;
 in {
   home.packages = with pkgs; [
-    jetbrains-mono
-    fd
-    unzip
-    bash
-    vim
-    wget
-    nodejs_22
-    git
-    tmux
-    starship
-    curl
-    fzf
-    python3
-    python311Packages.pip
-    python311Packages.mdformat
-    eza
-    github-cli
-    bat
-    coreutils
-    gnugrep
-    gawk
-    findutils
-    cmake
-    gnumake
-    gcc
-    ripgrep
-    docker
-    docker-compose
-    nixfmt-classic
     alejandra
+    asciinema
+    bat
+    btop
+    coreutils
+    curl
+    delta
+    eza
+    fd
+    file
+    fzf
+    gh
+    git
+    gnupg
+    htop
+    iftop
+    iotop
+    jq
+    killall
+    lazygit
+    llvm
+    lsof
+    man-pages
+    netcat
+    nix-prefetch-git
+    nmap
+    nodejs_22
+    pinentry
     pre-commit
-    go
+    python311
+    ripgrep
+    rsync
+    shellcheck
+    silver-searcher
+    stow
+    tig
+    tmux
+    tree
+    unzip
+    vim
+    watch
+    wget
+    xclip
+    zip
     (pkgs.writeShellScriptBin "claude" ''
       exec ${pkgs.nodePackages.npm}/bin/npx @anthropic-ai/claude-code "$@"
     '')

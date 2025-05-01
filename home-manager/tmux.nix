@@ -35,7 +35,7 @@ in {
       set-option -g visual-silence off
       set-window-option -g monitor-activity off
       set-option -g bell-action none
-      
+
       set -ag terminal-overrides ",*:RGB"
       set -g default-terminal "tmux-256color"
 
