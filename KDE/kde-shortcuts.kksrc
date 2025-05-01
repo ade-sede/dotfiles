@@ -90,6 +90,10 @@ Zoom=
 ZoomIn=Ctrl+=; Ctrl++
 ZoomOut=Ctrl+-
 
+[com.mitchellh.ghostty.desktop][Global Shortcuts]
+_launch=Meta+Return
+new-window=
+
 [kaccess][Global Shortcuts]
 Toggle Screen Reader On and Off=Meta+Alt+S
 
@@ -280,9 +284,17 @@ stopmedia=Media Stop
 [org.kde.dolphin.desktop][Global Shortcuts]
 _launch=
 
+[org.kde.konsole.desktop][Global Shortcuts]
+NewTab=
+NewWindow=
+_launch=Ctrl+Alt+T
+
 [org.kde.krunner.desktop][Global Shortcuts]
 RunClipboard=Alt+Shift+F2
-_launch=Search; Alt+F2; Alt+Space; Meta+D
+_launch=Meta+D
+
+[org.kde.plasma-systemmonitor.desktop][Global Shortcuts]
+_launch=Meta+Esc
 
 [org.kde.plasma.emojier.desktop][Global Shortcuts]
 _launch=Meta+.
@@ -292,6 +304,9 @@ ActiveWindowScreenShot=Meta+Print
 CurrentMonitorScreenShot=
 FullScreenScreenShot=Shift+Print
 OpenWithoutScreenshot=
+RecordRegion=Meta+R; Meta+Shift+R
+RecordScreen=Meta+Alt+R
+RecordWindow=
 RectangularRegionScreenShot=Meta+Shift+Print
 WindowUnderCursorScreenShot=Meta+Ctrl+Print
 _launch=Print
@@ -343,6 +358,24 @@ toggle do not disturb=
 _launch=Tools
 kcm-kscreen=
 kcm-lookandfeel=
+kcm-powerdevilprofilesconfig=
+kcm-screenlocker=
 kcm-users=
 powerdevilprofilesconfig=
 screenlocker=
+
+[vivaldi-stable][Global Shortcuts]
+addSite=
+launch-element-picker=
+launch-element-zapper=
+launch-logger=
+lock=
+open-dashboard=
+openManage=
+relax-blocking-mode=
+reload=
+styleDisableAll=
+switchEngine=
+toggle=
+toggle-cosmetic-filtering=
+toggle-javascript=
