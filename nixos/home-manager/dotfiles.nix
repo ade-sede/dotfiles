@@ -16,5 +16,6 @@
     ".config/swaylock".source = config.lib.file.mkOutOfStoreSymlink "/home/ade-sede/.dotfiles/dotfiles/swaylock";
     ".codex".source = config.lib.file.mkOutOfStoreSymlink "/home/ade-sede/.dotfiles/dotfiles/codex";
     ".config/home-manager/home.nix".source = config.lib.file.mkOutOfStoreSymlink "/home/ade-sede/.dotfiles/nixos/home-manager/home.nix";
+    ".face.icon".source = config.lib.file.mkOutOfStoreSymlink "/home/ade-sede/.dotfiles/profile-pictures/picture.png";
   };
 }
