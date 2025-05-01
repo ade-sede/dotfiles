@@ -5,6 +5,7 @@
 }: {
   home.file = {
     ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/ade-sede/.dotfiles/dotfiles/nvim";
+    ".config/home-manager".source = config.lib.file.mkOutOfStoreSymlink "/home/ade-sede/.dotfiles/home-manager";
     ".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "/home/ade-sede/.dotfiles/dotfiles/git/.gitconfig";
     ".config/ghostty".source = config.lib.file.mkOutOfStoreSymlink "/home/ade-sede/.dotfiles/dotfiles/ghostty";
     ".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink "/home/ade-sede/.dotfiles/dotfiles/starship.toml";
@@ -15,6 +16,5 @@
     ".config/kanshi".source = config.lib.file.mkOutOfStoreSymlink "/home/ade-sede/.dotfiles/dotfiles/kanshi";
     ".config/swaylock".source = config.lib.file.mkOutOfStoreSymlink "/home/ade-sede/.dotfiles/dotfiles/swaylock";
     ".codex".source = config.lib.file.mkOutOfStoreSymlink "/home/ade-sede/.dotfiles/dotfiles/codex";
-    ".config/home-manager/home.nix".source = config.lib.file.mkOutOfStoreSymlink "/home/ade-sede/.dotfiles/nixos/home-manager/home.nix";
   };
 }
