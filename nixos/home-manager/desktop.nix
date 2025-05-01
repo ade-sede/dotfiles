@@ -3,9 +3,6 @@
   lib,
   ...
 }: {
-  imports = [
-    ./plasma.nix
-  ];
   home.packages = with pkgs; [
     discord
     ghostty

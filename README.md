@@ -116,7 +116,10 @@ To add a new dotfile to be managed by Home Manager:
 
 ### Backing up plasma configuration
 
-Make all the changes you want using the built-in System Settings app and dump the whole config to a file using rc2nix:
+This experiment failed, not currently able to manage plasma through _plasma-manager_.
+It worked for window rules and desktop but was unstable for shortcuts, often crashing.
+Store and manually import configurations in `dotfiles/KDE`.
+~Make all the changes you want using the built-in System Settings app and dump the whole config to a file using rc2nix:~
 
 ```bash
 nix run github:nix-community/plasma-manager > nixos/home-manager/plasma.nix
