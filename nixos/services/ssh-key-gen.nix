@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  variables = import ../home-manager/variables.nix;
+  variables = import ../../home-manager/variables.nix;
   userEmail = variables.userEmail;
 in {
   systemd.services.generate-ssh-key = {

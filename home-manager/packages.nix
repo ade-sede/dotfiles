@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  secrets = import ../secrets.nix {inherit pkgs lib;};
+  secrets = import ./secrets.nix {inherit pkgs lib;};
   geminiKey = secrets.apiKeys.geminiKey;
   claudeKey = secrets.apiKeys.claudeKey;
   openaiKey = secrets.apiKeys.openaiKey;

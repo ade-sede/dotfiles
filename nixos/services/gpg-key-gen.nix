@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  variables = import ../home-manager/variables.nix;
+  variables = import ../../home-manager/variables.nix;
   userName = variables.userName;
   userEmail = variables.userEmail;
 in {

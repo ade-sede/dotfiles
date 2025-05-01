@@ -53,7 +53,7 @@ rm gpg_github_key.asc
 
 Define the packages directly in nix:
 
-- `nixos/home-manager/packages.nix` for user level packages
+- `home-manager/packages.nix` for user level packages
 - `nixos/desktop.nix` for system level packages (preferred for GUI applications)
 
 Once the configuration file is updated, build the config and switch to it.
@@ -111,7 +111,7 @@ Adding a new configuration file as a dotfile is recommended way.
 To add a new dotfile to be managed by Home Manager:
 
 1. Add the configuration file in `dotfiles/<software-name>`
-1. Add a symlink entry in `nixos/home-manager/dotfiles.nix`
+1. Add a symlink entry in `home-manager/dotfiles.nix`
 1. Apply changes with `home-manager switch`
 
 ### Backing up plasma configuration
@@ -192,7 +192,8 @@ Hooks available:
 
 ```
 .dotfiles/
-├── nixos/           # NixOS configuration
+├── nixos/           # System-wide configuration
+├── home-manager/    # User-specific configuration
 ├── scripts/         # Utility scripts
 ├── secrets/         # Secret files
 ├── dotfiles/        # Application-specific configurations
@@ -212,22 +213,26 @@ nixos/
 ├── programs.nix
 ├── services.nix
 ├── users.nix
-├── home-manager.nix
-├── secrets.nix
+├── home-manager.nix     # Imports the home-manager directory
 ├── virtualisation/
 │   ├── containers.nix
 │   └── docker.nix
+
+home-manager/
+├── default.nix          # Home Manager entry point
+├── home.nix
+├── packages.nix
+├── dotfiles.nix         # Symlinks to dotfiles in the repository
+├── programs.nix
+├── variables.nix
+├── secrets.nix
+├── services.nix
+├── browsers.nix
+├── fish.nix
+├── git.nix
+├── tmux.nix
 ├── services/
-│   ├── gpg-key-gen.nix  # Ensure a GPG key is always available
-│   └── ssh-key-gen.nix  # Ensure an SSH key is always available
-└── home-manager/
-    ├── home.nix
-    ├── packages.nix
-    ├── dotfiles.nix     # Symlinks to dotfiles in the repository
-    ├── programs.nix
-    ├── variables.nix
-    ├── browsers.nix
-    ├── fish.nix
-    ├── git.nix
-    └── tmux.nix
+│   ├── gpg-key-gen.nix  # GPG key generation
+│   └── ssh-key-gen.nix  # SSH key generation
+└── scripts/
 ```

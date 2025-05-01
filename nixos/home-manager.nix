@@ -5,7 +5,7 @@
   ...
 }: {
   home-manager = {
-    users.ade-sede = import ./home-manager/home.nix;
+    users.ade-sede = import ../home-manager;
     backupFileExtension = "backup";
     useGlobalPkgs = true;
     useUserPackages = true;
