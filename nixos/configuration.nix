@@ -7,11 +7,11 @@
   home-manager = builtins.fetchTarball {
     url = "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
   };
- plasma-manager = builtins.fetchTarball {
+  plasma-manager = builtins.fetchTarball {
     url = "https://github.com/nix-community/plasma-manager/archive/trunk.tar.gz";
   };
 in {
-  home-manager.sharedModules = [ "${plasma-manager}/modules" ];
+  home-manager.sharedModules = ["${plasma-manager}/modules"];
 
   imports = [
     /etc/nixos/hardware-configuration.nix

@@ -3,10 +3,7 @@
   pkgs,
   lib,
   ...
-}: let
-  vars = import ./home-manager/variables.nix;
-  safeLanding = "${vars.wallpaperDir}/safe-landing.jpg";
-in {
+}: {
   services.xserver.enable = true;
   services.displayManager.sddm = {
     enable = true;
@@ -17,11 +14,4 @@ in {
     layout = "us";
     variant = "";
   };
-  
-  environment.systemPackages = [
-    (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
-    [General]
-    background=${safeLanding}
-    '')
-  ];
 }

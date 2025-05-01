@@ -47,7 +47,7 @@ gh gpg-key add gpg_github_key.asc
 rm gpg_github_key.asc
 ```
 
-## Managing packages
+## Managing packages & configurations
 
 ### Installing new packages
 
@@ -113,6 +113,14 @@ To add a new dotfile to be managed by Home Manager:
 1. Add the configuration file in `dotfiles/<software-name>`
 1. Add a symlink entry in `nixos/home-manager/dotfiles.nix`
 1. Apply changes with `home-manager switch`
+
+### Backing up plasma configuration
+
+Make all the changes you want using the built-in System Settings app and dump the whole config to a file using rc2nix:
+
+```bash
+nix run github:nix-community/plasma-manager > nixos/home-manager/plasma.nix
+```
 
 ## Managing NixOS Generations
 
