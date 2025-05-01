@@ -29,6 +29,7 @@ in {
     extraConfig = ''
       set-option -g automatic-rename off
       bind-key s run-shell -b tmux-switch-pane.sh
+      bind-key L switch-client -l
       set-option -g visual-activity off
       set-option -g visual-bell off
       set-option -g visual-silence off
