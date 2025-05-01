@@ -9,7 +9,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  
+
   environment.systemPackages = with pkgs; [
     pinentry-qt
     home-manager

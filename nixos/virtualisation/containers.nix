@@ -5,7 +5,7 @@
   ...
 }: let
   configPath = "/home/ade-sede/.dotfiles/dotfiles/litellm/config.yaml";
-  secrets = import ../secrets.nix { inherit pkgs lib; };
+  secrets = import ../secrets.nix {inherit pkgs lib;};
   geminiKey = secrets.apiKeys.geminiKey;
   claudeKey = secrets.apiKeys.claudeKey;
   openaiKey = secrets.apiKeys.openaiKey;

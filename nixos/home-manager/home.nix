@@ -34,5 +34,6 @@
     ./programs.nix
     ./tmux.nix
     ./meme.nix
+    ./desktop.nix
   ];
 }

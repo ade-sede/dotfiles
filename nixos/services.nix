@@ -10,7 +10,7 @@
   ];
 
   services.printing.enable = false;
-  
+
   systemd.services.generate-gpg-key.enable = true;
   systemd.services.generate-ssh-key.enable = true;
 }

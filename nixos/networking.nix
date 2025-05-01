@@ -1,8 +1,9 @@
 {
   config,
   pkgs,
-  lib, ...
-}: { 
+  lib,
+  ...
+}: {
   networking.hostName = "koala-devbox";
   networking.networkmanager.enable = true;
 }

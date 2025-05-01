@@ -1,21 +1,22 @@
 {
   config,
   pkgs,
-  lib, ...
-}: { 
+  lib,
+  ...
+}: {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  
+
   boot.plymouth = {
     enable = true;
     theme = "colorful_loop";
     themePackages = with pkgs; [
       (pkgs.adi1090x-plymouth-themes.override {
-        selected_themes = [ "colorful_loop" ];
+        selected_themes = ["colorful_loop"];
       })
     ];
   };
-  
+
   boot.consoleLogLevel = 3;
   boot.initrd.verbose = false;
   boot.kernelParams = [

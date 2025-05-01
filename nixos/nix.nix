@@ -23,7 +23,7 @@
       keep-outputs = true
       keep-derivations = true
     '';
-    
+
     nrBuildUsers = 32;
   };
 }

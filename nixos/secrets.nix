@@ -1,8 +1,10 @@
-{ pkgs, lib, ... }:
-
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   secretsDir = "/home/ade-sede/.dotfiles/secrets";
-  
+
   geminiKeyFile = "${secretsDir}/gemini_api_key.txt";
   claudeKeyFile = "${secretsDir}/anthropic_api_key.txt";
   openaiKeyFile = "${secretsDir}/openai_api_key.txt";
@@ -17,14 +19,14 @@ in {
     claudeKey = readFileIfExists claudeKeyFile;
     openaiKey = readFileIfExists openaiKeyFile;
   };
-  
+
   paths = {
     secretsDir = secretsDir;
     geminiKeyFile = geminiKeyFile;
     claudeKeyFile = claudeKeyFile;
     openaiKeyFile = openaiKeyFile;
   };
-  
+
   utils = {
     readFileIfExists = readFileIfExists;
   };
