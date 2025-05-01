@@ -34,6 +34,9 @@ in {
       set-option -g visual-silence off
       set-window-option -g monitor-activity off
       set-option -g bell-action none
+      
+      set -ag terminal-overrides ",*:RGB"
+      set -g default-terminal "tmux-256color"
 
       if-shell "test -d ~/.alan" \
           "set -g default-shell '/opt/homebrew/bin/fish'" \

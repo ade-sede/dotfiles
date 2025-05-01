@@ -10,6 +10,7 @@
   openaiKey = secrets.apiKeys.openaiKey;
 in {
   home.packages = with pkgs; [
+    jetbrains-mono
     fd
     unzip
     bash
