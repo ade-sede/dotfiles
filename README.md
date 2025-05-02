@@ -7,23 +7,38 @@ This repository contains my personal dotfiles and NixOS configuration. The goal 
 ### Prerequisites
 
 - Must be a NixOS machine or at the very least a system with Nix package manager installed
-- Flakes must be enabled:
+
+#### For all systems - Enable flakes
 
 ```bash
-# For NixOS (Make sure repository contains no unstaged changes)
+# For NixOS
 sudo mkdir -p /etc/nixos/
 echo "{ nix.settings.experimental-features = [ 'nix-command' 'flakes' ]; }" | sudo tee /etc/nixos/flakes.nix
 
-# If you have a legacy configuration in /etc/nixos/configuration.nix that imports this dotfiles repository,
-# you can safely delete or backup that file as it's not used with flakes:
-# sudo mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix.backup
 
-# For any other OS (macOS, Linux, etc.)
+# For non-NixOs machines
 mkdir -p ~/.config/nix
 echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 ```
 
+#### For NixOs - Install home-manager via nix channels
+
+```bash
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+```
+
+#### For NixOs - Remove legacy config (optional)
+
+When using flakes the entirety of the system is stored in `/var/nix/*`.
+You can safely remove your config at `/etc/nixos/configuration.nix`.
+You must keep the `flakes.nix` and `hardware-configuration.nix`.
+
 ### Installation
+
+Flakes are used to specify different _hosts_ and the corresponding configurations.  
+On a NixOs machine, building the config using the right flake will enable the corresponding config.  
+On a machine without NixOs but using home-manager, the same concept applies but at the home-manager level.  
 
 ```bash
 # Clone the repository
@@ -37,8 +52,12 @@ sudo nixos-rebuild switch --flake .#desktop --impure
 sudo nixos-rebuild switch --flake .#development-server --impure
 
 # Home Manager standalone (any non-NixOS system, granted nix is already installed)
-nix run home-manager/master -- switch --flake .#ade-sede@home-manager-only
+home-manager switch --flake .#ade-sede@home-manager-only
 ```
+
+Flakes are supposed to be self-contained with 0 dependencies outside the repository.  
+We use `--impure` because each NixOs machine is expected to have it's configuration in `/etc/nixos/hardware-configuration.nix`
+
 
 ### Uploading security keys to GitHub
 
@@ -68,19 +87,16 @@ gh ssh-key add ~/.ssh/id_ed25519.pub -t "koala-devbox" # Should be pushed automa
 
 ### Installing new packages
 
-Define the packages directly in nix:
+Define the packages directly in configuration files:
 
 - `home-manager/packages.nix` for user level packages
 - `nixos/desktop.nix` for system level packages (preferred for GUI applications)
 
-Once the configuration file is updated, rebuild with flakes:
+If you installed changes in `nixos/desktop.nix` you will need to rebuild the flake following the instructions at the top of the README.
+If you made a change in `home-manager/packages.nix` you can re-apply the home-manager config
 
 ```bash
-# For system level packages
-sudo nixos-rebuild switch --flake .#desktop --impure
-
-# For home-manager standalone
-nix run home-manager/master -- switch --flake .#ade-sede@home-manager-only
+home-manager switch
 ```
 
 ### Adding a NPM package through nix
