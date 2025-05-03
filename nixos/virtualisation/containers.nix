@@ -6,8 +6,11 @@
   ...
 }: let
   configPath = "${homeDirectory}/.dotfiles/dotfiles/litellm/config.yaml";
-  configWithHome = { home = { homeDirectory = homeDirectory; }; };
-  homeManagerSecrets = import ../../home-manager/secrets.nix {inherit pkgs lib; config = configWithHome;};
+  configWithHome = {home = {homeDirectory = homeDirectory;};};
+  homeManagerSecrets = import ../../home-manager/secrets.nix {
+    inherit pkgs lib;
+    config = configWithHome;
+  };
   secrets = homeManagerSecrets;
   geminiKey = secrets.apiKeys.geminiKey;
   claudeKey = secrets.apiKeys.claudeKey;

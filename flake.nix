@@ -16,63 +16,81 @@
     ...
   } @ inputs: let
     lib = nixpkgs.lib;
-    username = "ade-sede";
-    homeDirectory = "/home/${username}";
   in {
     nixosConfigurations = {
-      koala-devbox = lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit username homeDirectory;
-        };
-        modules = [
-          ./nixos/hardware-configs/koala-devbox.nix
-          ./nixos/configuration.nix
-          home-manager.nixosModules.home-manager
-        ];
-      };
+      koala-devbox = let
+        username = "ade-sede";
+        homeDirectory = "/home/ade-sede";
+      in
+        lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit username homeDirectory;
+          };
 
-      development-server = lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit username homeDirectory;
+          modules = [
+            ./nixos/hardware-configs/koala-devbox.nix
+            ./nixos/configuration.nix
+            home-manager.nixosModules.home-manager
+            { nixpkgs.config.allowUnfree = true; }
+          ];
         };
-	# Make sure to exclude xserver and desktop related
-        modules = [
-          # Add hardware config
-          ./nixos/configuration.nix
-          {
-            imports = lib.mkForce (
-              lib.filter
-              (path: baseNameOf path != "xserver.nix")
-              (import ./nixos/configuration.nix).imports
-            );
 
-            home-manager.users.ade-sede.imports = lib.mkForce (
-              lib.filter
-              (path: baseNameOf path != "desktop.nix")
-              (import ./home-manager/home.nix).imports
-            );
-          }
-          home-manager.nixosModules.home-manager
-        ];
-      };
+      development-server = let
+        username = "ade-sede";
+        homeDirectory = "/home/ade-sede";
+      in
+        lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit username homeDirectory;
+          };
+
+          # Make sure to exclude xserver and desktop related
+          modules = [
+            # TODO Add hardware config
+            ./nixos/configuration.nix
+            {
+              imports = lib.mkForce (
+                lib.filter
+                (path: baseNameOf path != "xserver.nix")
+                (import ./nixos/configuration.nix).imports
+              );
+
+              home-manager.users.ade-sede.imports = lib.mkForce (
+                lib.filter
+                (path: baseNameOf path != "desktop.nix")
+                (import ./home-manager/home.nix).imports
+              );
+              
+              nixpkgs.config.allowUnfree = true;
+            }
+            home-manager.nixosModules.home-manager
+          ];
+        };
     };
 
     homeConfigurations = {
-      "ade-sede@home-manager-only" = home-manager.lib.homeManagerConfiguration {
+      koala-devbox = let
+        username = "ade-sede";
+        homeDirectory = "/home/ade-sede";
         pkgs = import nixpkgs {
-          system = "aarch64-darwin";
-          config.allowUnfree = true;
+          system = "x86_64-linux";
+          config = {
+            allowUnfree = true;
+          };
         };
-        extraSpecialArgs = {
-          inherit username;
-          homeDirectory = "/Users/${username}";
+      in
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit username homeDirectory;
+          };
+    
+          modules = [
+            ./home-manager/home.nix
+          ];
         };
-        modules = [
-          ./home-manager/home.nix
-        ];
-      };
     };
   };
 }

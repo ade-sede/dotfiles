@@ -53,7 +53,9 @@ in {
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
-    pinentryFlavor = "curses";
+    pinentry = {
+      package = pkgs.pinentry-curses;
+    };
     extraConfig = ''
       allow-loopback-pinentry
     '';
