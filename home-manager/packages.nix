@@ -64,7 +64,8 @@ in {
       export ANTHROPIC_API_KEY="${claudeKey}"
       export OPENAI_API_KEY="${openaiKey}"
       export GEMINI_API_KEY="${geminiKey}"
-      export FAKE_LITELLM_KEY="sk-litellm-proxy-fake-key"
+      export LITELLM_API_KEY=key="sk-litellm-proxy-fake-key"
+
       exec ${pkgs.nodePackages.npm}/bin/npx @openai/codex "$@"
     '')
   ];
