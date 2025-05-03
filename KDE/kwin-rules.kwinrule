@@ -9,14 +9,14 @@ wmclassmatch=1
 Description=Ghostty
 desktops=Desktop_4
 desktopsrule=3
-wmclass=ghostty com.mitchellh.ghostty
-wmclassmatch=1
+wmclass=.*ghostty.*
+wmclassmatch=3
 
 [New window settings]
 Description=New window settings
-position=80,70
+position=20,40
 positionrule=3
-size=1400,800
+size=1500,900
 sizerule=3
 wmclass=.*
 wmclassmatch=3
@@ -32,8 +32,8 @@ wmclassmatch=1
 Description=Vivaldi
 desktops=Desktop_3
 desktopsrule=3
-wmclass=vivaldi-bin
-wmclassmatch=1
+wmclass=.*vivaldi.*
+wmclassmatch=3
 
 [Vivaldi Picture-in-Picture]
 Description=Vivaldi Picture-in-Picture
