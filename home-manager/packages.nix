@@ -16,6 +16,7 @@ in {
     coreutils
     curl
     delta
+    devbox
     eza
     fd
     file
