@@ -32,7 +32,7 @@
             ./nixos/hardware-configs/koala-devbox.nix
             ./nixos/configuration.nix
             home-manager.nixosModules.home-manager
-            { nixpkgs.config.allowUnfree = true; }
+            {nixpkgs.config.allowUnfree = true;}
           ];
         };
 
@@ -62,7 +62,7 @@
                 (path: baseNameOf path != "desktop.nix")
                 (import ./home-manager/home.nix).imports
               );
-              
+
               nixpkgs.config.allowUnfree = true;
             }
             home-manager.nixosModules.home-manager
@@ -86,7 +86,7 @@
           extraSpecialArgs = {
             inherit username homeDirectory;
           };
-    
+
           modules = [
             ./home-manager/home.nix
           ];
@@ -107,12 +107,11 @@
           extraSpecialArgs = {
             inherit username homeDirectory;
           };
-    
+
           modules = [
             ./home-manager/home.nix
           ];
         };
-    };
     };
   };
 }

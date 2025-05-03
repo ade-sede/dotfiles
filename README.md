@@ -37,24 +37,26 @@ You must keep the `flakes.nix`
 
 ### Installation
 
-Flakes are used to specify different _hosts_ and the corresponding configurations.  
-On a NixOs machine, building the config using the right flake will enable the corresponding config.  
-On a machine without NixOs but using home-manager, the same concept applies but at the home-manager level.  
+Each flake is supposed to re-present a concrete machine: my personal laptop, my steam deck, my work laptop...
+Run `home-manager` or `nixos-rebuild` specifying the corresponding build.
 
 ```bash
 # Clone the repository
 git clone https://github.com/ade-sede/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 
-# NixOS with desktop
-sudo nixos-rebuild switch --flake .#koala-devbox
-
-# NixOS headless development server
-sudo nixos-rebuild switch --flake .#development-server --impure
-
-# Home Manager standalone (any non-NixOS system, granted nix is already installed)
-home-manager switch --flake .#ade-sede@home-manager-only
+# For example, on personal laptop
+sudo nixos-rebuild switch --flake .#koala-devbox # to re-build the system (if the system is a NixOS machine)
+home-manager switch --flake .#koala-devbox # to re-build user level packages (works both for NixOs & non-NixOs)
 ```
+
+Available NixOs flakes:
+- `koala-devbox` for a desktop or laptop setup
+- `koala-remote-devbox` for a headless development server
+
+Available Home Manager flaeks:
+- `koala-devbox` 
+- `steamdeck`
 
 Flakes are supposed to be self-contained with 0 dependencies outside the repository.  
 We use `--impure` because each NixOs machine is expected to have it's configuration in `/etc/nixos/hardware-configuration.nix`
