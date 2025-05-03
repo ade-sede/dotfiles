@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  configPath = "/home/ade-sede/.dotfiles/dotfiles/litellm/config.yaml";
+  configPath = "~/.dotfiles/dotfiles/litellm/config.yaml";
   secrets = import ../../home-manager/secrets.nix {inherit pkgs lib;};
   geminiKey = secrets.apiKeys.geminiKey;
   claudeKey = secrets.apiKeys.claudeKey;

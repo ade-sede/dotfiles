@@ -13,7 +13,7 @@ i3lockmore \
 	-e \
 	--nofork \
     --dpms 10 \
-	--image-fill /home/ade-sede/Wallpaper/keyboard_meetup_poster.png \
+	--image-fill $HOME/Wallpaper/keyboard_meetup_poster.png \
 	--insidever-color=$C   \
 	--ringver-color=$V     \
 	\

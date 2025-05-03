@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  secretsDir = "/home/ade-sede/.dotfiles/secrets";
+  secretsDir = "~/.dotfiles/secrets";
 
   geminiKeyFile = "${secretsDir}/gemini_api_key.txt";
   claudeKeyFile = "${secretsDir}/anthropic_api_key.txt";

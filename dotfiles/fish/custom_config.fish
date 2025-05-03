@@ -38,7 +38,7 @@ set -x SHELL (which fish)
 set -U Z_CMD "j"
 set -U Z_OWNER $USER
 set -x VIMRC "$HOME/.config/nvim/init.vim"
-set -gx PNPM_HOME "/home/ade-sede/.local/share/pnpm"
+set -gx PNPM_HOME "$HOME/.local/share/pnpm"
 set -x ANSIBLE_NOCOWS 1
 set -x LANG en_US.UTF-8
 set -x LC_CTYPE en_US.UTF-8
@@ -97,8 +97,8 @@ end
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
-if [ -e /home/ade-sede/.opam/opam-init/init.fish ]
-    source /home/ade-sede/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+if [ -e $HOME/.opam/opam-init/init.fish ]
+    source $HOME/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 end
 if [ -e /opt/homebrew/bin/brew ]
     eval (/opt/homebrew/bin/brew shellenv)

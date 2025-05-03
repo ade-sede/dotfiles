@@ -42,8 +42,8 @@ in {
         tool = "vimdiff";
         conflictstyle = "diff3";
       };
-      credential."https://github.com".helper = "!/home/ade-sede/.nix-profile/bin/gh auth git-credential";
-      credential."https://gist.github.com".helper = "!/home/ade-sede/.nix-profile/bin/gh auth git-credential";
+      credential."https://github.com".helper = "!~/.nix-profile/bin/gh auth git-credential";
+      credential."https://gist.github.com".helper = "!~/.nix-profile/bin/gh auth git-credential";
     };
   };
 }
