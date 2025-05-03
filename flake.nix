@@ -36,7 +36,7 @@
           ];
         };
 
-      development-server = let
+      koala-remote-devbox = let
         username = "ade-sede";
         homeDirectory = "/home/ade-sede";
       in
@@ -91,6 +91,28 @@
             ./home-manager/home.nix
           ];
         };
+
+      steamdeck = let
+        username = "deck";
+        homeDirectory = "/home/deck";
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          config = {
+            allowUnfree = true;
+          };
+        };
+      in
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit username homeDirectory;
+          };
+    
+          modules = [
+            ./home-manager/home.nix
+          ];
+        };
+    };
     };
   };
 }
