@@ -32,7 +32,8 @@ nix-channel --update
 
 When using flakes the entirety of the system is stored in `/var/nix/*`.
 You can safely remove your config at `/etc/nixos/configuration.nix`.
-You must keep the `flakes.nix` and `hardware-configuration.nix`.
+Copy the hardware config to `hardware-configs` directory
+You must keep the `flakes.nix`
 
 ### Installation
 
@@ -46,7 +47,7 @@ git clone https://github.com/ade-sede/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 
 # NixOS with desktop
-sudo nixos-rebuild switch --flake .#desktop --impure
+sudo nixos-rebuild switch --flake .#koala-devbox
 
 # NixOS headless development server
 sudo nixos-rebuild switch --flake .#development-server --impure

@@ -18,10 +18,10 @@
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
-      desktop = lib.nixosSystem {
+      koala-devbox = lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          /etc/nixos/hardware-configuration.nix # Each machine is responsible for storing its hardware configuration locally
+	  ./nixos/hardware-configs/koala-devbox.nix
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager
         ];
