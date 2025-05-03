@@ -11,11 +11,10 @@
   openaiKey = secrets.apiKeys.openaiKey;
 in {
   virtualisation.oci-containers = {
-    backend = "docker";
     containers = {
       litellm-proxy = {
         image = "ghcr.io/berriai/litellm:main-latest";
-        autoStart = false;
+        autoStart = true;
         ports = ["127.0.0.1:4000:4000"];
         volumes = [
           "${configPath}:/app/config.yaml"

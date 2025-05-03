@@ -29,19 +29,17 @@
 
       development-server = lib.nixosSystem {
         system = "x86_64-linux";
+	# Make sure to exclude xserver and desktop related
         modules = [
           /etc/nixos/hardware-configuration.nix # Each machine is responsible for storing its hardware configuration locally
           ./nixos/configuration.nix
           {
-            # Remove desktop components for headless server
-            disabledModules = ["desktop.nix"];
             imports = lib.mkForce (
               lib.filter
-              (path: baseNameOf path != "desktop.nix")
+              (path: baseNameOf path != "xserver.nix")
               (import ./nixos/configuration.nix).imports
             );
 
-            # Home Manager configuration without desktop modules
             home-manager.users.ade-sede.imports = lib.mkForce (
               lib.filter
               (path: baseNameOf path != "desktop.nix")

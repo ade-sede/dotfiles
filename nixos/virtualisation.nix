@@ -9,5 +9,5 @@
     ./virtualisation/containers.nix
   ];
 
-  virtualisation.oci-containers.containers.litellm-proxy.autoStart = lib.mkForce true;
+  virtualisation.oci-containers.backend = "docker";
 }

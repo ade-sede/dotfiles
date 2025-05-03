@@ -17,6 +17,8 @@ in {
     curl
     delta
     devbox
+    docker-client
+    docker-compose
     eza
     fd
     file
