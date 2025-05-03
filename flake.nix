@@ -31,7 +31,7 @@
         system = "x86_64-linux";
 	# Make sure to exclude xserver and desktop related
         modules = [
-          /etc/nixos/hardware-configuration.nix # Each machine is responsible for storing its hardware configuration locally
+          # Add hardware config
           ./nixos/configuration.nix
           {
             imports = lib.mkForce (
