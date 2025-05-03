@@ -2,10 +2,13 @@
   config,
   pkgs,
   lib,
+  homeDirectory,
   ...
 }: let
-  configPath = "~/.dotfiles/dotfiles/litellm/config.yaml";
-  secrets = import ../../home-manager/secrets.nix {inherit pkgs lib;};
+  configPath = "${homeDirectory}/.dotfiles/dotfiles/litellm/config.yaml";
+  configWithHome = { home = { homeDirectory = homeDirectory; }; };
+  homeManagerSecrets = import ../../home-manager/secrets.nix {inherit pkgs lib; config = configWithHome;};
+  secrets = homeManagerSecrets;
   geminiKey = secrets.apiKeys.geminiKey;
   claudeKey = secrets.apiKeys.claudeKey;
   openaiKey = secrets.apiKeys.openaiKey;

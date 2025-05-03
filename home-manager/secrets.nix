@@ -1,9 +1,10 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: let
-  secretsDir = "~/.dotfiles/secrets";
+  secretsDir = "${config.home.homeDirectory}/.dotfiles/secrets";
 
   geminiKeyFile = "${secretsDir}/gemini_api_key.txt";
   claudeKeyFile = "${secretsDir}/anthropic_api_key.txt";

@@ -2,6 +2,8 @@
   config,
   pkgs,
   lib,
+  username,
+  homeDirectory,
   ...
 }: {
   imports = [

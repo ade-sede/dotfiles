@@ -1,9 +1,10 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: let
-  secrets = import ./secrets.nix {inherit pkgs lib;};
+  secrets = import ./secrets.nix {inherit pkgs lib config;};
   geminiKey = secrets.apiKeys.geminiKey;
   claudeKey = secrets.apiKeys.claudeKey;
   openaiKey = secrets.apiKeys.openaiKey;

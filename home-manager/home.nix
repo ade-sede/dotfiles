@@ -1,10 +1,12 @@
 {
   config,
   pkgs,
+  username ? "ade-sede",
+  homeDirectory ? "/home/ade-sede",
   ...
 }: {
-  home.username = "ade-sede";
-  home.homeDirectory = "/home/ade-sede";
+  home.username = username;
+  home.homeDirectory = homeDirectory;
   home.stateVersion = "24.11";
 
   programs.home-manager.enable = true;
