@@ -102,16 +102,19 @@
           };
         };
       in
-        home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {
-            inherit username homeDirectory;
-          };
-
-          modules = [
-            ./home-manager/home.nix
-          ];
+        throw "Do not use - SteamDeck configuration is currently unstable";
+      /*
+      home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = {
+          inherit username homeDirectory;
         };
+
+        modules = [
+          ./home-manager/home.nix
+        ];
+      }
+      */
     };
   };
 }
