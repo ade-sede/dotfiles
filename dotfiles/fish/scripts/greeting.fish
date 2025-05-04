@@ -1,10 +1,14 @@
+function silent_lolcat
+    lolcat 2>/dev/null
+end
+
 function fish_greeting
     set greeting_option (random 1 8)
 
     switch $greeting_option
         case 1
 	    if test (random 0 1) -eq 1
-	        cbonsai | lolcat
+	        cbonsai | silent_lolcat
 	    else
 	        cbonsai
 	    end
@@ -20,7 +24,7 @@ function fish_greeting
             set text_formatters figlet "boxes -d $random_box" "cowsay -f $random_animal"
             set selected_formatter $text_formatters[(random 1 (count $text_formatters))]
             if test (random 0 1) -eq 1
-                echo $quotes | eval $selected_formatter | lolcat
+                echo $quotes | eval $selected_formatter | silent_lolcat
             else
                 echo $quotes | eval $selected_formatter
             end
@@ -50,7 +54,7 @@ function fish_greeting
 	    nyancat
 	case '*'
 	    if test (random 0 1) -eq 1
-	        echo "Oopsy, no greeting found" | figlet | lolcat
+	        echo "Oopsy, no greeting found" | figlet | silent_lolcat
 	    else
 	        echo "Oopsy, no greeting found" | figlet
 	    end
