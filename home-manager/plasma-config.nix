@@ -653,9 +653,9 @@
       "kwinrulesrc"."a0f0af80-7463-41eb-ba57-23478d72dc9b"."wmclass" = "vivaldi-bin";
       "kwinrulesrc"."a0f0af80-7463-41eb-ba57-23478d72dc9b"."wmclassmatch" = 1;
       "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."Description" = "New window settings";
-      "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."position" = "20,40";
+      "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."position" = "20,60";
       "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."positionrule" = 3;
-      "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."size" = "1500,900";
+      "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."size" = "1500,700";
       "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."sizerule" = 3;
       "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."wmclass" = ".*";
       "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."wmclassmatch" = 3;
