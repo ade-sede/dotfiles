@@ -182,7 +182,7 @@ sudo nix-env --delete-generations --profile /nix/var/nix/profiles/system old
 After deleting old generations, update the boot menu to remove entries for deleted generations:
 
 ```bash
-sudo nixos-rebuild boot
+sudo nixos-rebuild boot --flake .#<flake name>
 ```
 
 This removes old entries from the boot menu and reclaims disk space used by old system configurations.
