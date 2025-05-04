@@ -37,6 +37,7 @@
           modules = [
             ./nixos/hardware-configs/koala-devbox.nix
             ./nixos/configuration.nix
+            ./nixos/xserver.nix
             home-manager.nixosModules.home-manager
             {nixpkgs.config.allowUnfree = true;}
             {
@@ -45,6 +46,7 @@
               ];
               home-manager.users.${username}.imports = [
                 ./home-manager/plasma-config.nix
+                ./home-manager/desktop.nix
               ];
             }
           ];
@@ -60,26 +62,11 @@
             inherit username homeDirectory;
           };
 
-          # Make sure to exclude xserver and desktop related
           modules = [
             # TODO Add hardware config
             ./nixos/configuration.nix
-            {
-              imports = lib.mkForce (
-                lib.filter
-                (path: baseNameOf path != "xserver.nix")
-                (import ./nixos/configuration.nix).imports
-              );
-
-              home-manager.users.ade-sede.imports = lib.mkForce (
-                lib.filter
-                (path: baseNameOf path != "desktop.nix")
-                (import ./home-manager/home.nix).imports
-              );
-
-              nixpkgs.config.allowUnfree = true;
-            }
             home-manager.nixosModules.home-manager
+            {nixpkgs.config.allowUnfree = true;}
           ];
         };
     };
@@ -104,7 +91,29 @@
           modules = [
             inputs.plasma-manager.homeManagerModules.plasma-manager
             ./home-manager/home.nix
+            ./home-manager/desktop.nix
             ./home-manager/plasma-config.nix
+          ];
+        };
+
+      macbook-pro = let
+        username = "ade-sede";
+        homeDirectory = "/Users/ade-sede";
+        pkgs = import nixpkgs {
+          system = "aarch64-darwin";
+          config = {
+            allowUnfree = true;
+          };
+        };
+      in
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit username homeDirectory;
+          };
+
+          modules = [
+            ./home-manager/home.nix
           ];
         };
 

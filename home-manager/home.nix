@@ -23,7 +23,6 @@
     ./programs.nix
     ./tmux.nix
     ./meme.nix
-    ./desktop.nix
     ./activation.nix
     ./services.nix
   ];

@@ -57,6 +57,7 @@ Available NixOs flakes:
 Available Home Manager flaeks:
 - `koala-devbox` 
 - `steamdeck` (unstable, can brick the deck, WIP)
+- `macbook-pro` (unstable, can brick the deck, WIP)
 
 Flakes are supposed to be self-contained with 0 dependencies outside the repository.  
 We use `--impure` because each NixOs machine is expected to have it's configuration in `/etc/nixos/hardware-configuration.nix`

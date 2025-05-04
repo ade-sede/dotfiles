@@ -10,7 +10,6 @@
     ./virtualisation.nix
     ./locals.nix
     ./services.nix
-    ./xserver.nix
     ./audio.nix
     ./hardware.nix
     ./users.nix
