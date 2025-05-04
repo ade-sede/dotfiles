@@ -83,7 +83,7 @@ alias gvim="neovide"
 alias kubectl="kubecolor"
 
 if type -q devbox
-    devbox global shellenv --init-hook | source
+    # devbox global shellenv --init-hook | source
 end
 if type -q bass
     bass source ~/.nvm/nvm.sh --no-use ';' nvm use $nvm_default_version > /dev/null 2>&1
