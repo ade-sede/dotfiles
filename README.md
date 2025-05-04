@@ -260,3 +260,14 @@ home-manager/
 └── scripts/
     └── tmux-switch-pane.sh
 ```
+
+### Importing plasma config
+
+```bash
+# Automatically dump config
+nix run github:nix-community/plasma-manager > home-manager/plasma-config.nix
+```
+
+For some reason _shortcuts_ don't work ...
+Remove the `shortcut` object manually before commiting the file and use the backup shortcuts in `KDE/` instead. 
+They can be imported in the system settings UI.
