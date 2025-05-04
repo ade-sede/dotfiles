@@ -10,6 +10,7 @@
   openaiKey = secrets.apiKeys.openaiKey;
 in {
   home.packages = with pkgs; [
+    nix-tree
     alejandra
     asciinema
     bat
