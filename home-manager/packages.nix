@@ -56,7 +56,6 @@ in {
     vim
     watch
     wget
-    xclip
     zip
     (pkgs.writeShellScriptBin "claude" ''
       exec ${pkgs.nodePackages.npm}/bin/npx @anthropic-ai/claude-code "$@"
