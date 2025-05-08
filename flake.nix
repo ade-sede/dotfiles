@@ -46,7 +46,7 @@
               ];
               home-manager.users.${username}.imports = [
                 ./home-manager/plasma-config.nix
-                ./home-manager/desktop.nix
+                ./home-manager/linux-desktop.nix
                 ./home-manager/linux-packages.nix
               ];
             }
@@ -74,7 +74,7 @@
           modules = [
             plasma-manager.homeManagerModules.plasma-manager
             ./home-manager/home.nix
-            ./home-manager/desktop.nix
+            ./home-manager/linux-desktop.nix
             ./home-manager/plasma-config.nix
             ./home-manager/linux-packages.nix
           ];
