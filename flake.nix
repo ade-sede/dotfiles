@@ -83,6 +83,12 @@
       macbook = let
         username = "ade-sede";
         homeDirectory = "/Users/ade-sede";
+        pkgs = import nixpkgs {
+          system = "aarch64-darwin";
+          config = {
+            allowUnfree = true;
+          };
+        };
       in 
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
