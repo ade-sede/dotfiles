@@ -27,8 +27,6 @@
       koala-devbox = let
         username = "ade-sede";
         homeDirectory = "/home/ade-sede";
-        # Make relative to the flake, so files can be read without --impure
-        secretsDir = ".dotfiles/secrets";
       in
         lib.nixosSystem {
           system = "x86_64-linux";
@@ -60,8 +58,6 @@
       koala-devbox = let
         username = "ade-sede";
         homeDirectory = "/home/ade-sede";
-        # Make relative to the flake, so files can be read without --impure
-        secretsDir = ".dotfiles/secrets";
         pkgs = import nixpkgs {
           system = "x86_64-linux";
           config = {

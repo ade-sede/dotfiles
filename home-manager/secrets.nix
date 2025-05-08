@@ -4,9 +4,10 @@
   config,
   ...
 }: let
-  geminiKeyFile = "${config.home.secretsDir}/gemini_api_key.txt";
-  claudeKeyFile = "${config.home.secretsDir}/anthropic_api_key.txt";
-  openaiKeyFile = "${config.home.secretsDir}/openai_api_key.txt";
+  secretsDir = "${config.home.homeDirectory}/.dotfiles/secrets";
+  geminiKeyFile = "${secretsDir}/gemini_api_key.txt";
+  claudeKeyFile = "${secretsDir}/anthropic_api_key.txt";
+  openaiKeyFile = "${secretsDir}/openai_api_key.txt";
 
   readFileIfExists = file:
     if builtins.pathExists file

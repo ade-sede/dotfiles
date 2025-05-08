@@ -48,18 +48,17 @@ git clone https://github.com/ade-sede/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 
 # For example, on personal laptop
-sudo nixos-rebuild switch --flake .#koala-devbox # to re-build the system (if the system is a NixOS machine)
-home-manager switch --flake .#koala-devbox # to re-build user level packages (works both for NixOs & non-NixOs)
+sudo nixos-rebuild switch --flake .#koala-devbox --impure # to re-build the system (if the system is a NixOS machine)
+home-manager switch --flake .#koala-devbox --impure # to re-build user level packages (works both for NixOs & non-NixOs)
 ```
+
+Usage of `--impure` is necessary to read secrets in `secrets/` and have them available during the nix build.
 
 Available NixOs flakes:
 - `koala-devbox` for a desktop or laptop setup
-- `koala-remote-devbox` for a headless development server
 
-Available Home Manager flaeks:
+Available Home Manager flakes:
 - `koala-devbox` 
-- `steamdeck` (unstable, can brick the deck, WIP)
-- `macbook-pro` (unstable, can brick the deck, WIP)
 
 Flakes are supposed to be self-contained with 0 dependencies outside the repository.  
 We use `--impure` because each NixOs machine is expected to have it's configuration in `/etc/nixos/hardware-configuration.nix`

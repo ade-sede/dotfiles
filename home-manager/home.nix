@@ -4,11 +4,9 @@
   lib,
   username,
   homeDirectory,
-  secretsDir,
   ...
 }: {
   imports = [
-    ./secrets-module.nix
     ./packages.nix
     ./dotfiles.nix
     ./programs.nix
