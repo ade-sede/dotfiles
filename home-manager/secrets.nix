@@ -4,11 +4,9 @@
   config,
   ...
 }: let
-  secretsDir = "${config.home.homeDirectory}/.dotfiles/secrets";
-
-  geminiKeyFile = "${secretsDir}/gemini_api_key.txt";
-  claudeKeyFile = "${secretsDir}/anthropic_api_key.txt";
-  openaiKeyFile = "${secretsDir}/openai_api_key.txt";
+  geminiKeyFile = "${config.home.secretsDir}/gemini_api_key.txt";
+  claudeKeyFile = "${config.home.secretsDir}/anthropic_api_key.txt";
+  openaiKeyFile = "${config.home.secretsDir}/openai_api_key.txt";
 
   readFileIfExists = file:
     if builtins.pathExists file
@@ -22,7 +20,7 @@ in {
   };
 
   paths = {
-    secretsDir = secretsDir;
+    secretsDir = config.home.secretsDir;
     geminiKeyFile = geminiKeyFile;
     claudeKeyFile = claudeKeyFile;
     openaiKeyFile = openaiKeyFile;

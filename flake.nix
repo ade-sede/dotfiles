@@ -27,11 +27,13 @@
       koala-devbox = let
         username = "ade-sede";
         homeDirectory = "/home/ade-sede";
+        # Make relative to the flake, so files can be read without --impure
+        secretsDir = ".dotfiles/secrets";
       in
         lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
-            inherit username homeDirectory;
+            inherit username homeDirectory secretsDir;
           };
 
           modules = [
@@ -47,26 +49,9 @@
               home-manager.users.${username}.imports = [
                 ./home-manager/plasma-config.nix
                 ./home-manager/desktop.nix
+                ./home-manager/linux-packages.nix
               ];
             }
-          ];
-        };
-
-      koala-remote-devbox = let
-        username = "ade-sede";
-        homeDirectory = "/home/ade-sede";
-      in
-        lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit username homeDirectory;
-          };
-
-          modules = [
-            # TODO Add hardware config
-            ./nixos/configuration.nix
-            home-manager.nixosModules.home-manager
-            {nixpkgs.config.allowUnfree = true;}
           ];
         };
     };
@@ -75,6 +60,8 @@
       koala-devbox = let
         username = "ade-sede";
         homeDirectory = "/home/ade-sede";
+        # Make relative to the flake, so files can be read without --impure
+        secretsDir = ".dotfiles/secrets";
         pkgs = import nixpkgs {
           system = "x86_64-linux";
           config = {
@@ -85,61 +72,17 @@
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit username homeDirectory;
+            inherit username homeDirectory secretsDir;
           };
 
           modules = [
-            inputs.plasma-manager.homeManagerModules.plasma-manager
+            plasma-manager.homeManagerModules.plasma-manager
             ./home-manager/home.nix
             ./home-manager/desktop.nix
             ./home-manager/plasma-config.nix
+            ./home-manager/linux-packages.nix
           ];
         };
-
-      macbook-pro = let
-        username = "ade-sede";
-        homeDirectory = "/Users/ade-sede";
-        pkgs = import nixpkgs {
-          system = "aarch64-darwin";
-          config = {
-            allowUnfree = true;
-          };
-        };
-      in
-        home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {
-            inherit username homeDirectory;
-          };
-
-          modules = [
-            ./home-manager/home.nix
-          ];
-        };
-
-      steamdeck = let
-        username = "deck";
-        homeDirectory = "/home/deck";
-        pkgs = import nixpkgs {
-          system = "x86_64-linux";
-          config = {
-            allowUnfree = true;
-          };
-        };
-      in
-        throw "Do not use - SteamDeck configuration is currently unstable";
-      /*
-      home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {
-          inherit username homeDirectory;
-        };
-
-        modules = [
-          ./home-manager/home.nix
-        ];
-      }
-      */
     };
   };
 }

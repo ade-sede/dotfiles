@@ -2,6 +2,8 @@
 
 This repository contains my personal dotfiles and NixOS configuration. The goal is to provide a fully reproducible system setup with the absolute minimum of manual steps required.
 
+Still experimenting, it's rough around the edges and a bit broken in some places...
+
 ## Getting Started
 
 ### Prerequisites

@@ -5,11 +5,10 @@
   ...
 }: let
   secrets = import ./secrets.nix {inherit pkgs lib config;};
-  geminiKey = secrets.apiKeys.geminiKey;
-  claudeKey = secrets.apiKeys.claudeKey;
-  openaiKey = secrets.apiKeys.openaiKey;
 in {
   home.packages = with pkgs; [
+    go
+    gnumake
     nix-tree
     alejandra
     asciinema
@@ -30,7 +29,6 @@ in {
     gnupg
     htop
     iftop
-    iotop
     jq
     killall
     lazygit
@@ -61,9 +59,9 @@ in {
       exec ${pkgs.nodePackages.npm}/bin/npx @anthropic-ai/claude-code "$@"
     '')
     (pkgs.writeShellScriptBin "codex" ''
-      export ANTHROPIC_API_KEY="${claudeKey}"
-      export OPENAI_API_KEY="${openaiKey}"
-      export GEMINI_API_KEY="${geminiKey}"
+      export ANTHROPIC_API_KEY="${secrets.apiKeys.claudeKey}"
+      export OPENAI_API_KEY="${secrets.apiKeys.openaiKey}"
+      export GEMINI_API_KEY="${secrets.apiKeys.geminiKey}"
       export LITELLM_API_KEY=key="sk-litellm-proxy-fake-key"
 
       exec ${pkgs.nodePackages.npm}/bin/npx @openai/codex "$@"
