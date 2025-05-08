@@ -79,6 +79,22 @@
             ./home-manager/linux-packages.nix
           ];
         };
+
+      macbook = let
+        username = "ade-sede";
+        homeDirectory = "/Users/ade-sede";
+      in 
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit username homeDirectory;
+          };
+
+          modules = [
+            plasma-manager.homeManagerModules.plasma-manager
+            ./home-manager/home.nix
+          ];
+        };
     };
   };
 }
