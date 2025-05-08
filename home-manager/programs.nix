@@ -54,7 +54,7 @@ in {
     enable = true;
     enableSshSupport = true;
     pinentry = {
-      package = pkgs.pinentry-curses;
+      package = pkgs.pinentry-tty;
     };
     extraConfig = ''
       allow-loopback-pinentry

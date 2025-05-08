@@ -31,7 +31,7 @@
         lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
-            inherit username homeDirectory secretsDir;
+            inherit username homeDirectory;
           };
 
           modules = [
@@ -68,7 +68,7 @@
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit username homeDirectory secretsDir;
+            inherit username homeDirectory;
           };
 
           modules = [
