@@ -14,7 +14,7 @@
     enable = true;
     enableSshSupport = true;
     pinentry = {
-      package = pkgs.pinentry-mac;
+      package = pkgs.pinentry_mac;
     };
   };
 }
