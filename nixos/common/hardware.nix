@@ -1,0 +1,16 @@
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        AutoEnable = true;
+      };
+    };
+  };
+}

@@ -215,31 +215,38 @@ Hooks available:
 
 ```
 .dotfiles/
-├── flake.nix             # Main entry point
-├── nixos/                # System configuration
-├── home-manager/         # User configuration
-├── scripts/              # Utility scripts 
-├── dotfiles/             # Application configs
-├── secrets/              # Secret files
-├── KDE/                  # KDE Plasma configurations
-├── profile-images/       # Profile pictures
-└── wallpapers/           # Desktop wallpapers
+├── flake.nix               # Main entry point
+├── nixos/                  # System configuration
+│   └── common/             # Common NixOS modules
+├── home-manager/           # User configuration
+│   └── common/             # Common home-manager modules
+├── hosts/                  # Host-specific configurations
+│   ├── koala-devbox/       # Linux desktop/laptop config
+│   │   ├── nixos/          # Host-specific NixOS modules
+│   │   └── home-manager/   # Host-specific home-manager modules
+│   └── macbook/            # macOS laptop config
+│       └── home-manager/   # Host-specific home-manager modules
+├── scripts/                # Utility scripts
+├── dotfiles/               # Application configs
+├── secrets/                # Secret files
+├── KDE/                    # KDE Plasma configurations
+├── profile-images/         # Profile pictures
+└── wallpapers/             # Desktop wallpapers
 ```
 
 ### NixOS Configuration Structure
 
 ```
-nixos/
-├── configuration.nix    # NixOS entry point
+nixos/common/              # Common NixOS modules shared across all systems
+├── configuration.nix      # Main NixOS entry point
 ├── bootloader.nix
 ├── hardware.nix
-├── desktop.nix
 ├── networking.nix
 ├── audio.nix
 ├── programs.nix
 ├── services.nix
 ├── users.nix
-├── home-manager.nix     # Imports the home-manager directory
+├── home-manager.nix       # Home-manager integration
 ├── locals.nix
 ├── nix.nix
 ├── systemd.nix
@@ -247,23 +254,34 @@ nixos/
 └── virtualisation/
     └── docker.nix
 
-home-manager/
-├── default.nix          # Home Manager entry point
-├── home.nix
+home-manager/common/       # Common home-manager modules shared across all systems
+├── home.nix               # Main home-manager entry point
 ├── packages.nix
-├── dotfiles.nix         # Symlinks to dotfiles in the repository
+├── dotfiles.nix           # Symlinks to dotfiles in the repository
 ├── programs.nix
 ├── variables.nix
 ├── services.nix
-├── browsers.nix
-├── desktop.nix
 ├── fish.nix
 ├── git.nix
 ├── tmux.nix
-├── meme.nix
-├── services/
-└── scripts/
-    └── tmux-switch-pane.sh
+└── meme.nix
+
+hosts/koala-devbox/        # Linux-specific host configuration
+├── nixos/
+│   ├── configuration.nix  # Host-specific NixOS config
+│   ├── hardware-config.nix
+│   └── xserver.nix
+└── home-manager/
+    ├── default.nix        # Host-specific home-manager config
+    ├── plasma-config.nix
+    ├── desktop-linux.nix
+    ├── packages-linux.nix
+    └── gpg-linux.nix
+
+hosts/macbook/             # macOS-specific host configuration
+└── home-manager/
+    ├── default.nix        # Host-specific home-manager config
+    └── gpg-darwin.nix
 ```
 
 ### Importing plasma config

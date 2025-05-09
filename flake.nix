@@ -37,20 +37,12 @@
           };
 
           modules = [
-            ./nixos/hardware-configs/koala-devbox.nix
-            ./nixos/configuration.nix
-            ./nixos/xserver.nix
+            ./hosts/koala-devbox/nixos/configuration.nix
             home-manager.nixosModules.home-manager
             {nixpkgs.config.allowUnfree = true;}
             {
               home-manager.sharedModules = [
                 plasma-manager.homeManagerModules.plasma-manager
-              ];
-              home-manager.users.${username}.imports = [
-                ./home-manager/plasma-config.nix
-                ./home-manager/linux-desktop.nix
-                ./home-manager/linux-packages.nix
-                ./home-manager/gpg-linux.nix
               ];
             }
           ];
@@ -78,11 +70,7 @@
 
           modules = [
             plasma-manager.homeManagerModules.plasma-manager
-            ./home-manager/home.nix
-            ./home-manager/linux-desktop.nix
-            ./home-manager/plasma-config.nix
-            ./home-manager/linux-packages.nix
-            ./home-manager/gpg-linux.nix
+            ./hosts/koala-devbox/home-manager/default.nix
           ];
         };
 
@@ -106,8 +94,7 @@
 
           modules = [
             plasma-manager.homeManagerModules.plasma-manager
-            ./home-manager/home.nix
-            ./home-manager/gpg-darwin.nix
+            ./hosts/macbook/home-manager/default.nix
           ];
         };
     };
