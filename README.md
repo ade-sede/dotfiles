@@ -160,7 +160,7 @@ This experiment failed, not currently able to manage plasma through _plasma-mana
 It worked for window rules and desktop but was unstable for shortcuts, often crashing.
 Store and manually import configurations in `dotfiles/KDE`.
 
-## Managing NixOS Generations
+## Managing NixOS Generations and Storage Space
 
 ### Listing Generations
 
@@ -170,12 +170,35 @@ List all available system generations:
 sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
 ```
 
-### Deleting Old Generations
+### Cleaning Up Nix Store
+
+When your Nix setup is taking too much space, you have several options to free up storage:
+
+#### Quick Garbage Collection
+
+The fastest way to reclaim space:
+
+```bash
+# Remove all generations except the current one, with -d flag to delete old generations
+sudo nix-collect-garbage -d
+```
+
+#### Optimize the Nix Store
+
+After garbage collection, optimize the store to save additional space:
+
+```bash
+sudo nix-store --optimize
+```
+
+This command deduplicates identical files in the Nix store using hard links.
+
+#### Deleting Old Generations
 
 Remove old system generations to free up disk space:
 
 ```bash
-# Self explanatory
+# Delete generations older than a specific timeframe
 sudo nix-collect-garbage --delete-older-than 14d
 
 # Delete specific generations
@@ -185,7 +208,7 @@ sudo nix-env --delete-generations --profile /nix/var/nix/profiles/system 123 124
 sudo nix-env --delete-generations --profile /nix/var/nix/profiles/system old
 ```
 
-### Updating Boot Menu
+### Updating Boot Menu After Cleanup
 
 After deleting old generations, update the boot menu to remove entries for deleted generations:
 
@@ -193,7 +216,7 @@ After deleting old generations, update the boot menu to remove entries for delet
 sudo nixos-rebuild boot --flake .#<flake name>
 ```
 
-This removes old entries from the boot menu and reclaims disk space used by old system configurations.
+This removes old entries from the boot menu and finalizes the reclamation of disk space used by old system configurations.
 
 ## Development
 
