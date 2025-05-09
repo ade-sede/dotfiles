@@ -17,7 +17,6 @@
     agent = {
       enable = true;
       enableSSHSupport = true;
-      pinentryPackage = pkgs.pinentry-tty;
     };
     package = pkgs.gnupg;
   };

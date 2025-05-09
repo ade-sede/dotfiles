@@ -50,6 +50,7 @@
                 ./home-manager/plasma-config.nix
                 ./home-manager/linux-desktop.nix
                 ./home-manager/linux-packages.nix
+                ./home-manager/gpg-linux.nix
               ];
             }
           ];
@@ -81,6 +82,7 @@
             ./home-manager/linux-desktop.nix
             ./home-manager/plasma-config.nix
             ./home-manager/linux-packages.nix
+            ./home-manager/gpg-linux.nix
           ];
         };
 
@@ -105,6 +107,7 @@
           modules = [
             plasma-manager.homeManagerModules.plasma-manager
             ./home-manager/home.nix
+            ./home-manager/gpg-darwin.nix
           ];
         };
     };

@@ -37,7 +37,6 @@
     nix-prefetch-git
     nmap
     nodejs_22
-    pinentry-tty
     pre-commit
     python311
     ripgrep

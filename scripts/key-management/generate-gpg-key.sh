@@ -3,6 +3,7 @@ set -e
 
 if ! gpg --list-secret-keys | grep -q "$EMAIL"; then
   echo "Generating GPG key for $EMAIL (this will only happen once)"
+  echo "You will be prompted for a passphrase to protect your key"
   cat > /tmp/gpg-gen-key.batch << EOF
 %echo Generating GPG key
 Key-Type: EDDSA
@@ -14,7 +15,6 @@ Subkey-Usage: encrypt
 Name-Real: $FULL_NAME
 Name-Email: $EMAIL
 Expire-Date: 0
-%no-protection
 %commit
 %echo GPG key generation completed
 EOF

@@ -24,7 +24,6 @@
     home.stateVersion = "24.11";
     home.enableNixpkgsReleaseCheck = false;
     home.sessionVariables = {
-      GPG_TTY = "$(tty)";
       FULL_NAME = fullName;
       EMAIL = userEmail;
     };
