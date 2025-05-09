@@ -4,6 +4,8 @@
   lib,
   username,
   homeDirectory,
+  fullName,
+  userEmail,
   ...
 }: {
   imports = [
@@ -23,6 +25,8 @@
     home.enableNixpkgsReleaseCheck = false;
     home.sessionVariables = {
       GPG_TTY = "$(tty)";
+      FULL_NAME = fullName;
+      EMAIL = userEmail;
     };
 
     programs.home-manager.enable = true;

@@ -27,11 +27,13 @@
       koala-devbox = let
         username = "ade-sede";
         homeDirectory = "/home/ade-sede";
+        fullName = "Adrien DE SEDE";
+        userEmail = "adrien.de.sede@gmail.com";
       in
         lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
-            inherit username homeDirectory;
+            inherit username homeDirectory fullName userEmail;
           };
 
           modules = [
@@ -58,6 +60,8 @@
       koala-devbox = let
         username = "ade-sede";
         homeDirectory = "/home/ade-sede";
+        fullName = "Adrien DE SEDE";
+        userEmail = "adrien.de.sede@gmail.com";
         pkgs = import nixpkgs {
           system = "x86_64-linux";
           config = {
@@ -68,7 +72,7 @@
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit username homeDirectory;
+            inherit username homeDirectory fullName userEmail;
           };
 
           modules = [
@@ -83,17 +87,19 @@
       macbook = let
         username = "ade-sede";
         homeDirectory = "/Users/ade-sede";
+        fullName = "Adrien DE SEDE";
+        userEmail = "adrien.de-sede@alan.eu";
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           config = {
             allowUnfree = true;
           };
         };
-      in 
+      in
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit username homeDirectory;
+            inherit username homeDirectory fullName userEmail;
           };
 
           modules = [

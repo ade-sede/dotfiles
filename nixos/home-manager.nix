@@ -4,6 +4,8 @@
   lib,
   username,
   homeDirectory,
+  fullName,
+  userEmail,
   ...
 }: {
   home-manager = {
@@ -12,7 +14,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
-      inherit username homeDirectory;
+      inherit username homeDirectory fullName userEmail;
     };
   };
 }
