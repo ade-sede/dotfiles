@@ -1,50 +1,46 @@
 # LiteLLM Proxy Server
 
-This directory contains the configuration for running a LiteLLM proxy server as a Docker container via NixOS.
+This directory contains the configuration for running a LiteLLM proxy server using Docker Compose.
 
-## NixOS Setup
+## Docker Compose Setup
 
-The LiteLLM proxy is configured as a Docker container in `nixos/docker.nix`. Key components:
+The LiteLLM proxy is configured to run as a Docker container:
 
 - Uses the official LiteLLM image: `ghcr.io/berriai/litellm:main-latest`
 - Exposes the service on `localhost:4000`
-- Automatically loads API keys from the secrets directory
-- Mounts the appropriate configuration file based on the selected model
+- Reads API keys from secret files at launch time
+- Uses the configuration defined in `config.yaml`
 
-```nix
-# Configuration selection in docker.nix
-modelConfig = "claude";  # Change to use different config files (openai, gemini)
+## Running the Proxy
+
+Use the provided shell script to start the container:
+
+```bash
+./launch-litellm.sh
 ```
+
+This script:
+- Reads API keys from the secret files
+- Launches the Docker container with the correct environment variables
 
 ## Adding New Providers
 
 To add a new LLM provider:
 
-1. Create a new YAML configuration file in `dotfiles/litellm/configs/`
-2. Add API key path to `nixos/docker.nix`
-3. Update environment variables in the container definition
+1. Update the `config.yaml` file to include the new provider's models
+2. Add the API key to a new file in the secrets directory
+3. Update the `launch-litellm.sh` script to read and export the new API key
 
-Example for a new provider:
+Example for adding a new provider:
 
-```nix
-# In docker.nix
-newProviderKeyFile = "${secretsDir}/new_provider_api_key.txt";
-newProviderKey = readFileIfExists newProviderKeyFile;
-
-# Add to environment variables
-environment = {
-  # Existing variables...
-  NEW_PROVIDER_API_KEY = newProviderKey;
-};
+```bash
+# In launch-litellm.sh
+export NEW_PROVIDER_API_KEY=$(cat ~/.dotfiles/secrets/new_provider_api_key.txt)
 ```
 
 ## Provider Configuration
 
-Provider configurations are stored in YAML files in the `configs/` directory:
-
-- `claude.yaml` - Anthropic Claude models
-- `openai.yaml` - OpenAI models
-- `gemini.yaml` - Google Gemini models
+Provider configuration is defined in the `config.yaml` file.
 
 Example configuration structure:
 
@@ -111,7 +107,7 @@ curl -X POST http://localhost:4000/chat/completions \
 
 - If the service isn't responding, check the Docker container logs:
   ```bash
-  docker logs litellm-proxy
+  docker-compose logs
   ```
 - Verify your API keys are correctly stored in the secrets directory
 - Ensure the firewall allows connections to port 4000

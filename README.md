@@ -48,11 +48,12 @@ git clone https://github.com/ade-sede/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 
 # For example, on personal laptop
-sudo nixos-rebuild switch --flake .#koala-devbox --impure # to re-build the system (if the system is a NixOS machine)
-home-manager switch --flake .#koala-devbox --impure # to re-build user level packages (works both for NixOs & non-NixOs)
-```
+# To re-build the system (if the system is a NixOS machine)
+sudo nixos-rebuild switch --flake .#koala-devbox
 
-Usage of `--impure` is necessary to read secrets in `secrets/` and have them available during the nix build.
+# To re-build user level configuration & packages handled by home manager
+home-manager switch --flake .#koala-devbox
+```
 
 Available NixOs flakes:
 - `koala-devbox` for a desktop or laptop setup
@@ -60,10 +61,6 @@ Available NixOs flakes:
 Available Home Manager flakes:
 - `koala-devbox` 
 - `macbook`
-
-Flakes are supposed to be self-contained with 0 dependencies outside the repository.  
-We use `--impure` because each NixOs machine is expected to have it's configuration in `/etc/nixos/hardware-configuration.nix`
-
 
 ### Uploading security keys to GitHub
 
@@ -237,11 +234,9 @@ nixos/
 ├── home-manager.nix     # Imports the home-manager directory
 ├── locals.nix
 ├── nix.nix
-├── secrets.nix
 ├── systemd.nix
 ├── virtualisation.nix
 └── virtualisation/
-    ├── containers.nix
     └── docker.nix
 
 home-manager/
@@ -251,7 +246,6 @@ home-manager/
 ├── dotfiles.nix         # Symlinks to dotfiles in the repository
 ├── programs.nix
 ├── variables.nix
-├── secrets.nix
 ├── services.nix
 ├── browsers.nix
 ├── desktop.nix
