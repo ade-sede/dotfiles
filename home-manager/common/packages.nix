@@ -39,6 +39,9 @@
     nodejs_22
     pre-commit
     python311
+    pyright
+    python311Packages.python-lsp-server
+    python311Packages.ruff
     ripgrep
     rsync
     shellcheck
