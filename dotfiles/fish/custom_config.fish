@@ -9,6 +9,8 @@ function man
 end
 
 set --universal nvm_default_version v22.2.0
+set -x PATH "$HOME/.nix-profile/bin" $PATH
+set -x PATH "/nix/var/nix/profiles/default/bin" $PATH
 set -x GOPATH "$HOME/.go"
 set -x GPG_TTY (tty)
 set -x LANG en_US.UTF-8

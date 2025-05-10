@@ -31,5 +31,16 @@
     shellInit = ''
       source ~/.dotfiles/dotfiles/fish/custom_config.fish
     '';
+
+    interactiveShellInit = ''
+      set fish_function_path $fish_function_path ${pkgs.fishPlugins.foreign-env}/share/fish/vendor_functions.d
+      set fish_complete_path $fish_complete_path ${pkgs.fishPlugins.foreign-env}/share/fish/vendor_completions.d
+
+      function __source_nix_profile
+        test -e $HOME/.nix-profile/etc/profile.d/nix.sh && fenv source $HOME/.nix-profile/etc/profile.d/nix.sh
+      end
+
+      __source_nix_profile
+    '';
   };
 }
