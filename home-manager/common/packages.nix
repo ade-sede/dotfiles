@@ -30,7 +30,8 @@
     jq
     killall
     lazygit
-    llvm
+    gcc
+    zig
     lsof
     man-pages
     netcat
