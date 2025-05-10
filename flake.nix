@@ -74,7 +74,7 @@
           ];
         };
 
-      macbook = let
+      alan-macbook = let
         username = "ade-sede";
         homeDirectory = "/Users/ade-sede";
         fullName = "Adrien DE SEDE";
@@ -94,7 +94,7 @@
 
           modules = [
             plasma-manager.homeManagerModules.plasma-manager
-            ./hosts/macbook/home-manager/default.nix
+            ./hosts/alan-macbook/home-manager/default.nix
           ];
         };
     };

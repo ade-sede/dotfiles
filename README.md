@@ -59,8 +59,8 @@ Available NixOs flakes:
 - `koala-devbox` for a desktop or laptop setup
 
 Available Home Manager flakes:
-- `koala-devbox` 
-- `macbook`
+- `koala-devbox`
+- `alan-macbook`
 
 ### Uploading security keys to GitHub
 
@@ -247,7 +247,7 @@ Hooks available:
 │   ├── koala-devbox/       # Linux desktop/laptop config
 │   │   ├── nixos/          # Host-specific NixOS modules
 │   │   └── home-manager/   # Host-specific home-manager modules
-│   └── macbook/            # macOS laptop config
+│   └── alan-macbook/       # macOS laptop config
 │       └── home-manager/   # Host-specific home-manager modules
 ├── scripts/                # Utility scripts
 ├── dotfiles/               # Application configs
@@ -301,10 +301,11 @@ hosts/koala-devbox/        # Linux-specific host configuration
     ├── packages-linux.nix
     └── gpg-linux.nix
 
-hosts/macbook/             # macOS-specific host configuration
+hosts/alan-macbook/        # macOS-specific host configuration
 └── home-manager/
     ├── default.nix        # Host-specific home-manager config
-    └── gpg-darwin.nix
+    ├── gpg-darwin.nix
+    └── alan-bin.nix
 ```
 
 ### Importing plasma config
