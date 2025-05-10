@@ -1,3 +1,13 @@
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.gleam = {
+  install_info = {
+    url = "https://github.com/gleam-lang/tree-sitter-gleam",
+    files = {"src/parser.c", "src/scanner.c"},
+    branch = "main",
+  },
+  filetype = "gleam",
+}
+
 require("nvim-treesitter.configs").setup({
   sync_install = false,
   auto_install = false,
@@ -10,6 +20,7 @@ require("nvim-treesitter.configs").setup({
     "lua",
     "vim",
     "vimdoc",
+    "gleam",
   },
 })
 
