@@ -8,5 +8,6 @@
     ../../../home-manager/common/home.nix
     ./gpg-darwin.nix
     ./alan-bin.nix
+    ./shell-setup.nix
   ];
 }
