@@ -1,4 +1,4 @@
-return {
+local plugins = {
   "EdenEast/nightfox.nvim",
   "ayu-theme/ayu-vim",
   { "projekt0n/github-nvim-theme", name = "github-theme" },
@@ -47,7 +47,6 @@ return {
     "nvim-telescope/telescope-fzf-native.nvim",
     build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
   },
-  -- "folke/neodev.nvim", -- disabled to work with `lazydev`
   "gpanders/editorconfig.nvim",
   "numToStr/Comment.nvim",
   "gelguy/wilder.nvim",
@@ -122,27 +121,30 @@ return {
   "mfussenegger/nvim-dap",
   "mfussenegger/nvim-dap-python",
   { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
-  -- <LAZY DEV>
   {
     "folke/lazydev.nvim",
-    ft = "lua", -- only load on lua files
+    ft = "lua",
     opts = {
       library = {
-        -- See the configuration section for more details
-        -- Load luvit types when the `vim.uv` word is found
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
     },
   },
-  { -- optional cmp completion source for require statements and module annotations
+  {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
       opts.sources = opts.sources or {}
       table.insert(opts.sources, {
         name = "lazydev",
-        group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+        group_index = 0,
       })
     end,
   },
-  -- </LAZY DEV>
 }
+
+local ok, avante = pcall(require, "plugins.avante")
+if ok then
+  table.insert(plugins, avante[1])
+end
+
+return plugins

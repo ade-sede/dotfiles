@@ -1,6 +1,7 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
   "LuaSnip": { "branch": "master", "commit": "659c4479529a05cc9b05ef762639a09d366cc690" },
+  "avante.nvim": { "branch": "main", "commit": "aae4cc4014149e544fb00e78687bcdef8335dd10" },
   "ayu-vim": { "branch": "master", "commit": "01faacb4cb76e8cf72ad9858c581d80876260ab3" },
   "cellular-automaton.nvim": { "branch": "main", "commit": "11aea08aa084f9d523b0142c2cd9441b8ede09ed" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
@@ -28,6 +29,7 @@
   "mason.nvim": { "branch": "main", "commit": "e2f7f9044ec30067bc11800a9e266664b88cda22" },
   "neogit": { "branch": "master", "commit": "89d13fb9898619774d359a3900959181d60dd02f" },
   "nightfox.nvim": { "branch": "main", "commit": "7557f26defd093c4e9bc17f28b08403f706f5a44" },
+  "nui.nvim": { "branch": "main", "commit": "f535005e6ad1016383f24e39559833759453564e" },
   "nvim-autopairs": { "branch": "master", "commit": "ee297f215e95a60b01fde33275cc3c820eddeebe" },
   "nvim-cmp": { "branch": "main", "commit": "f17d9b4394027ff4442b298398dfcaab97e40c4f" },
   "nvim-dap": { "branch": "master", "commit": "b08e05d7cff6024a9c29b64287d295db7c191450" },

@@ -21,7 +21,7 @@ in {
     };
 
     neovim = {
-      enable = true;
+      enable = false;
     };
 
     starship = {
