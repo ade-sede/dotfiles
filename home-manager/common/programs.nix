@@ -36,6 +36,7 @@ in {
 
       extraConfig = ''
         AddKeysToAgent yes
+        IdentityAgent "~/.gnupg/S.gpg-agent.ssh"
       '';
 
       userKnownHostsFile = "~/.ssh/known_hosts";
