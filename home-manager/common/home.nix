@@ -29,6 +29,7 @@
     };
 
     programs.home-manager.enable = true;
+    news.display = "silent";
 
     manual.manpages.enable = false;
   };

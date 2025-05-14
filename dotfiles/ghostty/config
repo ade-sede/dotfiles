@@ -1,8 +1,6 @@
-background = #f5f7fa
-foreground = #2c3e50
-selection-background = #3498db
-selection-foreground = #ffffff
-selection-invert-fg-bg = false
+# To see all available fonts: run `ghostty +list-themes`
+
+theme = Github
 
 font-family = JetBrains Mono
 font-size = 14

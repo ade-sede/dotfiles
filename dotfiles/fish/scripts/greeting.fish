@@ -3,7 +3,7 @@ function silent_lolcat
 end
 
 function fish_greeting
-    set greeting_option (random 1 8)
+    set greeting_option (random 1 7)
 
     switch $greeting_option
         case 1
@@ -50,8 +50,8 @@ function fish_greeting
 	    eval "sl $random_options"
         case 7
 	    asciiquarium
-        case 8
-	    nyancat
+#        case 8
+#	    nyancat
 	case '*'
 	    if test (random 0 1) -eq 1
 	        echo "Oopsy, no greeting found" | figlet | silent_lolcat
