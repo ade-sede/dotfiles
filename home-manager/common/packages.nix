@@ -5,6 +5,7 @@
   ...
 }: {
   home.packages = with pkgs; [
+    jetbrains-mono
     go
     gnumake
     nix-tree

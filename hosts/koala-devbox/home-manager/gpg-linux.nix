@@ -24,7 +24,7 @@
       allow-preset-passphrase
     '';
   };
-  
+
   home.sessionVariables = {
     SSH_AUTH_SOCK = "$(gpgconf --list-dirs agent-ssh-socket)";
   };

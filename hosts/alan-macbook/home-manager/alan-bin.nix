@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   home.activation = {
     symlinkAlanBinaries = lib.hm.dag.entryAfter ["writeBoundary"] ''
       if [ -d "$HOME/.alan/bin" ]; then
