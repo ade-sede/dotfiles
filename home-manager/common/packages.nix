@@ -5,6 +5,7 @@
   ...
 }: {
   home.packages = with pkgs; [
+    git-spice
     jetbrains-mono
     go
     gnumake
