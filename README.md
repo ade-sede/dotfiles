@@ -2,8 +2,6 @@
 
 This repository contains my personal dotfiles and NixOS configuration. The goal is to provide a fully reproducible system setup with the absolute minimum of manual steps required.
 
-Still experimenting, it's rough around the edges and a bit broken in some places...
-
 ## Getting Started
 
 ### Prerequisites
@@ -100,14 +98,12 @@ gh ssh-key add ~/.ssh/id_ed25519.pub -t "koala-devbox" # Should be pushed automa
 
 Define the packages directly in configuration files:
 
-- `home-manager/packages.nix` for user level packages
-- `nixos/desktop.nix` for system level packages (preferred for GUI applications)
+- `home-manager/common/packages.nix` for user level packages
+- `home-manager/desktop-linux` for linux specific GUI packages
 
-If you installed changes in `nixos/desktop.nix` you will need to rebuild the flake following the instructions at the top of the README.
-If you made a change in `home-manager/packages.nix` you can re-apply the home-manager config
-
+And then switch to the new config
 ```bash
-home-manager switch
+home-manager switch --flake .#<flake-name>
 ```
 
 ### Adding a NPM package through nix
@@ -151,14 +147,8 @@ Adding a new configuration file as a dotfile is recommended way.
 To add a new dotfile to be managed by Home Manager:
 
 1. Add the configuration file in `dotfiles/<software-name>`
-2. Add a symlink entry in `home-manager/dotfiles.nix`
-3. Apply changes with `home-manager switch`
-
-### Backing up plasma configuration
-
-This experiment failed, not currently able to manage plasma through _plasma-manager_.
-It worked for window rules and desktop but was unstable for shortcuts, often crashing.
-Store and manually import configurations in `dotfiles/KDE`.
+2. Add a symlink entry in `home-manager/common/dotfiles.nix`
+3. Apply changes using `home-manager switch --flake .#<flake-name>`
 
 ## Managing NixOS Generations and Storage Space
 
@@ -240,21 +230,21 @@ Hooks available:
 .dotfiles/
 ├── flake.nix               # Main entry point
 ├── nixos/                  # System configuration
-│   └── common/             # Common NixOS modules
+│   └── common/
 ├── home-manager/           # User configuration
-│   └── common/             # Common home-manager modules
-├── hosts/                  # Host-specific configurations
+│   └── common/
+├── hosts/
 │   ├── koala-devbox/       # Linux desktop/laptop config
-│   │   ├── nixos/          # Host-specific NixOS modules
-│   │   └── home-manager/   # Host-specific home-manager modules
+│   │   ├── nixos/
+│   │   └── home-manager/
 │   └── alan-macbook/       # macOS laptop config
-│       └── home-manager/   # Host-specific home-manager modules
-├── scripts/                # Utility scripts
+│       └── home-manager/
+├── scripts/
 ├── dotfiles/               # Application configs
-├── secrets/                # Secret files
-├── KDE/                    # KDE Plasma configurations
-├── profile-images/         # Profile pictures
-└── wallpapers/             # Desktop wallpapers
+├── secrets/
+├── KDE/                    # Backup of some KDE configuration files
+├── profile-images/
+└── wallpapers/
 ```
 
 ### NixOS Configuration Structure
