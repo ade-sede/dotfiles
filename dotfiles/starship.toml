@@ -1,0 +1,40 @@
+
+add_newline = false
+
+format = """\
+$username@$directory$hostname ($git_branch)
+$character
+"""
+
+[cmd_duration]
+disabled = true
+
+
+[package]
+disabled = true
+
+[hostname]
+ssh_symbol = '🌐'	
+ssh_only = true
+format = "[$ssh_symbol $hostname]($style)"
+style = "bold #9d7cd8"  # A soft purple
+
+[username]
+show_always = true
+format = "[$user]($style)"
+style_user = "bold #7dcfff"  # A bright cyan
+
+[directory]
+format = "[$path]($style) [$read_only]($read_only_style)"
+style = "bold #9ece6a"  # A vibrant green
+
+[character]
+error_symbol = "[❯](bold #ff5555)[❯](bold #ff5555)[❯](bold #ff5555)"
+success_symbol = "[❯](bold #50fa7b)[❯](bold #50fa7b)[❯](bold #50fa7b)"
+vimcmd_symbol = "[VIM](bold green)"
+
+[git_branch]
+style = "bold #bb9af7"  # A light purple
+
+[git_status]
+style = "bold #f7768e"  # A soft red

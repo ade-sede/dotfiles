@@ -10,3 +10,6 @@
 [submodule "emacs/site-lisp/evil-org-mode"]
 	path = emacs/site-lisp/evil-org-mode
 	url = git@github.com:Somelauw/evil-org-mode.git
+[submodule "kitty/kitty-themes"]
+	path = kitty/kitty-themes
+	url = https://github.com/dexpota/kitty-themes.git

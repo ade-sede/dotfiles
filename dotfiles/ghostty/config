@@ -1,0 +1,12 @@
+# To see all available fonts: run `ghostty +list-themes`
+
+theme = Github
+
+font-family = JetBrains Mono
+font-size = 14
+font-style = bold
+
+# To see all available fonts: run `ghostty +list-fonts`
+
+keybind = command+a=esc:a
+keybind = unconsumed:command+g=esc:g

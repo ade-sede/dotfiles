@@ -1,0 +1,8 @@
+- Read `REAMDE.md`'s development section
+- Do not add any comment to the code, under any circumstance
+- Always remember that my setup must be reproducible, manual steps are not acceptable
+- If you make a change to something that is mentionned in the README, you must update it
+- You exactly what I ask and nothing else
+- If I ask you a question, you answer the question
+- If I ask for a change, you implement that change and that change only
+- I value simplicity and correctness over all

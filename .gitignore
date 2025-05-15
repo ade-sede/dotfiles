@@ -1,23 +1,24 @@
-config/*
-!config/.config/terminator
-!config/.config/i3
-!config/.config/i3blocks
-!config/.config/termite
-!config/.config/systemd
-tmux/.tmux/resurrect
-tmux/.tmux/resurrect/last
-tmux/.tmux/plugins
-vim/.vim/bundle/
+# Result from Nix builds
+result
+result-*
+
+# System-specific files
+.DS_Store
+
+# Editor files
+.vscode/
+.idea/
+
+# Backup files
 *~
-emacs/.emacs.d/!*
-emacs/.emacs.d/projectile*
-emacs/.emacs.d/projectile-bookmarks.eld
-emacs/.emacs.d/#*
-emacs/.emacs.d/elpa
-emacs/.emacs.d/backup
-emacs/.emacs.d/.lsp-session*
-emacs/.emacs.d/transient*
-emacs/.emacs.d/.cache/
-vim/.vim/bundle
-vim/.vim/backup
-fish/fish_variables
+*.bak
+
+# Local environment files
+.envrc
+.direnv/
+
+.claude
+secrets
+dotfiles/codex/history.json
+dotfiles/codex/sessions/
+dotfiles/codex/update-check.json

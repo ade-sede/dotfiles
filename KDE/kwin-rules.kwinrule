@@ -1,0 +1,51 @@
+[Discord]
+Description=Discord
+desktops=Desktop_2
+desktopsrule=3
+wmclass=discord
+wmclassmatch=1
+
+[Ghostty]
+Description=Ghostty
+desktops=Desktop_4
+desktopsrule=3
+wmclass=.*ghostty.*
+wmclassmatch=3
+
+[New window settings]
+Description=New window settings
+position=20,40
+positionrule=3
+size=1500,900
+sizerule=3
+wmclass=.*
+wmclassmatch=3
+
+[System Settings]
+Description=System Settings
+desktops=Desktop_1
+desktopsrule=3
+wmclass=systemsettings
+wmclassmatch=1
+
+[Vivaldi]
+Description=Vivaldi
+desktops=Desktop_3
+desktopsrule=3
+wmclass=.*vivaldi.*
+wmclassmatch=3
+
+[Vivaldi Picture-in-Picture]
+Description=Vivaldi Picture-in-Picture
+above=true
+aboverule=2
+desktops=\\0
+desktopsrule=3
+position=0,0
+positionrule=4
+sizerule=4
+title=Picture in picture
+titlematch=1
+types=1
+wmclass=vivaldi-bin
+wmclassmatch=1
