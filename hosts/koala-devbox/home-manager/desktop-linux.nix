@@ -4,6 +4,7 @@
   ...
 }: {
   home.packages = with pkgs; [
+    whatsapp-for-linux
     xclip
     discord
     ghostty
