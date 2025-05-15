@@ -60,6 +60,8 @@
     watch
     wget
     zip
+    gitleaks
+    mdformat
     (pkgs.writeShellScriptBin "claude" ''
       exec ${pkgs.nodePackages.npm}/bin/npx @anthropic-ai/claude-code "$@"
     '')
