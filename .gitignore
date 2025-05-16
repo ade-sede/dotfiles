@@ -17,8 +17,15 @@ result-*
 .envrc
 .direnv/
 
+# Claude
 .claude
 secrets
+
+# Codex
 dotfiles/codex/history.json
 dotfiles/codex/sessions/
 dotfiles/codex/update-check.json
+
+# Emacs
+dotfiles/emacs/eln-cache/
+dotfiles/emacs/straight/
