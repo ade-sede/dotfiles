@@ -8,6 +8,7 @@
     (pkgs.writeShellScriptBin "gis" ''
       exec ${pkgs.git-spice}/bin/gs "$@"
     '')
+    scaleway-cli
     bc
     jetbrains-mono
     go
