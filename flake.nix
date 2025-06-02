@@ -20,83 +20,25 @@
     home-manager,
     plasma-manager,
     ...
-  } @ inputs: let
-    lib = nixpkgs.lib;
-  in {
+  } @ inputs: {
     nixosConfigurations = {
-      koala-devbox = let
-        username = "ade-sede";
-        homeDirectory = "/home/ade-sede";
-        fullName = "Adrien DE SEDE";
-        userEmail = "adrien.de.sede@gmail.com";
-      in
-        lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit username homeDirectory fullName userEmail;
-          };
-
-          modules = [
-            ./hosts/koala-devbox/nixos/configuration.nix
-            home-manager.nixosModules.home-manager
-            {nixpkgs.config.allowUnfree = true;}
-            {
-              home-manager.sharedModules = [
-                plasma-manager.homeManagerModules.plasma-manager
-              ];
-            }
-          ];
-        };
+      koala-devbox = nixpkgs.lib.nixosSystem {
+        system = (import ./hosts/koala-devbox/constants.nix).system;
+        specialArgs = {inputs = inputs;};
+        modules = [
+          ./hosts/koala-devbox/nixos/configuration.nix
+        ];
+      };
     };
 
     homeConfigurations = {
-      koala-devbox = let
-        username = "ade-sede";
-        homeDirectory = "/home/ade-sede";
-        fullName = "Adrien DE SEDE";
-        userEmail = "adrien.de.sede@gmail.com";
-        pkgs = import nixpkgs {
-          system = "x86_64-linux";
-          config = {
-            allowUnfree = true;
-          };
-        };
-      in
-        home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {
-            inherit username homeDirectory fullName userEmail;
-          };
+      koala-devbox =
+        home-manager.lib.homeManagerConfiguration
+        (import ./hosts/koala-devbox/home-manager/standalone.nix {inherit nixpkgs plasma-manager;});
 
-          modules = [
-            plasma-manager.homeManagerModules.plasma-manager
-            ./hosts/koala-devbox/home-manager/default.nix
-          ];
-        };
-
-      alan-macbook = let
-        username = "ade-sede";
-        homeDirectory = "/Users/ade-sede";
-        fullName = "Adrien DE SEDE";
-        userEmail = "adrien.de-sede@alan.eu";
-        pkgs = import nixpkgs {
-          system = "aarch64-darwin";
-          config = {
-            allowUnfree = true;
-          };
-        };
-      in
-        home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {
-            inherit username homeDirectory fullName userEmail;
-          };
-
-          modules = [
-            plasma-manager.homeManagerModules.plasma-manager
-            ./hosts/alan-macbook/home-manager/default.nix
-          ];
-        };
+      alan-macbook =
+        home-manager.lib.homeManagerConfiguration
+        (import ./hosts/alan-macbook/home-manager/default.nix nixpkgs);
     };
   };
 }

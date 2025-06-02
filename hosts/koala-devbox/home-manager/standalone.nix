@@ -1,4 +1,7 @@
-nixpkgs: let
+{
+  nixpkgs,
+  plasma-manager,
+}: let
   constants = import ../constants.nix;
   pkgs = import nixpkgs {
     system = constants.system;
@@ -10,8 +13,7 @@ in {
   inherit pkgs;
   extraSpecialArgs = constants;
   modules = [
-    ../../../home-manager/common/home.nix
-    ./gpg-darwin.nix
-    ./alan-bin.nix
+    plasma-manager.homeManagerModules.plasma-manager
+    ./default.nix
   ];
 }
