@@ -8,6 +8,7 @@
     (pkgs.writeShellScriptBin "gis" ''
       exec ${pkgs.git-spice}/bin/gs "$@"
     '')
+    bc
     jetbrains-mono
     go
     gnumake
