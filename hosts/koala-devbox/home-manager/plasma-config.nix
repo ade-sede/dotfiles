@@ -621,9 +621,10 @@
       "kwinrulesrc"."27e1511d-5ae7-4d9b-adce-7a5df6fcd057"."aboverule" = 2;
       "kwinrulesrc"."27e1511d-5ae7-4d9b-adce-7a5df6fcd057"."desktops" = "\\0";
       "kwinrulesrc"."27e1511d-5ae7-4d9b-adce-7a5df6fcd057"."desktopsrule" = 3;
-      "kwinrulesrc"."27e1511d-5ae7-4d9b-adce-7a5df6fcd057"."position" = "0,0";
-      "kwinrulesrc"."27e1511d-5ae7-4d9b-adce-7a5df6fcd057"."positionrule" = 4;
-      "kwinrulesrc"."27e1511d-5ae7-4d9b-adce-7a5df6fcd057"."sizerule" = 4;
+      "kwinrulesrc"."27e1511d-5ae7-4d9b-adce-7a5df6fcd057"."position" = "1200,20";
+      "kwinrulesrc"."27e1511d-5ae7-4d9b-adce-7a5df6fcd057"."positionrule" = 3;
+      "kwinrulesrc"."27e1511d-5ae7-4d9b-adce-7a5df6fcd057"."size" = "300,200";
+      "kwinrulesrc"."27e1511d-5ae7-4d9b-adce-7a5df6fcd057"."sizerule" = 3;
       "kwinrulesrc"."27e1511d-5ae7-4d9b-adce-7a5df6fcd057"."title" = "Picture in picture";
       "kwinrulesrc"."27e1511d-5ae7-4d9b-adce-7a5df6fcd057"."titlematch" = 1;
       "kwinrulesrc"."27e1511d-5ae7-4d9b-adce-7a5df6fcd057"."types" = 1;
@@ -653,9 +654,9 @@
       "kwinrulesrc"."a0f0af80-7463-41eb-ba57-23478d72dc9b"."wmclass" = "vivaldi-bin";
       "kwinrulesrc"."a0f0af80-7463-41eb-ba57-23478d72dc9b"."wmclassmatch" = 1;
       "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."Description" = "New window settings";
-      "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."position" = "20,60";
+      "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."position" = "20,20";
       "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."positionrule" = 3;
-      "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."size" = "1500,700";
+      "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."size" = "1500,1040";
       "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."sizerule" = 3;
       "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."wmclass" = ".*";
       "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."wmclassmatch" = 3;

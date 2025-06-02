@@ -14,9 +14,9 @@ wmclassmatch=3
 
 [New window settings]
 Description=New window settings
-position=20,40
+position=20,20
 positionrule=3
-size=1500,900
+size=1500,1040
 sizerule=3
 wmclass=.*
 wmclassmatch=3
