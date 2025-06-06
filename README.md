@@ -313,10 +313,11 @@ For some reason _shortcuts_ don't work ...
 Remove the `shortcut` object manually before commiting the file and use the backup shortcuts in `KDE/` instead.
 They can be imported in the system settings UI.
 
-## Remote dev server
+## Remote dev server (WIP)
 
-Create a server with at least 50GB of disk.
-flake: `remove-devbox`
+Create a server with at least 50GB of disk using the `remote-devbox` flake.
+
+### Create server
 
 ```bash
 scw instance server create \
@@ -328,39 +329,32 @@ scw instance server create \
   cloud-init=@nixos-infect-cloud-init.yaml
 ```
 
-### Get the server IP after creation
+### Get server IP and monitor installation
 
 ```bash
+# Get the server IP
 scw instance server list zone=fr-par-2
-```
 
-### Monitor progress
+# Check detailed server status
+scw instance server get <server-id> zone=fr-par-2
 
-```bash
+# Monitor NixOS installation progress
 ssh root@<server-ip> "tail -f /tmp/infect.log"
 ```
 
-```bash
-nixos-version
-```
-
-Clone repo
+### Deploy configuration
 
 ```bash
-git clone https://github.com/ade-sede/dotfiles.git ~/.dotfiles
-```
-
-```bash
+# Copy hardware config to repository
 scp root@<server-ip>:/etc/nixos/hardware-configuration.nix ./hosts/remote-devbox/nixos/hardware-config.nix
-```
 
-Commit & Push
+# Commit and push the hardware config
+git add . && git commit -m "Add remote-devbox hardware config" && git push
 
-### Deploy NixOS configuration
+# Clone repository and deploy NixOS configuration on the server
+ssh root@<server-ip> "git clone https://github.com/ade-sede/dotfiles.git ~/.dotfiles"
+ssh root@<server-ip> "cd ~/.dotfiles && nixos-rebuild switch --flake .#remote-devbox"
 
-```bash
-ssh root@<server-ip>
-git clone https://github.com/ade-sede/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-nixos-rebuild switch --flake .#remote-devbox
+# Reboot to complete setup
+scw instance server reboot <server-id>
 ```
