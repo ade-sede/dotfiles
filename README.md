@@ -319,24 +319,26 @@ flake: `remove-devbox`
 
 ```bash
 scw instance server create \
-  type=PRO2-XXS \
+  type=DEV1-L \
   image=ubuntu_jammy \
   name=remote-devbox \
   zone=fr-par-2 \
   cloud-init=@nixos-infect-cloud-init.yaml
 ```
 
-Monitor progress
+### Get the server IP after creation
 
 ```bash
-# Get the server IP after creation
 scw instance server list zone=fr-par-2
+```
 
-# SSH to monitor (works immediately after Ubuntu boots)
-ssh root@<server-ip>
-tail -f /tmp/infect.log
+### Monitor progress
 
-# After conversion completes, verify NixOS
+```bash
+ssh root@<server-ip> "tail -f /tmp/infect.log"
+```
+
+```bash
 nixos-version
 ```
 
