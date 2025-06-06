@@ -338,7 +338,10 @@ scw instance server list zone=fr-par-2
 # Check detailed server status
 scw instance server get <server-id> zone=fr-par-2
 
-# Monitor NixOS installation progress
+# Check if NixOS installation is complete
+ssh root@<server-ip> "nixos-version"
+
+# Monitor NixOS installation progress (if still installing)
 ssh root@<server-ip> "tail -f /tmp/infect.log"
 ```
 

@@ -8,6 +8,7 @@ in {
   imports = [
     ./hardware-config.nix
     ./networking.nix
+    ./services.nix
     ../../../nixos/linux/systemd.nix
     ../../../nixos/linux/programs.nix
     ../../../nixos/common/configuration.nix
