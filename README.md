@@ -315,7 +315,7 @@ They can be imported in the system settings UI.
 
 ## Remote dev server
 
-Create a server with at least 30 GB of disk.
+Create a server with at least 50GB of disk.
 flake: `remove-devbox`
 
 ```bash
@@ -324,6 +324,7 @@ scw instance server create \
   image=ubuntu_jammy \
   name=remote-devbox \
   zone=fr-par-2 \
+  root-volume=local:50GB \
   cloud-init=@nixos-infect-cloud-init.yaml
 ```
 
