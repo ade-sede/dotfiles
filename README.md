@@ -315,6 +315,7 @@ They can be imported in the system settings UI.
 
 ## Remote dev server
 
+Create a server with at least 30 GB of disk.
 flake: `remove-devbox`
 
 ```bash
@@ -353,3 +354,12 @@ scp root@<server-ip>:/etc/nixos/hardware-configuration.nix ./hosts/remote-devbox
 ```
 
 Commit & Push
+
+### Deploy NixOS configuration
+
+```bash
+ssh root@<server-ip>
+git clone https://github.com/ade-sede/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+nixos-rebuild switch --flake .#remote-devbox
+```
