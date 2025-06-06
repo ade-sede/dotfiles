@@ -368,3 +368,5 @@ ssh root@<server-ip> "
 # Test SSH access as ade-sede user (password: changeme)
 ssh ade-sede@<server-ip>
 ```
+
+Change password.
