@@ -354,10 +354,29 @@ scp root@<server-ip>:/etc/nixos/hardware-configuration.nix ./hosts/remote-devbox
 # Commit and push the hardware config
 git add . && git commit -m "Add remote-devbox hardware config" && git push
 
-# Clone repository and deploy NixOS configuration on the server
-ssh root@<server-ip> "git clone https://github.com/ade-sede/dotfiles.git ~/.dotfiles"
-ssh root@<server-ip> "cd ~/.dotfiles && nixos-rebuild switch --flake .#remote-devbox"
+# Note: SSH keys after nixos-infect are stored in:
+# - /etc/ssh/authorized_keys.d/root (current active keys)
+# - /old-root/root/.ssh/authorized_keys (backup from Ubuntu install)
 
-# Reboot to complete setup
-scw instance server reboot <server-id>
+# Setup user directory and SSH keys on the server
+ssh root@<server-ip> "
+  # Pre-create user home directory
+  mkdir -p /home/ade-sede/.ssh
+  
+  # Copy SSH keys from root to ade-sede user (NixOS stores them in authorized_keys.d)
+  cp /etc/ssh/authorized_keys.d/root /home/ade-sede/.ssh/authorized_keys
+  
+  # Clone repository to user's home directory
+  git clone https://github.com/ade-sede/dotfiles.git /home/ade-sede/.dotfiles
+  cd /home/ade-sede/.dotfiles && git checkout vps
+  
+  # Set proper ownership for ade-sede user
+  chown -R 1000:1000 /home/ade-sede
+  
+  # Deploy NixOS configuration
+  nixos-rebuild switch --flake .#remote-devbox
+"
+
+# Test SSH access as ade-sede user
+ssh ade-sede@<server-ip>
 ```
