@@ -358,25 +358,13 @@ git add . && git commit -m "Add remote-devbox hardware config" && git push
 # - /etc/ssh/authorized_keys.d/root (current active keys)
 # - /old-root/root/.ssh/authorized_keys (backup from Ubuntu install)
 
-# Setup user directory and SSH keys on the server
+# Deploy NixOS configuration
 ssh root@<server-ip> "
-  # Pre-create user home directory
-  mkdir -p /home/ade-sede/.ssh
-  
-  # Copy SSH keys from root to ade-sede user (NixOS stores them in authorized_keys.d)
-  cp /etc/ssh/authorized_keys.d/root /home/ade-sede/.ssh/authorized_keys
-  
-  # Clone repository to user's home directory
-  git clone https://github.com/ade-sede/dotfiles.git /home/ade-sede/.dotfiles
-  cd /home/ade-sede/.dotfiles && git checkout vps
-  
-  # Set proper ownership for ade-sede user
-  chown -R 1000:1000 /home/ade-sede
-  
-  # Deploy NixOS configuration
+  git clone https://github.com/ade-sede/dotfiles.git /root/.dotfiles
+  cd /root/.dotfiles && git checkout vps
   nixos-rebuild switch --flake .#remote-devbox
 "
 
-# Test SSH access as ade-sede user
+# Test SSH access as ade-sede user (password: changeme)
 ssh ade-sede@<server-ip>
 ```
