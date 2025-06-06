@@ -312,3 +312,42 @@ nix run github:nix-community/plasma-manager > hosts/koala-devbox/home-manager/pl
 For some reason _shortcuts_ don't work ...
 Remove the `shortcut` object manually before commiting the file and use the backup shortcuts in `KDE/` instead.
 They can be imported in the system settings UI.
+
+## Remote dev server
+
+flake: `remove-devbox`
+
+```bash
+scw instance server create \
+  type=PRO2-XXS \
+  image=ubuntu_jammy \
+  name=remote-devbox \
+  zone=fr-par-2 \
+  cloud-init=@nixos-infect-cloud-init.yaml
+```
+
+Monitor progress
+
+```bash
+# Get the server IP after creation
+scw instance server list zone=fr-par-2
+
+# SSH to monitor (works immediately after Ubuntu boots)
+ssh root@<server-ip>
+tail -f /tmp/infect.log
+
+# After conversion completes, verify NixOS
+nixos-version
+```
+
+Clone repo
+
+```bash
+git clone https://github.com/ade-sede/dotfiles.git ~/.dotfiles
+```
+
+```bash
+scp root@<server-ip>:/etc/nixos/hardware-configuration.nix ./hosts/remote-devbox/nixos/hardware-config.nix
+```
+
+Commit & Push
