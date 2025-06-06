@@ -656,7 +656,7 @@
       "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."Description" = "New window settings";
       "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."position" = "20,20";
       "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."positionrule" = 3;
-      "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."size" = "1500,970";
+      "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."size" = "1500,820";
       "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."sizerule" = 3;
       "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."wmclass" = ".*";
       "kwinrulesrc"."ada809c5-bc7a-46e0-82ac-5b89846fbb22"."wmclassmatch" = 3;
