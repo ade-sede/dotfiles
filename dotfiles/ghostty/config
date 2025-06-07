@@ -10,3 +10,9 @@ font-style = bold
 
 keybind = command+a=esc:a
 keybind = unconsumed:command+g=esc:g
+
+clipboard-read = allow
+clipboard-write = allow
+clipboard-paste-protection = false
+clipboard-paste-bracketed-safe = true
+copy-on-select = true
