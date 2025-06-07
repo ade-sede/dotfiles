@@ -12,7 +12,7 @@
       owner = "2moe";
       repo = "ttyd-nerd";
       rev = "nerd-font";
-      hash = "sha256-0rpwnvyq0cr606rnn3lmqzapim6x22nf19v38yx2x5k6swjc03kq=";
+      hash = "sha256-eA7AJNdmli66R2On4KwQ3dR41ceVDmuzASYzgP22/GY=";
     };
 
     nativeBuildInputs = with pkgs; [
