@@ -20,6 +20,11 @@ result-*
 # Claude
 .claude
 secrets
+dotfiles/claude/.credentials.json
+dotfiles/claude/statsig/
+dotfiles/claude/todos/
+dotfiles/claude/__store.db
+dotfiles/claude/projects/
 
 # Codex
 dotfiles/codex/history.json

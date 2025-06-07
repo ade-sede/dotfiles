@@ -1,0 +1,1 @@
+- Never comment code or configuration
