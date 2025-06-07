@@ -4,6 +4,8 @@
   lib,
   ...
 }: let
+  constants = import ../constants.nix;
+  inherit (constants) userEmail domain;
   ttyd-nerd = pkgs.stdenv.mkDerivation rec {
     pname = "ttyd-nerd";
     version = "1.7.7";
@@ -60,11 +62,39 @@ in {
     wantedBy = ["multi-user.target"];
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${ttyd-nerd}/bin/ttyd -i 0.0.0.0 -p 3000 --writable -m 0 -t titleFixed=\"Terminal\" -t fontSize=20 -t fontFamily=\"InconsolataGo Nerd Font,JetBrains,SarasaMono\" -t 'theme={\"background\": \"white\", \"foreground\": \"black\"}' ${pkgs.fish}/bin/fish -c \"su ade-sede\"";
+      ExecStart = "${ttyd-nerd}/bin/ttyd -i 127.0.0.1 -p 3000 --writable -m 0 -t titleFixed=\"Terminal\" -t fontSize=20 -t fontFamily=\"InconsolataGo Nerd Font,JetBrains,SarasaMono\" -t 'theme={\"background\": \"white\", \"foreground\": \"black\"}' ${pkgs.fish}/bin/fish -c \"su ade-sede\"";
       Restart = "always";
       RestartSec = 3;
       User = "ade-sede";
       WorkingDirectory = "/home/ade-sede";
+    };
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = userEmail;
+  };
+
+  services.nginx = {
+    enable = true;
+    recommendedTlsSettings = true;
+    recommendedOptimisation = true;
+    recommendedGzipSettings = true;
+    recommendedProxySettings = true;
+
+    virtualHosts."${domain}" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:3000";
+        proxyWebsockets = true;
+        extraConfig = ''
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+        '';
+      };
     };
   };
 }
