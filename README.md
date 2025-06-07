@@ -371,6 +371,18 @@ ssh root@<server-ip> "
 ssh ade-sede@<server-ip>
 ```
 
+### Enable web terminal access
+
+```bash
+# Get security group ID from server list
+scw instance server list zone=fr-par-2
+
+# Add firewall rule to allow TTYD web terminal (port 3000)
+scw instance security-group create-rule security-group-id=<security-group-id> direction=inbound action=accept protocol=TCP dest-port-from=3000 dest-port-to=3000 ip-range=0.0.0.0/0 zone=fr-par-2
+
+# Access web terminal at http://<server-ip>:3000
+```
+
 ### Server management
 
 ```bash
