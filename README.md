@@ -84,6 +84,12 @@ gpg --list-secret-keys --keyid-format=long
 # Export GPG public key to a file
 gpg --armor --export <KEY_ID> > gpg_github_key.asc
 
+# Login into GH cli
+gh auth login
+
+# Make sure we are allowed to push gpg keys
+gh auth refresh -s  write:gpg_key
+
 # Add the key to GitHub using GitHub CLI
 gh gpg-key add gpg_github_key.asc
 
