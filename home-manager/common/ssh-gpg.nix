@@ -11,6 +11,10 @@
       identityFile = "~/.ssh/id_ed25519";
     };
 
+    matchBlocks."devbox.ade-sede.dev" = {
+      user = "ade-sede";
+    };
+
     extraConfig = ''
       AddKeysToAgent yes
     '';

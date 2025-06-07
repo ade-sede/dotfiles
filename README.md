@@ -375,6 +375,9 @@ ssh root@<server-ip> "
 
 # Test SSH access as ade-sede user (password: changeme)
 ssh ade-sede@<server-ip>
+
+# Copy SSH public key for password-less access (run from local machine)
+ssh-copy-id ade-sede@<server-ip>
 ```
 
 ### Enable web terminal access
