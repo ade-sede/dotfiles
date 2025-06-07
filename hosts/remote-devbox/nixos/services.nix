@@ -60,7 +60,7 @@ in {
     wantedBy = ["multi-user.target"];
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${ttyd-nerd}/bin/ttyd -p 3000 --writable -m 0 -t titleFixed=\"Terminal\" -t fontSize=20 -t fontFamily=\"InconsolataGo Nerd Font,JetBrains,SarasaMono\" -t 'theme={\"background\": \"white\", \"foreground\": \"black\"}' ${pkgs.fish}/bin/fish -c \"su ade-sede\"";
+      ExecStart = "${ttyd-nerd}/bin/ttyd -i 0.0.0.0 -p 3000 --writable -m 0 -t titleFixed=\"Terminal\" -t fontSize=20 -t fontFamily=\"InconsolataGo Nerd Font,JetBrains,SarasaMono\" -t 'theme={\"background\": \"white\", \"foreground\": \"black\"}' ${pkgs.fish}/bin/fish -c \"su ade-sede\"";
       Restart = "always";
       RestartSec = 3;
       User = "ade-sede";
