@@ -13,6 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("set")
 require("keymap")
+require("clipboard")
 
 vim.g.copilot_enabled = 0
 vim.deprecate = function() end

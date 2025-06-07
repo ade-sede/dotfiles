@@ -8,6 +8,24 @@ function man
     bash -c "man $argv"
 end
 
+# OSC52 clipboard functions for seamless copy/paste
+function copy
+    printf '\033]52;c;%s\a' (cat | base64 | tr -d '\n')
+end
+
+function copyfile
+    cat $argv | copy
+end
+
+function copypath
+    pwd | copy
+end
+
+# Compatibility aliases for different clipboard tools
+alias pbcopy='copy'
+alias xclip='copy'
+alias wl-copy='copy'
+
 # GitHub-like color theme for exa/eza and ls - optimized for white backgrounds (no yellow)
 set -x EZA_COLORS "di=1;38;5;75:ln=38;5;117:so=38;5;26:pi=38;5;26:ex=38;5;34:bd=38;5;68:cd=38;5;68:su=38;5;196:sg=38;5;196:tw=38;5;75:ow=38;5;75:fi=38;5;24:*.md=38;5;33:*.txt=38;5;24:*.nix=38;5;25:*.html=38;5;208:*.css=38;5;39:*.js=38;5;25:*.ts=38;5;26:*.json=38;5;67:*.yaml=38;5;29:*.yml=38;5;29:*.toml=38;5;66:*.ini=38;5;66:*.git=38;5;197:*.gitignore=38;5;240:*.gitmodules=38;5;240:*.lock=38;5;240:*.py=38;5;41:*.rb=38;5;160:*.go=38;5;81:*.rs=38;5;66:*.sh=38;5;76:*.fish=38;5;76:*.c=38;5;81:*.h=38;5;110:*.cpp=38;5;81:*.hpp=38;5;110:*.vim=38;5;34:*.lua=38;5;33"
 

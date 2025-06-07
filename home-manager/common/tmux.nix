@@ -36,6 +36,10 @@
       set -ag terminal-overrides ",*:RGB"
       set -g default-terminal "tmux-256color"
 
+      # OSC52 clipboard support
+      set -g allow-passthrough on
+      set -g set-clipboard on
+
       if-shell "test -d ~/.alan" \
           "set -g default-shell '/Users/ade-sede/.nix-profile/bin/fish'" \
           "set -g default-shell '/etc/profiles/per-user/ade-sede/bin/fish'"

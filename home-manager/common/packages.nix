@@ -84,5 +84,22 @@
 
       exec ${pkgs.neovim}/bin/nvim "$@"
     '')
+    (pkgs.buildGoModule rec {
+      pname = "osc";
+      version = "0.4.8";
+      src = pkgs.fetchFromGitHub {
+        owner = "theimpostor";
+        repo = "osc";
+        rev = "v${version}";
+        sha256 = "sha256-XVFNcQH4MFZKmuOD9b3t320/hE+s+3igjlyHBWGKr0Q=";
+      };
+      vendorHash = "sha256-k+4m9y7oAZqTr8S0zldJk5FeI3+/nN9RggKIfiyxzDI=";
+      meta = with pkgs.lib; {
+        description = "Access the system clipboard from anywhere using the ANSI OSC52 sequence";
+        homepage = "https://github.com/theimpostor/osc";
+        license = licenses.mit;
+        maintainers = [];
+      };
+    })
   ];
 }
