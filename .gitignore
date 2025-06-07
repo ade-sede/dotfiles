@@ -17,14 +17,18 @@ result-*
 .envrc
 .direnv/
 
-# Claude
-.claude
+# Claude - sensitive/bloat only
 secrets
 dotfiles/claude/.credentials.json
 dotfiles/claude/statsig/
 dotfiles/claude/todos/
 dotfiles/claude/__store.db
 dotfiles/claude/projects/
+.claude/projects/
+.claude/statsig/
+.claude/todos/
+.claude/__store.db
+.claude/.credentials.json
 
 # Codex
 dotfiles/codex/history.json
