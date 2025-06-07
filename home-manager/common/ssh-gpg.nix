@@ -13,6 +13,18 @@
 
     matchBlocks."devbox.ade-sede.dev" = {
       user = "ade-sede";
+      localForwards = [
+        {
+          bind.port = 8080;
+          host.address = "127.0.0.1";
+          host.port = 8080;
+        }
+        {
+          bind.port = 3000;
+          host.address = "127.0.0.1";
+          host.port = 3000;
+        }
+      ];
     };
 
     extraConfig = ''
