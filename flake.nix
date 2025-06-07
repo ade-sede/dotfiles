@@ -29,12 +29,23 @@
           ./hosts/koala-devbox/nixos/configuration.nix
         ];
       };
+      remote-devbox = nixpkgs.lib.nixosSystem {
+        system = (import ./hosts/remote-devbox/constants.nix).system;
+        specialArgs = {inputs = inputs;};
+        modules = [
+          ./hosts/remote-devbox/nixos/configuration.nix
+        ];
+      };
     };
 
     homeConfigurations = {
       koala-devbox =
         home-manager.lib.homeManagerConfiguration
         (import ./hosts/koala-devbox/home-manager/standalone.nix {inherit nixpkgs plasma-manager;});
+
+      remote-devbox =
+        home-manager.lib.homeManagerConfiguration
+        (import ./hosts/remote-devbox/home-manager/standalone.nix {inherit nixpkgs;});
 
       alan-macbook =
         home-manager.lib.homeManagerConfiguration

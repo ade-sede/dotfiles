@@ -1,17 +1,14 @@
 {inputs, ...}: let
   constants = import ../constants.nix;
   inherit (constants) username allowUnfree;
-  inherit (inputs) home-manager plasma-manager;
+  inherit (inputs) home-manager;
 in {
   nixpkgs.config.allowUnfree = allowUnfree;
 
   imports = [
     ./hardware-config.nix
     ./networking.nix
-    ./audio.nix
-    ./bootloader.nix
-    ./hardware.nix
-    ../../../nixos/linux/xserver.nix
+    ./services.nix
     ../../../nixos/linux/systemd.nix
     ../../../nixos/linux/programs.nix
     ../../../nixos/common/configuration.nix
@@ -20,8 +17,4 @@ in {
 
   home-manager.extraSpecialArgs = constants;
   home-manager.users.${username} = import ../home-manager;
-
-  home-manager.sharedModules = [
-    plasma-manager.homeManagerModules.plasma-manager
-  ];
 }
