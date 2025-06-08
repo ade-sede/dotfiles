@@ -15,7 +15,7 @@
     enableSshSupport = true;
     enableScDaemon = true;
     defaultCacheTtl = 3600;
-    defaultCacheTtlSsh = 3600;
+    defaultCacheTtlSsh = 86400;
     pinentry = {
       package = pkgs.pinentry-qt;
     };
