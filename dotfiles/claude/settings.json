@@ -31,6 +31,7 @@
       "Bash(wc:*)",
       "Bash(sort:*)",
       "Bash(uniq:*)",
+      "Bash(xargs:*)",
       "Bash(ps:*)",
       "Bash(top:*)",
       "Bash(htop:*)",
