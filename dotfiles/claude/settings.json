@@ -2,6 +2,7 @@
   "permissions": {
     "allow": [
       "Bash(rg:*)",
+      "Bash(time:*)",
       "Bash(grep:*)",
       "Bash(fd:*)",
       "Bash(find:*)",
