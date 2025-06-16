@@ -9,6 +9,7 @@
       exec ${pkgs.git-spice}/bin/gs "$@"
     '')
     dig
+    iputils
     scaleway-cli
     bc
     jetbrains-mono
