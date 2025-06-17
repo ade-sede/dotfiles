@@ -38,3 +38,6 @@ dotfiles/codex/update-check.json
 # Emacs
 dotfiles/emacs/eln-cache/
 dotfiles/emacs/straight/
+
+# OpenCode
+.opencode
