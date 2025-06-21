@@ -8,7 +8,9 @@
       "Bash(mv:*)",
       "Bash(grep:*)",
       "WebFetch(domain:ghostty.org)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:opencode.ai)",
+      "WebFetch(domain:models.dev)"
     ],
     "deny": []
   },

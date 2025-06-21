@@ -2,6 +2,7 @@
 
 - **Build/Update System:** `sudo nixos-rebuild switch --flake .#<flake-name>`
 - **Build/Update User:** `home-manager switch --flake .#<flake-name>`
+- **Finding out which flake to use on a given machine:** `hostname`
 - **Lint:** Pre-commit hooks handle linting with `alejandra` (Nix) and `mdformat` (Markdown). Run `pre-commit install`.
 - **Test:** No dedicated test command. Builds are the primary validation.
 
