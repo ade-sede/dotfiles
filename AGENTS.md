@@ -15,3 +15,7 @@
 - **Packages:** Add new packages to `home-manager/common/packages.nix` or `home-manager/desktop-linux`.
 - **Dotfiles:** Add new dotfiles to `dotfiles/` and symlink in `home-manager/common/dotfiles.nix`.
 - **Secrets:** Use `gitleaks` for secret scanning (part of pre-commit) and store secrets in `dotfiles/secrets` which is gitignored
+
+## Documentation
+
+- **Opencode:** Read online at https://opencode.ai/docs/
