@@ -48,6 +48,9 @@ For setting up a remote development server, see the [Remote Development Guide](.
 │   ├── koala-devbox/       # Linux desktop/laptop config
 │   │   ├── nixos/
 │   │   └── home-manager/
+│   ├── remote-devbox/      # Remote development box config
+│   │   ├── nixos/
+│   │   └── home-manager/
 │   └── alan-macbook/       # macOS laptop config
 │       └── home-manager/
 ├── scripts/
