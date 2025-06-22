@@ -37,7 +37,7 @@ in {
       };
       user.useConfigOnly = true;
       init.defaultBranch = "main";
-      pull.rebase = true;
+      pull.rebase = false;
       merge = {
         tool = "vimdiff";
         conflictstyle = "diff3";
