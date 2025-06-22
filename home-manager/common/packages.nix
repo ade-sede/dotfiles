@@ -72,13 +72,6 @@
     (pkgs.writeShellScriptBin "claude" ''
       exec ${pkgs.nodePackages.npm}/bin/npx @anthropic-ai/claude-code "$@"
     '')
-    (pkgs.writeShellScriptBin "codex" ''
-      export ANTHROPIC_API_KEY=$(cat ~/.dotfiles/secrets/anthropic_api_key.txt)
-      export OPENAI_API_KEY=$(cat ~/.dotfiles/secrets/openai_api_key.txt)
-      export GEMINI_API_KEY=$(cat ~/.dotfiles/secrets/gemini_api_key.txt)
-
-      exec ${pkgs.nodePackages.npm}/bin/npx @openai/codex "$@"
-    '')
     (pkgs.writeShellScriptBin "opencode" ''
       export ANTHROPIC_API_KEY=$(cat ~/.dotfiles/secrets/anthropic_api_key.txt)
       export OPENAI_API_KEY=$(cat ~/.dotfiles/secrets/openai_api_key.txt)
