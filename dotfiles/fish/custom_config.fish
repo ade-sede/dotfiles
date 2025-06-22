@@ -143,3 +143,9 @@ if type -q scw
   complete --command scw --no-files
   complete --command scw --arguments '(scw autocomplete complete fish -- (commandline) (commandline --cursor) (commandline --current-token) (commandline --current-process --tokenize --cut-at-cursor))'
 end
+
+if status is-interactive
+    if set -q SSH_CLIENT || set -q SSH_TTY
+        set -x TERM xterm-256color
+    end
+end
