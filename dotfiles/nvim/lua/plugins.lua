@@ -105,6 +105,15 @@ local plugins = {
     end,
   },
   "ggandor/leap.nvim",
+  {
+    "ruifm/gitlinker.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = function()
+      require("gitlinker").setup({
+        mappings = "<leader>gy",
+      })
+    end,
+  },
   "saadparwaiz1/cmp_luasnip",
   {
     "stevearc/oil.nvim",
