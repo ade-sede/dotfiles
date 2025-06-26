@@ -9,7 +9,7 @@
 ## Code Style
 
 - **Comments:** Avoid at all cost.
-- **Formatting:** Use `alejandra` for Nix and `mdformat` for Markdown.
+- **Formatting:** Use `alejandra` for Nix and `mdformat` for Markdown. Never submit unformatted code.
 - **Imports:** Follow existing patterns in `.nix` files.
 - **Types:** Not strictly applicable; Nix is a dynamically typed language.
 - **Naming Conventions:** Use `camelCase` for variables and `kebab-case` for file names.
