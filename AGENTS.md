@@ -8,6 +8,7 @@
 
 ## Code Style
 
+- **Comments:** Avoid at all cost.
 - **Formatting:** Use `alejandra` for Nix and `mdformat` for Markdown.
 - **Imports:** Follow existing patterns in `.nix` files.
 - **Types:** Not strictly applicable; Nix is a dynamically typed language.
