@@ -137,6 +137,17 @@ if type -q direnv
 end
 if type -q fzf
   fzf --fish | source
+
+  function fzf_git_modified
+    set -l selection (git ls-files --modified --others --exclude-standard | fzf --multi --height=40% --border --preview 'bat --color=always --style=numbers --line-range=:500 {}')
+    if test $status -eq 0
+        commandline -i (string join " " $selection)
+    end
+    commandline -f repaint
+  end
+
+  bind -M insert ctrl-g fzf_git_modified
+  bind -M normal ctrl-g fzf_git_modified
 end
 if type -q scw
   complete --erase --command scw
