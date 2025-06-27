@@ -66,6 +66,7 @@
     zip
     gitleaks
     mdformat
+    stylua
     emacs
     nushell
     (pkgs.writeShellScriptBin "claude" ''

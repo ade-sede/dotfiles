@@ -1,6 +1,7 @@
 return {
   {
     "coder/claudecode.nvim",
+    lazy = false,
     dependencies = { "folke/snacks.nvim" },
     config = true,
     keys = {
@@ -21,5 +22,5 @@ return {
       { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
       { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
     },
-  }
+  },
 }

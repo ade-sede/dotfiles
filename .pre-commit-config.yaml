@@ -18,3 +18,8 @@ repos:
         entry: mdformat
         language: system
         files: \.md$
+      - id: stylua
+        name: stylua
+        entry: stylua
+        language: system
+        files: \.lua$

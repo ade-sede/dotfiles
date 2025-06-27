@@ -23,6 +23,7 @@ dotfiles/claude/.credentials.json
 dotfiles/claude/statsig/
 dotfiles/claude/todos/
 dotfiles/claude/__store.db
+dotfiles/claude/ide
 dotfiles/claude/projects/
 .claude/projects/
 .claude/statsig/

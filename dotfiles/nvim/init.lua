@@ -19,8 +19,8 @@ vim.g.copilot_enabled = 0
 vim.deprecate = function() end
 vim.wo.scrolloff = 0
 
-require("lazy").setup("plugins", {
+require("lazy").setup({
   spec = {
-    import = "plugins",
+    { import = "plugins" },
   },
 })

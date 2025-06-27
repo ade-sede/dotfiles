@@ -21,39 +21,39 @@
 if vim.env.TMUX == nil then
   -- Outside tmux: Pure OSC52 strategy
   vim.g.clipboard = {
-    name = 'OSC 52',
+    name = "OSC 52",
     copy = {
-      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
     },
     paste = {
-      ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-      ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+      ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
     },
   }
 elseif vim.env.SSH_CLIENT ~= nil or vim.env.SSH_TTY ~= nil then
   -- Remote tmux: Pure OSC52 strategy (bypass tmux for remote sessions)
   vim.g.clipboard = {
-    name = 'OSC 52 Remote',
+    name = "OSC 52 Remote",
     copy = {
-      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
     },
     paste = {
-      ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-      ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+      ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
     },
   }
 else
   -- Local tmux: Hybrid strategy
   -- Copy: tmux load-buffer with -w flag forwards to terminal via OSC52
   -- Paste: refresh-client -l syncs system clipboard to tmux buffer, then read buffer
-  local copy = {'tmux', 'load-buffer', '-w', '-'}
-  local paste = {'bash', '-c', 'tmux refresh-client -l && sleep 0.05 && tmux save-buffer -'}
+  local copy = { "tmux", "load-buffer", "-w", "-" }
+  local paste = { "bash", "-c", "tmux refresh-client -l && sleep 0.05 && tmux save-buffer -" }
   vim.g.clipboard = {
-    name = 'tmux',
-    copy = { ['+'] = copy, ['*'] = copy },
-    paste = { ['+'] = paste, ['*'] = paste },
+    name = "tmux",
+    copy = { ["+"] = copy, ["*"] = copy },
+    paste = { ["+"] = paste, ["*"] = paste },
     cache_enabled = 0,
   }
 end
