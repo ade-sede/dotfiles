@@ -5,72 +5,95 @@
   ...
 }: {
   home.packages = with pkgs; [
-    (pkgs.writeShellScriptBin "gis" ''
-      exec ${pkgs.git-spice}/bin/gs "$@"
-    '')
-    dig
-    scaleway-cli
-    bc
-    jetbrains-mono
+    # Programming Languages & Compilers
+    # Some staples, always good to have them on the system
+    bun
+    gcc
     go
-    gnumake
-    nix-tree
+    nodejs_22
+    python311
+
+    # Development Tools & Linters
     alejandra
-    asciinema
-    bat
-    btop
-    coreutils
-    curl
-    delta
     devbox
     docker-client
     docker-compose
+    gitleaks
+    gnumake
+    mdformat
+    nix-prefetch-git
+    nix-tree
+    pre-commit
+    shellcheck
+    stylua
+
+    # File Management
+    coreutils
     eza
     fd
     file
+    rsync
+    stow
+    tree
+    unzip
+    zip
+
+    # System Monitoring
+    btop
+    htop
+    iftop
+    lsof
+    watch
+
+    # Networking
+    curl
+    dig
+    netcat
+    nmap
+    wget
+
+    # Text Processing
+    bat
+    delta
+    jq
+    ripgrep
+    silver-searcher
+
+    # Other
+    asciinema
+    bc
     fzf
     gh
     git
     gnupg
-    htop
-    iftop
-    jq
     killall
     lazygit
-    gcc
-    zig
-    lsof
     man-pages
-    netcat
-    nix-prefetch-git
-    nmap
-    nodejs_22
-    bun
-    pre-commit
-    python311
-    pyright
-    python311Packages.python-lsp-server
-    python311Packages.ruff
-    ripgrep
-    rsync
-    shellcheck
-    silver-searcher
-    stow
+    scaleway-cli
     tig
     tmux
-    tree
-    unzip
-    vim
-    watch
-    wget
-    zip
-    gitleaks
-    mdformat
-    stylua
+
+    # Editors
     emacs
-    nushell
+    vim
+    (pkgs.writeShellScriptBin "nvim" ''
+      export ANTHROPIC_API_KEY=$(cat ~/.dotfiles/secrets/anthropic_api_key.txt)
+      export OPENAI_API_KEY=$(cat ~/.dotfiles/secrets/openai_api_key.txt)
+      export GEMINI_API_KEY=$(cat ~/.dotfiles/secrets/gemini_api_key.txt)
+
+      exec ${pkgs.neovim}/bin/nvim "$@"
+    '')
+
+    # Fonts
+    jetbrains-mono
+
+    # LLM Agents CLI
     (pkgs.writeShellScriptBin "claude" ''
       exec ${pkgs.nodePackages.npm}/bin/npx @anthropic-ai/claude-code "$@"
+    '')
+    (pkgs.writeShellScriptBin "gemini" ''
+      export GEMINI_API_KEY=$(cat ~/.dotfiles/secrets/gemini_api_key.txt)
+      exec ${pkgs.nodePackages.npm}/bin/npx @google/gemini-cli "$@"
     '')
     (pkgs.writeShellScriptBin "opencode" ''
       export ANTHROPIC_API_KEY=$(cat ~/.dotfiles/secrets/anthropic_api_key.txt)
@@ -79,24 +102,15 @@
 
       exec ${pkgs.nodePackages.npm}/bin/npx opencode-ai@latest "$@"
     '')
-    (pkgs.writeShellScriptBin "gemini" ''
-      export GEMINI_API_KEY=$(cat ~/.dotfiles/secrets/gemini_api_key.txt)
-      exec ${pkgs.nodePackages.npm}/bin/npx @google/gemini-cli "$@"
-    '')
-    (pkgs.writeShellScriptBin "nvim" ''
-      export ANTHROPIC_API_KEY=$(cat ~/.dotfiles/secrets/anthropic_api_key.txt)
-      export OPENAI_API_KEY=$(cat ~/.dotfiles/secrets/openai_api_key.txt)
-      export GEMINI_API_KEY=$(cat ~/.dotfiles/secrets/gemini_api_key.txt)
 
-      exec ${pkgs.neovim}/bin/nvim "$@"
-    '')
+    # Custom Scripts & Wrappers
     (pkgs.buildGoModule rec {
       pname = "osc";
       version = "0.4.8";
       src = pkgs.fetchFromGitHub {
         owner = "theimpostor";
         repo = "osc";
-        rev = "v${version}";
+        rev = "v''${version}";
         sha256 = "sha256-XVFNcQH4MFZKmuOD9b3t320/hE+s+3igjlyHBWGKr0Q=";
       };
       vendorHash = "sha256-k+4m9y7oAZqTr8S0zldJk5FeI3+/nN9RggKIfiyxzDI=";
@@ -107,5 +121,8 @@
         maintainers = [];
       };
     })
+    (pkgs.writeShellScriptBin "gis" ''
+      exec ''${pkgs.git-spice}/bin/gs "$@"
+    '')
   ];
 }
