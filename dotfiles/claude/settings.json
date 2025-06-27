@@ -52,24 +52,11 @@
       "Bash(tar:*)",
       "Bash(zip:*)",
       "Bash(unzip:*)",
-      "Bash(git:*)"
+      "Bash(git:*)",
+      "Bash(gis:*)"
     ],
     "deny": [
-      "Bash(git push:*)",
-      "Bash(git reset:*)",
-      "Bash(git rebase -i:*)",
-      "Bash(git merge:*)",
-      "Bash(git cherry-pick:*)",
-      "Bash(git revert:*)",
-      "Bash(git branch -D:*)",
-      "Bash(git tag -d:*)",
-      "Bash(git remote add:*)",
-      "Bash(git remote set-url:*)",
-      "Bash(git remote remove:*)",
-      "Bash(git config --global:*)",
-      "Bash(git config --local:*)",
-      "Bash(git config --system:*)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
     ]
   }
 }
