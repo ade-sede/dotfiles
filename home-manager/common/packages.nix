@@ -89,18 +89,18 @@
 
     # LLM Agents CLI
     (pkgs.writeShellScriptBin "claude" ''
-      exec ${pkgs.nodePackages.npm}/bin/npx @anthropic-ai/claude-code "$@"
+      exec "${pkgs.nodePackages.npm}/bin/npx" @anthropic-ai/claude-code "$@"
     '')
     (pkgs.writeShellScriptBin "gemini" ''
       export GEMINI_API_KEY=$(cat ~/.dotfiles/secrets/gemini_api_key.txt)
-      exec ${pkgs.nodePackages.npm}/bin/npx @google/gemini-cli "$@"
+      exec "${pkgs.nodePackages.npm}/bin/npx" @google/gemini-cli "$@"
     '')
     (pkgs.writeShellScriptBin "opencode" ''
       export ANTHROPIC_API_KEY=$(cat ~/.dotfiles/secrets/anthropic_api_key.txt)
       export OPENAI_API_KEY=$(cat ~/.dotfiles/secrets/openai_api_key.txt)
       export GEMINI_API_KEY=$(cat ~/.dotfiles/secrets/gemini_api_key.txt)
 
-      exec ${pkgs.nodePackages.npm}/bin/npx opencode-ai@latest "$@"
+      exec "${pkgs.nodePackages.npm}/bin/npx" opencode-ai@latest "$@"
     '')
 
     # Custom Scripts & Wrappers
