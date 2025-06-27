@@ -63,56 +63,18 @@ local plugins = {
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
-    config = function()
-      require("dashboard").setup({
-        theme = "hyper",
-        week_header = {
-          enable = true,
-        },
-        config = {
-          shortcut = {
-            { desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
-            {
-              icon = " ",
-              icon_hl = "@variable",
-              desc = "Files",
-              group = "Label",
-              action = "Telescope find_files",
-              key = "f",
-            },
-            {
-              desc = " Apps",
-              group = "DiagnosticHint",
-              action = "Telescope app",
-              key = "a",
-            },
-            {
-              desc = " dotfiles",
-              group = "Number",
-              action = "Telescope dotfiles",
-              key = "d",
-            },
-          },
-        },
-      })
-    end,
+    config = require("plugins.dashboard"),
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
     "windwp/nvim-autopairs",
-    config = function()
-      require("nvim-autopairs").setup({})
-    end,
+    config = require("plugins.autopairs"),
   },
   "ggandor/leap.nvim",
   {
     "ruifm/gitlinker.nvim",
     dependencies = "nvim-lua/plenary.nvim",
-    config = function()
-      require("gitlinker").setup({
-        mappings = "<leader>gy",
-      })
-    end,
+    config = require("plugins.gitlinker"),
   },
   "saadparwaiz1/cmp_luasnip",
   {
@@ -123,9 +85,7 @@ local plugins = {
   "mfussenegger/nvim-lint",
   {
     "linrongbin16/lsp-progress.nvim",
-    config = function()
-      require("lsp-progress").setup()
-    end,
+    config = require("plugins.lsp-progress"),
   },
   "mfussenegger/nvim-dap",
   "mfussenegger/nvim-dap-python",
@@ -133,21 +93,11 @@ local plugins = {
   {
     "folke/lazydev.nvim",
     ft = "lua",
-    opts = {
-      library = {
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-      },
-    },
+    opts = require("plugins.lazydev"),
   },
   {
     "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, {
-        name = "lazydev",
-        group_index = 0,
-      })
-    end,
+    opts = require("plugins.cmp"),
   },
 }
 
