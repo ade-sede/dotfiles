@@ -10,6 +10,7 @@ local cmp_action = require("lsp-zero").cmp_action()
 local cmp_format = require("lsp-zero").cmp_format({ details = true })
 
 require("lspconfig").pyright.setup({
+  cmd = { "pyright-langserver", "--stdio" },
   settings = {
     python = {
       analysis = {
@@ -21,6 +22,7 @@ require("lspconfig").pyright.setup({
 })
 
 require("lspconfig").pylsp.setup({
+  cmd = { "pylsp" },
   on_attach = on_attach,
   flags = {
     debounce_text_changes = 150,
@@ -132,10 +134,7 @@ require("mason").setup({
 })
 
 require("mason-lspconfig").setup({
-  ensure_installed = {
-    "pyright",
-    "pylsp",
-  },
+  ensure_installed = {},
   handlers = {
     lsp.default_setup,
   },
