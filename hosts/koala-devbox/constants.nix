@@ -6,6 +6,6 @@
   system = "x86_64-linux";
   allowUnfree = true;
   theme = {
-    variant = "light";
+    variant = "dracula";
   };
 }

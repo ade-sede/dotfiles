@@ -1,2 +1,2 @@
-vim.g.ayucolor = "light"
-vim.cmd("colorscheme github_light_tritanopia")
+vim.g.ayucolor = "dark"
+vim.cmd("colorscheme dracula")
