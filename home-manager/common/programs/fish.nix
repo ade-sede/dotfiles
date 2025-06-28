@@ -35,7 +35,7 @@
       # Set fish theme based on current theme variant
       fish_config theme choose "${
         if theme.variant == "light"
-        then "fish default"
+        then "ayu Light"
         else if theme.variant == "dracula"
         then "Dracula"
         else "Tomorrow Night"
