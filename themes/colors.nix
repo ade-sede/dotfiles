@@ -27,6 +27,7 @@
     neovim_colorscheme = "github_light_tritanopia";
     bat_theme = "GitHub";
     tmux_theme = "day";
+    fish_theme = "light";
   };
 
   dark = {
@@ -57,5 +58,6 @@
     neovim_colorscheme = "carbonfox";
     bat_theme = "base16";
     tmux_theme = "night";
+    fish_theme = "dark";
   };
 }
