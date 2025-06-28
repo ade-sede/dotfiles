@@ -14,6 +14,7 @@
     ./programs/bat.nix
     ./programs/direnv.nix
     ./programs/fish.nix
+    ./programs/ghostty.nix
     ./programs/git.nix
     ./programs/kitty.nix
     ./programs/neovim.nix
