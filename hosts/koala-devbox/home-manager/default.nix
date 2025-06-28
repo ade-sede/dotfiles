@@ -23,4 +23,5 @@
     cursor.theme = theme.plasma_cursor_theme;
     wallpaper = theme.plasma_wallpaper;
   };
+  programs.plasma.configFile."kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."Image" = theme.plasma_wallpaper;
 }
