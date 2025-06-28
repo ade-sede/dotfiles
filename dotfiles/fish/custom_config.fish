@@ -42,6 +42,7 @@ set -x XDG_CONFIG_HOME ~/.config
 set -x XDG_DATA_HOME ~/.local/share
 set -x DOTFILES "$HOME/.dotfiles"
 set -x DIRENV_LOG_FORMAT ""
+
 if [ -d ~/.alan ]
 	alias ls="eza --icons"
 	set -x MAIL "adrien.de-sede@alan.eu"
