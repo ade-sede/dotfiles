@@ -60,3 +60,14 @@ For setting up a remote development server, see the [Remote Development Guide](.
 ├── profile-images/
 └── wallpapers/
 ```
+
+### Theme Switching
+
+To switch between light and dark themes:
+
+1. **Change the theme variant** in the `constants.nix` file for the desired host. For example, to change the theme for `remote-devbox`, edit `hosts/remote-devbox/constants.nix` and set the `theme.variant` to `"dark"` or `"light"`.
+
+1. **Rebuild the system** using the appropriate command:
+
+   - For NixOS: `sudo nixos-rebuild switch --flake .#<flake-name>`
+   - For Home Manager: `home-manager switch --flake .#<flake-name>`
