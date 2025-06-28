@@ -5,4 +5,7 @@
   userEmail = "adrien.de-sede@alan.eu";
   system = "aarch64-darwin";
   allowUnfree = true;
+  theme = {
+    variant = "light";
+  };
 }

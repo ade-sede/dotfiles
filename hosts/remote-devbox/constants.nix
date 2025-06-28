@@ -6,4 +6,7 @@
   domain = "devbox.ade-sede.dev";
   system = "x86_64-linux";
   allowUnfree = true;
+  theme = {
+    variant = "light";
+  };
 }

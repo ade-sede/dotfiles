@@ -8,7 +8,15 @@
   };
 in {
   inherit pkgs;
-  extraSpecialArgs = constants;
+  extraSpecialArgs =
+    constants
+    // {
+      theme =
+        ((import ../../../themes/colors.nix).${constants.theme.variant})
+        // {
+          variant = constants.theme.variant;
+        };
+    };
   modules = [
     ./default.nix
   ];

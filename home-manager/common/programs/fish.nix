@@ -1,0 +1,50 @@
+{
+  config,
+  pkgs,
+  lib,
+  theme,
+  ...
+}: {
+  programs.fish = {
+    enable = true;
+
+    plugins = [
+      {
+        name = "bass";
+        src = pkgs.fetchFromGitHub {
+          owner = "edc";
+          repo = "bass";
+          rev = "2fd3d2157d5271ca3575b13daec975ca4c10728a";
+          sha256 = "0mb01y1d0g8ilsr5m8a71j6xmqlyhf8w4xjf00wkk8k41cz3ypky";
+        };
+      }
+      {
+        name = "z";
+        src = pkgs.fetchFromGitHub {
+          owner = "jethrokuan";
+          repo = "z";
+          rev = "e0e1b9dfdba362f8ab1ae8c1afc7ccf62b89f7eb";
+          sha256 = "0dbnir6jbwjpjalz14snzd3cgdysgcs3raznsijd6savad3qhijc";
+        };
+      }
+    ];
+
+    shellInit = ''
+      source ~/.dotfiles/dotfiles/fish/custom_config.fish
+
+      # Set fish theme based on current theme variant
+      fish_config theme choose "${
+        if theme.variant == "light"
+        then "fish default"
+        else if theme.variant == "dracula"
+        then "Dracula"
+        else "Tomorrow Night"
+      }"
+
+      # Dynamic theme colors for fish
+      set -x EZA_COLORS "di=1;38;2;${builtins.substring 1 6 theme.blue}:ln=38;2;${builtins.substring 1 6 theme.cyan}:so=38;2;${builtins.substring 1 6 theme.purple}:pi=38;2;${builtins.substring 1 6 theme.purple}:ex=38;2;${builtins.substring 1 6 theme.green}:bd=38;2;${builtins.substring 1 6 theme.yellow}:cd=38;2;${builtins.substring 1 6 theme.yellow}:su=38;2;${builtins.substring 1 6 theme.red}:sg=38;2;${builtins.substring 1 6 theme.red}:tw=38;2;${builtins.substring 1 6 theme.blue}:ow=38;2;${builtins.substring 1 6 theme.blue}:fi=38;2;${builtins.substring 1 6 theme.fg}:*.md=38;2;${builtins.substring 1 6 theme.blue}:*.txt=38;2;${builtins.substring 1 6 theme.fg}:*.nix=38;2;${builtins.substring 1 6 theme.purple}:*.html=38;2;${builtins.substring 1 6 theme.yellow}:*.css=38;2;${builtins.substring 1 6 theme.cyan}:*.js=38;2;${builtins.substring 1 6 theme.purple}:*.ts=38;2;${builtins.substring 1 6 theme.purple}:*.json=38;2;${builtins.substring 1 6 theme.yellow}:*.yaml=38;2;${builtins.substring 1 6 theme.green}:*.yml=38;2;${builtins.substring 1 6 theme.green}:*.toml=38;2;${builtins.substring 1 6 theme.yellow}:*.ini=38;2;${builtins.substring 1 6 theme.yellow}:*.git=38;2;${builtins.substring 1 6 theme.red}:*.gitignore=38;2;${builtins.substring 1 6 theme.bg_secondary}:*.gitmodules=38;2;${builtins.substring 1 6 theme.bg_secondary}:*.lock=38;2;${builtins.substring 1 6 theme.bg_secondary}:*.py=38;2;${builtins.substring 1 6 theme.green}:*.rb=38;2;${builtins.substring 1 6 theme.red}:*.go=38;2;${builtins.substring 1 6 theme.cyan}:*.rs=38;2;${builtins.substring 1 6 theme.yellow}:*.sh=38;2;${builtins.substring 1 6 theme.green}:*.fish=38;2;${builtins.substring 1 6 theme.green}:*.c=38;2;${builtins.substring 1 6 theme.cyan}:*.h=38;2;${builtins.substring 1 6 theme.cyan}:*.cpp=38;2;${builtins.substring 1 6 theme.cyan}:*.hpp=38;2;${builtins.substring 1 6 theme.cyan}:*.vim=38;2;${builtins.substring 1 6 theme.green}:*.lua=38;2;${builtins.substring 1 6 theme.blue}:*.el=38;2;${builtins.substring 1 6 theme.red}:*.org=38;2;${builtins.substring 1 6 theme.blue}:*.tpl=38;2;${builtins.substring 1 6 theme.yellow}:Makefile=38;2;${builtins.substring 1 6 theme.cyan}:makefile=38;2;${builtins.substring 1 6 theme.cyan}:*.mk=38;2;${builtins.substring 1 6 theme.cyan}"
+
+      set -x LS_COLORS "rs=0:di=1;38;2;${builtins.substring 1 6 theme.blue}:ln=38;2;${builtins.substring 1 6 theme.cyan}:mh=00:pi=38;2;${builtins.substring 1 6 theme.purple}:so=38;2;${builtins.substring 1 6 theme.purple}:do=38;2;${builtins.substring 1 6 theme.purple}:bd=38;2;${builtins.substring 1 6 theme.yellow}:cd=38;2;${builtins.substring 1 6 theme.yellow}:or=38;2;${builtins.substring 1 6 theme.red}:mi=38;2;${builtins.substring 1 6 theme.red}:su=38;2;${builtins.substring 1 6 theme.red}:sg=38;2;${builtins.substring 1 6 theme.red}:ca=38;2;${builtins.substring 1 6 theme.red}:tw=38;2;${builtins.substring 1 6 theme.blue}:ow=38;2;${builtins.substring 1 6 theme.blue}:st=38;2;${builtins.substring 1 6 theme.blue}:fi=38;2;${builtins.substring 1 6 theme.fg}:ex=38;2;${builtins.substring 1 6 theme.green}:*.tar=38;2;${builtins.substring 1 6 theme.yellow}:*.tgz=38;2;${builtins.substring 1 6 theme.yellow}:*.arc=38;2;${builtins.substring 1 6 theme.yellow}:*.arj=38;2;${builtins.substring 1 6 theme.yellow}:*.taz=38;2;${builtins.substring 1 6 theme.yellow}:*.lha=38;2;${builtins.substring 1 6 theme.yellow}:*.lz4=38;2;${builtins.substring 1 6 theme.yellow}:*.lzh=38;2;${builtins.substring 1 6 theme.yellow}:*.lzma=38;2;${builtins.substring 1 6 theme.yellow}:*.tlz=38;2;${builtins.substring 1 6 theme.yellow}:*.txz=38;2;${builtins.substring 1 6 theme.yellow}:*.tzo=38;2;${builtins.substring 1 6 theme.yellow}:*.t7z=38;2;${builtins.substring 1 6 theme.yellow}:*.zip=38;2;${builtins.substring 1 6 theme.yellow}:*.z=38;2;${builtins.substring 1 6 theme.yellow}:*.dz=38;2;${builtins.substring 1 6 theme.yellow}:*.gz=38;2;${builtins.substring 1 6 theme.yellow}:*.lrz=38;2;${builtins.substring 1 6 theme.yellow}:*.lz=38;2;${builtins.substring 1 6 theme.yellow}:*.lzo=38;2;${builtins.substring 1 6 theme.yellow}:*.xz=38;2;${builtins.substring 1 6 theme.yellow}:*.zst=38;2;${builtins.substring 1 6 theme.yellow}:*.tzst=38;2;${builtins.substring 1 6 theme.yellow}:*.bz2=38;2;${builtins.substring 1 6 theme.yellow}:*.bz=38;2;${builtins.substring 1 6 theme.yellow}:*.tbz=38;2;${builtins.substring 1 6 theme.yellow}:*.tbz2=38;2;${builtins.substring 1 6 theme.yellow}:*.tz=38;2;${builtins.substring 1 6 theme.yellow}:*.deb=38;2;${builtins.substring 1 6 theme.yellow}:*.rpm=38;2;${builtins.substring 1 6 theme.yellow}:*.jar=38;2;${builtins.substring 1 6 theme.yellow}:*.war=38;2;${builtins.substring 1 6 theme.yellow}:*.ear=38;2;${builtins.substring 1 6 theme.yellow}:*.sar=38;2;${builtins.substring 1 6 theme.yellow}:*.rar=38;2;${builtins.substring 1 6 theme.yellow}:*.alz=38;2;${builtins.substring 1 6 theme.yellow}:*.ace=38;2;${builtins.substring 1 6 theme.yellow}:*.zoo=38;2;${builtins.substring 1 6 theme.yellow}:*.cpio=38;2;${builtins.substring 1 6 theme.yellow}:*.7z=38;2;${builtins.substring 1 6 theme.yellow}:*.rz=38;2;${builtins.substring 1 6 theme.yellow}:*.cab=38;2;${builtins.substring 1 6 theme.yellow}:*.wim=38;2;${builtins.substring 1 6 theme.yellow}:*.swm=38;2;${builtins.substring 1 6 theme.yellow}:*.dwm=38;2;${builtins.substring 1 6 theme.yellow}:*.esd=38;2;${builtins.substring 1 6 theme.yellow}:*.jpg=38;2;${builtins.substring 1 6 theme.purple}:*.jpeg=38;2;${builtins.substring 1 6 theme.purple}:*.mjpg=38;2;${builtins.substring 1 6 theme.purple}:*.mjpeg=38;2;${builtins.substring 1 6 theme.purple}:*.gif=38;2;${builtins.substring 1 6 theme.purple}:*.bmp=38;2;${builtins.substring 1 6 theme.purple}:*.pbm=38;2;${builtins.substring 1 6 theme.purple}:*.pgm=38;2;${builtins.substring 1 6 theme.purple}:*.ppm=38;2;${builtins.substring 1 6 theme.purple}:*.tga=38;2;${builtins.substring 1 6 theme.purple}:*.xbm=38;2;${builtins.substring 1 6 theme.purple}:*.xpm=38;2;${builtins.substring 1 6 theme.purple}:*.tif=38;2;${builtins.substring 1 6 theme.purple}:*.tiff=38;2;${builtins.substring 1 6 theme.purple}:*.png=38;2;${builtins.substring 1 6 theme.purple}:*.svg=38;2;${builtins.substring 1 6 theme.purple}:*.svgz=38;2;${builtins.substring 1 6 theme.purple}:*.mng=38;2;${builtins.substring 1 6 theme.purple}:*.pcx=38;2;${builtins.substring 1 6 theme.purple}:*.mov=38;2;${builtins.substring 1 6 theme.purple}:*.mpg=38;2;${builtins.substring 1 6 theme.purple}:*.mpeg=38;2;${builtins.substring 1 6 theme.purple}:*.m2v=38;2;${builtins.substring 1 6 theme.purple}:*.mkv=38;2;${builtins.substring 1 6 theme.purple}:*.webm=38;2;${builtins.substring 1 6 theme.purple}:*.webp=38;2;${builtins.substring 1 6 theme.purple}:*.ogm=38;2;${builtins.substring 1 6 theme.purple}:*.mp4=38;2;${builtins.substring 1 6 theme.purple}:*.m4v=38;2;${builtins.substring 1 6 theme.purple}:*.mp4v=38;2;${builtins.substring 1 6 theme.purple}:*.vob=38;2;${builtins.substring 1 6 theme.purple}:*.qt=38;2;${builtins.substring 1 6 theme.purple}:*.nuv=38;2;${builtins.substring 1 6 theme.purple}:*.wmv=38;2;${builtins.substring 1 6 theme.purple}:*.asf=38;2;${builtins.substring 1 6 theme.purple}:*.rm=38;2;${builtins.substring 1 6 theme.purple}:*.rmvb=38;2;${builtins.substring 1 6 theme.purple}:*.flc=38;2;${builtins.substring 1 6 theme.purple}:*.avi=38;2;${builtins.substring 1 6 theme.purple}:*.fli=38;2;${builtins.substring 1 6 theme.purple}:*.flv=38;2;${builtins.substring 1 6 theme.purple}:*.gl=38;2;${builtins.substring 1 6 theme.purple}:*.dl=38;2;${builtins.substring 1 6 theme.purple}:*.xcf=38;2;${builtins.substring 1 6 theme.purple}:*.xwd=38;2;${builtins.substring 1 6 theme.purple}:*.yuv=38;2;${builtins.substring 1 6 theme.purple}:*.cgm=38;2;${builtins.substring 1 6 theme.purple}:*.emf=38;2;${builtins.substring 1 6 theme.purple}:*.ogv=38;2;${builtins.substring 1 6 theme.purple}:*.ogx=38;2;${builtins.substring 1 6 theme.purple}:*.aac=38;2;${builtins.substring 1 6 theme.cyan}:*.au=38;2;${builtins.substring 1 6 theme.cyan}:*.flac=38;2;${builtins.substring 1 6 theme.cyan}:*.m4a=38;2;${builtins.substring 1 6 theme.cyan}:*.mid=38;2;${builtins.substring 1 6 theme.cyan}:*.midi=38;2;${builtins.substring 1 6 theme.cyan}:*.mka=38;2;${builtins.substring 1 6 theme.cyan}:*.mp3=38;2;${builtins.substring 1 6 theme.cyan}:*.mpc=38;2;${builtins.substring 1 6 theme.cyan}:*.ogg=38;2;${builtins.substring 1 6 theme.cyan}:*.ra=38;2;${builtins.substring 1 6 theme.cyan}:*.wav=38;2;${builtins.substring 1 6 theme.cyan}:*.oga=38;2;${builtins.substring 1 6 theme.cyan}:*.opus=38;2;${builtins.substring 1 6 theme.cyan}:*.spx=38;2;${builtins.substring 1 6 theme.cyan}:*.xspf=38;2;${builtins.substring 1 6 theme.cyan}:*.md=38;2;${builtins.substring 1 6 theme.blue}:*.txt=38;2;${builtins.substring 1 6 theme.fg}:*.nix=38;2;${builtins.substring 1 6 theme.purple}:*.html=38;2;${builtins.substring 1 6 theme.yellow}:*.css=38;2;${builtins.substring 1 6 theme.cyan}:*.js=38;2;${builtins.substring 1 6 theme.purple}:*.ts=38;2;${builtins.substring 1 6 theme.purple}:*.json=38;2;${builtins.substring 1 6 theme.yellow}"
+    '';
+  };
+}

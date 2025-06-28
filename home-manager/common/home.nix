@@ -6,13 +6,25 @@
   homeDirectory,
   fullName,
   userEmail,
+  theme,
   ...
 }: {
   imports = [
+    # Programs
+    ./programs/bat.nix
+    ./programs/direnv.nix
+    ./programs/fish.nix
+    ./programs/ghostty.nix
+    ./programs/git.nix
+    ./programs/kitty.nix
+    ./programs/neovim.nix
+    ./programs/ssh-gpg.nix
+    ./programs/starship.nix
+    ./programs/tmux.nix
+
+    # Other Configs
     ./packages.nix
     ./dotfiles.nix
-    ./programs.nix
-    ./tmux.nix
     ./meme.nix
     ./activation.nix
     ./services.nix
