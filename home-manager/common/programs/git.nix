@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  userVars = import ./variables.nix;
+  userVars = import ../variables.nix;
 in {
   programs.git = {
     enable = true;

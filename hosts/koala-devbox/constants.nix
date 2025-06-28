@@ -5,4 +5,7 @@
   userEmail = "adrien.de.sede@gmail.com";
   system = "x86_64-linux";
   allowUnfree = true;
+  theme = {
+    variant = "light";
+  };
 }

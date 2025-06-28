@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  theme,
   ...
 }: {
   programs.tmux = {
@@ -20,7 +21,7 @@
       prefix-highlight
       {
         plugin = tokyo-night-tmux;
-        extraConfig = "set -g @tokyo-night-tmux_theme 'day'";
+        extraConfig = "set -g @tokyo-night-tmux_theme '${theme.tmux_theme}'";
       }
     ];
     extraConfig = ''
