@@ -4,6 +4,8 @@
 local lsp = require("lsp-zero")
 
 require("lspconfig").gleam.setup({})
+require("lspconfig").gopls.setup({})
+require("lspconfig").templ.setup({})
 
 local cmp = require("cmp")
 local cmp_action = require("lsp-zero").cmp_action()
@@ -134,7 +136,6 @@ require("mason").setup({
 })
 
 require("mason-lspconfig").setup({
-  ensure_installed = {},
   handlers = {
     lsp.default_setup,
   },

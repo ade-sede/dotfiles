@@ -21,6 +21,11 @@ require("nvim-treesitter.configs").setup({
     "vim",
     "vimdoc",
     "gleam",
+    "templ",
+    "go",
+    "python",
+    "typescript",
+    "javascript",
   },
 })
 
