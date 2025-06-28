@@ -28,6 +28,14 @@
     bat_theme = "GitHub";
     tmux_theme = "day";
     fish_theme = "light";
+
+    # Plasma desktop theme
+    plasma_look_and_feel = "org.kde.breeze.desktop";
+    plasma_color_scheme = "BreezeLight";
+    plasma_theme = "breeze-light";
+    plasma_icon_theme = "breeze";
+    plasma_cursor_theme = "breeze_cursors";
+    plasma_wallpaper = "/home/ade-sede/.dotfiles/wallpapers/safe-landing.jpg";
   };
 
   dark = {
@@ -59,6 +67,14 @@
     bat_theme = "base16";
     tmux_theme = "night";
     fish_theme = "dark";
+
+    # Plasma desktop theme
+    plasma_look_and_feel = "org.kde.breezedark.desktop";
+    plasma_color_scheme = "BreezeDark";
+    plasma_theme = "breeze-dark";
+    plasma_icon_theme = "breeze-dark";
+    plasma_cursor_theme = "breeze_cursors";
+    plasma_wallpaper = "/home/ade-sede/.dotfiles/wallpapers/hotline_miami_green_1.jpg";
   };
 
   dracula = {
@@ -91,5 +107,13 @@
     tmux_theme = "night";
     fish_theme = "dark";
     variant = "dracula";
+
+    # Plasma desktop theme
+    plasma_look_and_feel = "org.kde.breezedark.desktop";
+    plasma_color_scheme = "DraculaColorScheme";
+    plasma_theme = "breeze-dark";
+    plasma_icon_theme = "Papirus-Dark";
+    plasma_cursor_theme = "breeze_cursors";
+    plasma_wallpaper = "/home/ade-sede/.dotfiles/wallpapers/hotline_miami_purple_1.jpg";
   };
 }

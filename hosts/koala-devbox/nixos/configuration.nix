@@ -18,7 +18,15 @@ in {
     home-manager.nixosModules.home-manager
   ];
 
-  home-manager.extraSpecialArgs = constants;
+  home-manager.extraSpecialArgs =
+    constants
+    // {
+      theme =
+        ((import ../../../themes/colors.nix).${constants.theme.variant})
+        // {
+          variant = constants.theme.variant;
+        };
+    };
   home-manager.users.${username} = import ../home-manager;
 
   home-manager.sharedModules = [

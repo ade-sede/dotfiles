@@ -10,7 +10,8 @@
       "WebFetch(domain:ghostty.org)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:opencode.ai)",
-      "WebFetch(domain:models.dev)"
+      "WebFetch(domain:models.dev)",
+      "Bash(rg:*)"
     ],
     "deny": []
   },
