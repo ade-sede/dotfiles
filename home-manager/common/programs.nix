@@ -28,6 +28,11 @@ in {
     starship = {
       enable = true;
     };
+
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
   };
 
   home.enableNixpkgsReleaseCheck = false;

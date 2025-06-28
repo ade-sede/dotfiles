@@ -16,6 +16,7 @@
     # Development Tools & Linters
     alejandra
     devbox
+    direnv
     docker-client
     docker-compose
     gitleaks
