@@ -53,6 +53,7 @@ Interact with GitHub using the command `gh` (github CLI):
 ### Pull Requests
 
 Always open PRs as draft.
+When creating PRs that contain AI-generated code, add the label 'ai-generated' to the pull request.
 Check for existing PR templates in standard GitHub locations:
 
 - `.github/pull_request_template.md`
