@@ -60,4 +60,36 @@
     tmux_theme = "night";
     fish_theme = "dark";
   };
+
+  dracula = {
+    # Base colors
+    bg = "#282a36";
+    fg = "#f8f8f2";
+
+    # UI colors
+    bg_secondary = "#44475a";
+    border = "#6272a4";
+    accent = "#bd93f9";
+
+    # Status colors
+    success = "#50fa7b";
+    warning = "#ffb86c";
+    error = "#ff5555";
+    info = "#8be9fd";
+
+    # Syntax colors (for terminals/editors)
+    red = "#ff5555";
+    green = "#50fa7b";
+    yellow = "#f1fa8c";
+    blue = "#8be9fd";
+    purple = "#bd93f9";
+    cyan = "#8be9fd";
+
+    # Application-specific
+    neovim_colorscheme = "dracula";
+    bat_theme = "Dracula";
+    tmux_theme = "night";
+    fish_theme = "dark";
+    variant = "dracula";
+  };
 }

@@ -36,6 +36,8 @@
       fish_config theme choose "${
         if theme.variant == "light"
         then "fish default"
+        else if theme.variant == "dracula"
+        then "Dracula"
         else "Tomorrow Night"
       }"
 
