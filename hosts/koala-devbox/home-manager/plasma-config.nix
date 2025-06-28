@@ -642,8 +642,8 @@
       "kwinrulesrc"."860844cb-9632-41de-a6a2-b8a4a16de080"."desktopsrule" = 3;
       "kwinrulesrc"."860844cb-9632-41de-a6a2-b8a4a16de080"."wmclass" = ".*vivaldi.*";
       "kwinrulesrc"."860844cb-9632-41de-a6a2-b8a4a16de080"."wmclassmatch" = 3;
-      "kwinrulesrc"."General"."count" = 6;
-      "kwinrulesrc"."General"."rules" = "ada809c5-bc7a-46e0-82ac-5b89846fbb22,27e1511d-5ae7-4d9b-adce-7a5df6fcd057,1,4,e25f6caf-ee47-42a3-b6d3-fa6eda4880aa,860844cb-9632-41de-a6a2-b8a4a16de080";
+      "kwinrulesrc"."General"."count" = 7;
+      "kwinrulesrc"."General"."rules" = "ada809c5-bc7a-46e0-82ac-5b89846fbb22,27e1511d-5ae7-4d9b-adce-7a5df6fcd057,1,4,e25f6caf-ee47-42a3-b6d3-fa6eda4880aa,860844cb-9632-41de-a6a2-b8a4a16de080,9559daa8-7db1-47ad-a712-7a0bf43ebfc4";
       "kwinrulesrc"."a0f0af80-7463-41eb-ba57-23478d72dc9b"."Description" = "Vivaldi Picture-in-Picture";
       "kwinrulesrc"."a0f0af80-7463-41eb-ba57-23478d72dc9b"."aboverule" = 3;
       "kwinrulesrc"."a0f0af80-7463-41eb-ba57-23478d72dc9b"."desktops" = "\\0";
@@ -665,6 +665,11 @@
       "kwinrulesrc"."e25f6caf-ee47-42a3-b6d3-fa6eda4880aa"."desktopsrule" = 3;
       "kwinrulesrc"."e25f6caf-ee47-42a3-b6d3-fa6eda4880aa"."wmclass" = ".*ghostty.*";
       "kwinrulesrc"."e25f6caf-ee47-42a3-b6d3-fa6eda4880aa"."wmclassmatch" = 3;
+      "kwinrulesrc"."9559daa8-7db1-47ad-a712-7a0bf43ebfc4"."Description" = "GeForce NOW";
+      "kwinrulesrc"."9559daa8-7db1-47ad-a712-7a0bf43ebfc4"."desktops" = "Desktop_1";
+      "kwinrulesrc"."9559daa8-7db1-47ad-a712-7a0bf43ebfc4"."desktopsrule" = 3;
+      "kwinrulesrc"."9559daa8-7db1-47ad-a712-7a0bf43ebfc4"."title" = ".*GeForce NOW.*";
+      "kwinrulesrc"."9559daa8-7db1-47ad-a712-7a0bf43ebfc4"."titlematch" = 3;
       "plasma-localerc"."Formats"."LANG" = "en_US.UTF-8";
       "plasmanotifyrc"."Applications/discord"."Seen" = true;
       "plasmanotifyrc"."Applications/vivaldi-stable"."Seen" = true;
