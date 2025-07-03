@@ -11,11 +11,13 @@ in {
     ./audio.nix
     ./bootloader.nix
     ./hardware.nix
+    ./flatpak.nix
     ../../../nixos/linux/xserver.nix
     ../../../nixos/linux/systemd.nix
     ../../../nixos/linux/programs.nix
     ../../../nixos/common/configuration.nix
     home-manager.nixosModules.home-manager
+    inputs.nix-flatpak.nixosModules.nix-flatpak
   ];
 
   home-manager.extraSpecialArgs =
