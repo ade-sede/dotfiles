@@ -8,6 +8,7 @@
     xclip
     discord
     ghostty
+    ibus
     (
       let
         customVivaldi = vivaldi.overrideAttrs (oldAttrs: {
