@@ -6,6 +6,12 @@
 - **Lint:** Pre-commit hooks handle linting with `alejandra` (Nix) and `mdformat` (Markdown). Run `pre-commit install`.
 - **Test:** No dedicated test command. Builds are the primary validation.
 
+## Git and Pre-commit Hooks
+
+- **Pre-commit hooks:** Run automatically on commit and may modify files (especially formatting)
+- **Important:** If pre-commit hooks modify files during commit, the commit fails and you MUST re-add the modified files
+- **Workflow:** After failed commit due to formatting, run `git add .` and `git commit` again with the same message
+
 ## Code Style
 
 - **Comments:** Avoid at all cost.

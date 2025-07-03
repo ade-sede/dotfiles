@@ -13,13 +13,6 @@
   services.xserver.xkb = {
     layout = "us";
     variant = "";
-  };
-
-  i18n.inputMethod = {
-    enabled = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [
-      table
-      table-others
-    ];
+    options = "compose:ralt";
   };
 }
