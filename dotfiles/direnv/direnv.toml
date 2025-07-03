@@ -1,2 +1,2 @@
-[global]
-log_format = "-"
+[whitelist]
+prefix = ["/Users/ade-sede/alan/alan-apps"]
