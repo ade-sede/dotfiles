@@ -30,6 +30,7 @@ dotfiles/claude/projects/
 .claude/todos/
 .claude/__store.db
 .claude/.credentials.json
+.claude/settings.local.json
 
 # Codex
 dotfiles/codex/history.json
