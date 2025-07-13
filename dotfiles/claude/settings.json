@@ -56,8 +56,6 @@
       "Bash(gis:*)",
       "Bash(hostname:*)"
     ],
-    "deny": [
-      "Bash(cd:*)",
-    ]
+    "deny": ["Bash(cd:*)"]
   }
 }
