@@ -27,6 +27,11 @@
       ];
     };
 
+    matchBlocks."steamdeck" = {
+      hostname = "192.168.1.177";
+      user = "deck";
+    };
+
     extraConfig = ''
       AddKeysToAgent yes
     '';
