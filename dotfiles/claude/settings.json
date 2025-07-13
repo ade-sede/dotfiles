@@ -53,7 +53,8 @@
       "Bash(zip:*)",
       "Bash(unzip:*)",
       "Bash(git:*)",
-      "Bash(gis:*)"
+      "Bash(gis:*)",
+      "Bash(hostname:*)"
     ],
     "deny": [
       "Bash(cd:*)",

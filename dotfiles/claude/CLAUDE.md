@@ -62,18 +62,3 @@ Check for existing PR templates in standard GitHub locations:
 - `./PULL_REQUEST_TEMPLATE.md`
 
 Follow the PR format given explicitly in every repo.
-
-If no PR template is provided, use this default format:
-
-```
-## Why
-- Why these changes were made
-
-## How
-- The changes that were made
-
-## Test plan
-- [ ] Manual testing completed
-- [ ] Existing tests pass
-- [ ] New tests added if needed
-```
