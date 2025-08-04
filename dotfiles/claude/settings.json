@@ -57,5 +57,8 @@
       "Bash(hostname:*)"
     ],
     "deny": ["Bash(cd:*)"]
+  },
+  "feedbackSurveyState": {
+    "lastShownTime": 1753954982052
   }
 }
