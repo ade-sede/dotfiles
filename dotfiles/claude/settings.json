@@ -56,7 +56,7 @@
       "Bash(gis:*)",
       "Bash(hostname:*)"
     ],
-    "deny": ["Bash(cd:*)"]
+    "deny": []
   },
   "feedbackSurveyState": {
     "lastShownTime": 1753954982052
