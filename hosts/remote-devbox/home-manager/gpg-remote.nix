@@ -19,7 +19,7 @@
     maxCacheTtl = 0;
     maxCacheTtlSsh = 0;
     pinentry = {
-      package = pkgs.pinentry-curses;
+      package = pkgs.pinentry-tty;
     };
     extraConfig = ''
       allow-loopback-pinentry
