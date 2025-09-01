@@ -39,4 +39,3 @@ clipboard-paste-protection = false
 clipboard-paste-bracketed-safe = true
 copy-on-select = true
 term = "xterm-256color"
-keybind = shift+enter=text:\n

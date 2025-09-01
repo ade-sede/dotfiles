@@ -62,6 +62,7 @@ ssh root@<server-ip> "
 # Test SSH access as ade-sede user (password: changeme)
 ssh ade-sede@<server-ip>
 
+
 # LLM can use expect to handle password prompts instead of interactive commands until for all further commands, until we have setup password-less connection:
 expect -c "
 spawn ssh -o StrictHostKeyChecking=no ade-sede@<server-ip> whoami
@@ -72,6 +73,10 @@ expect eof
 
 # Copy SSH public key for password-less access (run from local machine)
 ssh-copy-id ade-sede@<server-ip>
+
+# Change default password (necessary for security)
+# Once logged in to the remote server as the user, run:
+passwd
 ```
 
 ## Copy secrets (optional)
