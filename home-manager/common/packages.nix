@@ -49,6 +49,7 @@
     # Networking
     curl
     dig
+    expect
     netcat
     nmap
     wget

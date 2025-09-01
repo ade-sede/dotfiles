@@ -8,10 +8,10 @@ GPG & SSH keys can be generated using scripts in this directory:
 
 ```bash
 # Generate SSH key
-./generate-ssh-key.sh
+../scripts/key-management/generate-ssh-key.sh
 
 # Generate GPG key
-./generate-gpg-key.sh
+../scripts/key-management/generate-gpg-key.sh
 ```
 
 These scripts use the environment variables `FULL_NAME` and `EMAIL` which are set automatically by home-manager.
@@ -27,7 +27,7 @@ gpg --list-secret-keys --keyid-format=long
 # Export GPG public key to a file
 gpg --armor --export <KEY_ID> > gpg_github_key.asc
 
-# Login into GH cli
+# Login into GH cli (use browser auth - generating an access token is not necessary)
 gh auth login
 
 # Make sure we are allowed to push gpg keys

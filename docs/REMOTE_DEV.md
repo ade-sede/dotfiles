@@ -49,7 +49,7 @@ scp root@<server-ip>:/etc/nixos/hardware-configuration.nix ./hosts/remote-devbox
 # Commit and push the hardware config (run from local machine)
 git add . && git commit -m "Add remote-devbox hardware config" && git push
 
-# Deploy NixOS configuration
+# Deploy NixOS configuration (non-interactive - can be run by LLM)
 ssh root@<server-ip> "
   git clone https://github.com/ade-sede/dotfiles.git /home/ade-sede/.dotfiles
   chown -R 1000:1000 /home/ade-sede
@@ -57,8 +57,18 @@ ssh root@<server-ip> "
   nixos-rebuild switch --flake .#remote-devbox
 "
 
+**Note**: SSL certificate generation may fail if the domain doesn't resolve yet, but the core NixOS deployment will succeed.
+
 # Test SSH access as ade-sede user (password: changeme)
 ssh ade-sede@<server-ip>
+
+# LLM can use expect to handle password prompts instead of interactive commands until for all further commands, until we have setup password-less connection:
+expect -c "
+spawn ssh -o StrictHostKeyChecking=no ade-sede@<server-ip> whoami
+expect \"password:\"
+send \"changeme\r\"
+expect eof
+"
 
 # Copy SSH public key for password-less access (run from local machine)
 ssh-copy-id ade-sede@<server-ip>
@@ -69,9 +79,13 @@ ssh-copy-id ade-sede@<server-ip>
 After installation is complete, you can copy your local secrets to reuse the same keys:
 
 ```bash
-# Copy dotfiles/secrets to remote server (since filesystem structure is identical)
-scp -r dotfiles/secrets ade-sede@<server-ip>:/home/ade-sede/.dotfiles/dotfiles/
+# Copy secrets to remote server (since filesystem structure is identical)
+scp -r secrets ade-sede@<server-ip>:/home/ade-sede/.dotfiles/
 ```
+
+## Generate new keys (optional)
+
+For generating and uploading GPG and SSH keys, see the [Key Management README](./KEY_MANAGEMENT.md)
 
 ## Enable web terminal access
 

@@ -29,7 +29,7 @@ For coding agents, see the [AGENTS.md](./AGENTS.md) file.
 
 ### Key Management
 
-For generating and uploading GPG and SSH keys, see the [Key Management README](./scripts/key-management/README.md).
+For generating and uploading GPG and SSH keys, see the [Key Management README](./docs/KEY_MANAGEMENT.md).
 
 ### Remote Development
 
