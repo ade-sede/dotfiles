@@ -18,8 +18,11 @@ scw instance server create \
   name=remote-devbox \
   zone=fr-par-2 \
   root-volume=local:50GB \
+  ip=ipv6 \
   cloud-init=@nixos-infect-cloud-init.yaml
 ```
+
+**Note**: By default Scaleway's flexible IPs come with both IPv4 and IPv6 and we haven't figured out how to do IPv6-only yet.
 
 ## Get server IP and monitor installation
 
@@ -43,7 +46,7 @@ ssh root@<server-ip> "tail -f /tmp/infect.log"
 # Copy hardware config to repository
 scp root@<server-ip>:/etc/nixos/hardware-configuration.nix ./hosts/remote-devbox/nixos/hardware-config.nix
 
-# Commit and push the hardware config
+# Commit and push the hardware config (run from local machine)
 git add . && git commit -m "Add remote-devbox hardware config" && git push
 
 # Deploy NixOS configuration
@@ -59,6 +62,15 @@ ssh ade-sede@<server-ip>
 
 # Copy SSH public key for password-less access (run from local machine)
 ssh-copy-id ade-sede@<server-ip>
+```
+
+## Copy secrets (optional)
+
+After installation is complete, you can copy your local secrets to reuse the same keys:
+
+```bash
+# Copy dotfiles/secrets to remote server (since filesystem structure is identical)
+scp -r dotfiles/secrets ade-sede@<server-ip>:/home/ade-sede/.dotfiles/dotfiles/
 ```
 
 ## Enable web terminal access
