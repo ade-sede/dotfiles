@@ -76,7 +76,7 @@ ssh-copy-id ade-sede@<server-ip>
 
 # Change default password (necessary for security)
 # Once logged in to the remote server as the user, run:
-passwd
+passwd ade-sede
 ```
 
 ## Copy secrets (optional)
