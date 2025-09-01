@@ -30,6 +30,8 @@
     matchBlocks."devbox" = {
       hostname = "devbox.ade-sede.dev";
       user = "ade-sede";
+      forwardX11 = true;
+      forwardX11Trusted = true;
       localForwards = [
         {
           bind.port = 8080;
