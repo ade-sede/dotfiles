@@ -18,7 +18,7 @@ scw instance server create \
   name=remote-devbox \
   zone=fr-par-2 \
   root-volume=local:50GB \
-  ip=ipv6 \
+  ip=ipv6 \ # Does this even work ?
   cloud-init=@nixos-infect-cloud-init.yaml
 ```
 
