@@ -12,6 +12,7 @@ in {
     ./bootloader.nix
     ./hardware.nix
     ./flatpak.nix
+    ./xdg.nix
     ../../../nixos/linux/xserver.nix
     ../../../nixos/linux/systemd.nix
     ../../../nixos/linux/programs.nix
