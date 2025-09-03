@@ -3,5 +3,6 @@
     signal-desktop
     kicad
     wl-clipboard
+    plex-desktop
   ];
 }
