@@ -4,5 +4,6 @@
     kicad
     wl-clipboard
     plex-desktop
+    qbittorrent
   ];
 }
