@@ -5,6 +5,8 @@
 in {
   nixpkgs.config.allowUnfree = allowUnfree;
 
+  programs.kdeconnect.enable = true;
+
   imports = [
     ./hardware-config.nix
     ./networking.nix
