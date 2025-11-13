@@ -1,10 +1,21 @@
-# Comments
+# Comments and docstrings
 
-Never comment code or configuration, unless explicitely asked to
+Do not write any comments whatsoever.
+However, docstrings are allowed.
+When writing docstrings, focus on what the function or variable does.
+Do not include information about where the function is used.
+Do not include information that only the user you are conversing with would understand.
+Do not include anything an actual human being would not include.
+
+The goal of a docstring is to document how a function works and for what purpose, nothing less, nothing more.
+
+# Interaction with the user
+
+Most of our interactions should happen through:
+- the `TodoWrite` tool, for planning and tracking changes
+- the `AskUserQuestion` tool, for asking the user's input when you are not reasonably able to infer their intent or when a decision needs to be taken
 
 # Patterns
-
-When writing new code, base coding style on existing code.
 
 - Follow existing naming conventions
 - Mimic existing patterns
@@ -20,7 +31,7 @@ When writing new code, base coding style on existing code.
 
 ## Commits
 
-Split distinct changes into separate commits:
+If I ever ask you to commit changes, split distinct changes into separate commits:
 
 - Separate features from bug fixes
 - Keep refactoring separate from functional changes
@@ -39,7 +50,7 @@ Short, descriptive title; bullet points for details:
 - First line: concise summary (50 chars or less)
 - Blank line, then bullet points for context
 - Focus on why, not what
-- Do not try to be exhaustive
+<!-- - --> Do not try to be exhaustive
 - Use imperative mood (e.g., "Add feature" not "Added feature")
 
 ## GitHub
@@ -52,13 +63,12 @@ Interact with GitHub using the command `gh` (github CLI):
 
 ### Pull Requests
 
-Always open PRs as draft.
-When creating PRs that contain AI-generated code, add the label 'ai-generated' to the pull request.
-Check for existing PR templates in standard GitHub locations:
-
-- `.github/pull_request_template.md`
-- `.github/PULL_REQUEST_TEMPLATE.md`
-- `docs/pull_request_template.md`
-- `./PULL_REQUEST_TEMPLATE.md`
+- Always open the PRs as draft
+- Ask me if I want to use the 'ai-generated' label
+- Check for existing PR templates in standard GitHub locations:
+    - `.github/pull_request_template.md`
+    - `.github/PULL_REQUEST_TEMPLATE.md`
+    - `docs/pull_request_template.md`
+    - `./PULL_REQUEST_TEMPLATE.md`
 
 Follow the PR format given explicitly in every repo.

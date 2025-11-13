@@ -25,6 +25,10 @@ dotfiles/claude/todos/
 dotfiles/claude/__store.db
 dotfiles/claude/ide
 dotfiles/claude/projects/
+dotfiles/claude/debug/
+dotfiles/claude/file-history/
+dotfiles/claude/history.jsonl
+dotfiles/claude/shell-snapshots/
 .claude/projects/
 .claude/statsig/
 .claude/todos/
