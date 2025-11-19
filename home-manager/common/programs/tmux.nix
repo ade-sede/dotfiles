@@ -44,6 +44,12 @@
       # OSC52 clipboard support
       set -g allow-passthrough on
       set -g set-clipboard on
+
+      set -g default-command "${
+        if builtins.pathExists "/etc/profiles/per-user/${config.home.username}/bin/fish"
+        then "/etc/profiles/per-user/${config.home.username}/bin/fish"
+        else "${config.home.homeDirectory}/.nix-profile/bin/fish"
+      }"
     '';
   };
 }
