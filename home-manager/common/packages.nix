@@ -27,6 +27,7 @@
     pre-commit
     shellcheck
     stylua
+    git-spice
 
     # File Management
     coreutils

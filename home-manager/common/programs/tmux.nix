@@ -13,6 +13,10 @@
     escapeTime = 0;
     terminal = "screen-256color";
     customPaneNavigationAndResize = true;
+    shell =
+      if builtins.pathExists "${config.home.homeDirectory}/.alan"
+      then "${config.home.homeDirectory}/.nix-profile/bin/fish"
+      else "/etc/profiles/per-user/${config.home.username}/bin/fish";
     plugins = with pkgs.tmuxPlugins; [
       sensible
       resurrect
@@ -40,10 +44,6 @@
       # OSC52 clipboard support
       set -g allow-passthrough on
       set -g set-clipboard on
-
-      if-shell "test -d ~/.alan" \
-          "set -g default-shell '/Users/ade-sede/.nix-profile/bin/fish'" \
-          "set -g default-shell '/etc/profiles/per-user/ade-sede/bin/fish'"
     '';
   };
 }

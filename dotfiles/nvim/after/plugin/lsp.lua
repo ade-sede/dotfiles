@@ -11,17 +11,17 @@ local cmp = require("cmp")
 local cmp_action = require("lsp-zero").cmp_action()
 local cmp_format = require("lsp-zero").cmp_format({ details = true })
 
-require("lspconfig").pyright.setup({
-  cmd = { "pyright-langserver", "--stdio" },
-  settings = {
-    python = {
-      analysis = {
-        diagnosticMode = "none", -- This disables diagnostic reporting to LSP
-        useLibraryCodeForTypes = true,
-      },
-    },
-  },
-})
+-- require("lspconfig").pyright.setup({
+--   cmd = { "pyright-langserver", "--stdio" },
+--   settings = {
+--     python = {
+--       analysis = {
+--         diagnosticMode = "none", -- This disables diagnostic reporting to LSP
+--         useLibraryCodeForTypes = true,
+--       },
+--     },
+--   },
+-- })
 
 require("lspconfig").pylsp.setup({
   cmd = { "pylsp" },
@@ -40,8 +40,8 @@ require("lspconfig").pylsp.setup({
         ruff = { enabled = true },
         mccabe = { enabled = false },
         pylsp_mypy = {
-          enabled = false,
-          live_mode = false,
+          enabled = true,
+          live_mode = true,
           dmypy = true,
           report_progress = true,
         },

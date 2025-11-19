@@ -111,6 +111,7 @@ end
 if type -q bass
     bass source ~/.nvm/nvm.sh --no-use ';' nvm use $nvm_default_version > /dev/null 2>&1
 end
+set -e npm_config_prefix
 if [ -e ~/.dotfiles/dotfiles/fish/scripts/greeting.fish ]
     source ~/.dotfiles/dotfiles/fish/scripts/greeting.fish
 end
