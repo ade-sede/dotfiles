@@ -14,9 +14,9 @@
     terminal = "screen-256color";
     customPaneNavigationAndResize = true;
     shell =
-      if builtins.pathExists "${config.home.homeDirectory}/.alan"
-      then "${config.home.homeDirectory}/.nix-profile/bin/fish"
-      else "/etc/profiles/per-user/${config.home.username}/bin/fish";
+      if builtins.pathExists "/etc/profiles/per-user/${config.home.username}/bin/fish"
+      then "/etc/profiles/per-user/${config.home.username}/bin/fish"
+      else "${config.home.homeDirectory}/.nix-profile/bin/fish";
     plugins = with pkgs.tmuxPlugins; [
       sensible
       resurrect
