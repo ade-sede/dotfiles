@@ -582,8 +582,6 @@
       "khotkeysrc"."WM"."inactiveForeground" = "";
       "khotkeysrc"."WM"."inactiveForeground\x5b$d\x5d" = "";
       "kscreenlockerrc"."Greeter"."WallpaperPlugin" = "org.kde.image";
-      "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."Image" = "/home/ade-sede/.dotfiles/wallpapers/safe-landing.jpg";
-      "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."PreviewImage" = "/nix/store/lcmmabwysra3xp7f4gfny01djb2myw79-plasma-workspace-wallpapers-6.2.5/share/wallpapers/SafeLanding/";
       "kwalletrc"."Wallet"."First Use" = false;
       "kwinrc"."Activities/LastVirtualDesktop"."9d852584-e65d-46d1-b09c-e3d5ed638c59" = "Desktop_4";
       "kwinrc"."Desktops"."Id_1" = "Desktop_1";
