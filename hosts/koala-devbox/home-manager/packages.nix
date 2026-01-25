@@ -6,5 +6,6 @@
     plex-desktop
     qbittorrent
     plasma5Packages.kdeconnect-kde
+    gnome-network-displays
   ];
 }
