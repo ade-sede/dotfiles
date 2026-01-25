@@ -5,6 +5,8 @@
   ...
 }: let
   constants = import ../constants.nix;
+  colors = import ../../../themes/colors.nix;
+  theme = colors.${constants.theme.variant};
   inherit (constants) userEmail domain;
   ttyd-nerd = pkgs.stdenv.mkDerivation rec {
     pname = "ttyd-nerd";
@@ -62,7 +64,7 @@ in {
     wantedBy = ["multi-user.target"];
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${ttyd-nerd}/bin/ttyd -i 127.0.0.1 -p 3000 --writable -m 0 -t titleFixed=\"Terminal\" -t fontSize=20 -t fontFamily=\"InconsolataGo Nerd Font,JetBrains,SarasaMono\" -t 'theme={\"background\": \"white\", \"foreground\": \"black\"}' ${pkgs.fish}/bin/fish -c \"su ade-sede\"";
+      ExecStart = "${ttyd-nerd}/bin/ttyd -i 127.0.0.1 -p 3000 --writable -m 0 -t titleFixed=\"Terminal\" -t fontSize=20 -t fontFamily=\"InconsolataGo Nerd Font,JetBrains,SarasaMono\" -t 'theme={\"background\": \"${theme.bg}\", \"foreground\": \"${theme.fg}\"}' ${pkgs.fish}/bin/fish -c \"su ade-sede\"";
       Restart = "always";
       RestartSec = 3;
       User = "ade-sede";

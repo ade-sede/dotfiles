@@ -6,7 +6,8 @@
   domain = "devbox.ade-sede.dev";
   system = "x86_64-linux";
   allowUnfree = true;
+  fishPath = "/etc/profiles/per-user/ade-sede/bin/fish";
   theme = {
-    variant = "light";
+    variant = "dark";
   };
 }

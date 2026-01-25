@@ -29,6 +29,8 @@ dotfiles/claude/debug/
 dotfiles/claude/file-history/
 dotfiles/claude/history.jsonl
 dotfiles/claude/shell-snapshots/
+dotfiles/claude/stats-cache.json
+dotfiles/claude/cache/
 .claude/projects/
 .claude/statsig/
 .claude/todos/

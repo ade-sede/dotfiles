@@ -2,6 +2,7 @@
   config,
   pkgs,
   theme,
+  fishPath,
   ...
 }: {
   programs.tmux = {
@@ -13,10 +14,7 @@
     escapeTime = 0;
     terminal = "screen-256color";
     customPaneNavigationAndResize = true;
-    shell =
-      if builtins.pathExists "/etc/profiles/per-user/${config.home.username}/bin/fish"
-      then "/etc/profiles/per-user/${config.home.username}/bin/fish"
-      else "${config.home.homeDirectory}/.nix-profile/bin/fish";
+    shell = fishPath;
     plugins = with pkgs.tmuxPlugins; [
       sensible
       resurrect
@@ -45,11 +43,7 @@
       set -g allow-passthrough on
       set -g set-clipboard on
 
-      set -g default-command "${
-        if builtins.pathExists "/etc/profiles/per-user/${config.home.username}/bin/fish"
-        then "/etc/profiles/per-user/${config.home.username}/bin/fish"
-        else "${config.home.homeDirectory}/.nix-profile/bin/fish"
-      }"
+      set -g default-command "${fishPath}"
     '';
   };
 }
