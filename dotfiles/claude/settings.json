@@ -58,8 +58,11 @@
     ],
     "deny": []
   },
-  "alwaysThinkingEnabled": true,
+  "model": "opusplan",
+  "alwaysThinkingEnabled": false,
+  "voiceEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1753954982052
-  }
+  },
+  "effortLevel": "high"
 }

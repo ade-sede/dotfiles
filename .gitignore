@@ -33,6 +33,13 @@ dotfiles/claude/stats-cache.json
 dotfiles/claude/cache/
 dotfiles/claude/paste-cache/
 dotfiles/claude/telemetry/
+dotfiles/claude/plugins/blocklist.json
+dotfiles/claude/plugins/installed_plugins.json
+dotfiles/claude/backups/
+dotfiles/claude/mcp-needs-auth-cache.json
+dotfiles/claude/plans/
+dotfiles/claude/sessions/
+dotfiles/claude/tasks/
 .claude/projects/
 .claude/statsig/
 .claude/todos/
