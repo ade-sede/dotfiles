@@ -1,5 +1,2 @@
 [whitelist]
-prefix = ["/Users/ade-sede/alan/alan-apps"]
-prefix = ["/Users/ade-sede/alan/workspace-2"]
-prefix = ["/Users/ade-sede/alan/workspace-3"]
-prefix = ["/Users/ade-sede/alan/workspace-4"]
+prefix = ["/Users/ade-sede/alan/workspace-5", "/Users/ade-sede/alan/alan-apps", "/Users/ade-sede/alan/workspace-4", "/Users/ade-sede/alan/workspace-2", "/Users/ade-sede/alan/workspace-3"]
