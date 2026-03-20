@@ -8,6 +8,9 @@
     symlinkAlanBinaries = lib.hm.dag.entryAfter ["writeBoundary"] ''
       if [ -d "$HOME/.alan/bin" ]; then
         for file in $HOME/.nix-profile/bin/*; do
+          if [ "$(basename "$file")" = "git" ]; then
+            continue
+          fi
           if [ -f "$file" ] && [ -x "$file" ]; then
             target="$HOME/.alan/bin/$(basename "$file")"
             if [ -L "$target" ] && [ "$(readlink "$target")" != "$file" ]; then

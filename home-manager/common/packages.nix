@@ -125,7 +125,7 @@
       };
     })
     (pkgs.writeShellScriptBin "gis" ''
-      exec ''${pkgs.git-spice}/bin/gs "$@"
+      exec ${pkgs.git-spice}/bin/gs "$@"
     '')
   ];
 }
