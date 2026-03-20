@@ -11,6 +11,7 @@
 }: {
   imports = [
     # Programs
+    ./programs/atuin.nix
     ./programs/bat.nix
     ./programs/direnv.nix
     ./programs/fish.nix
