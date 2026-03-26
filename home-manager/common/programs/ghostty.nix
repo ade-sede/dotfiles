@@ -15,7 +15,7 @@
     background = ${theme.bg}
     foreground = ${theme.fg}
     cursor-color = ${theme.accent}
-    selection-background = ${theme.bg_secondary}
+    selection-background = ${theme.selection}
     selection-foreground = ${theme.fg}
 
     # Terminal colors

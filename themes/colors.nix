@@ -6,6 +6,7 @@
 
     # UI colors
     bg_secondary = "#f6f8fa";
+    selection = "#add6ff";
     border = "#d0d7de";
     accent = "#0969da";
 
@@ -54,6 +55,7 @@
 
     # UI colors
     bg_secondary = "#161b22";
+    selection = "#264f78";
     border = "#30363d";
     accent = "#58a6ff";
 
@@ -102,6 +104,7 @@
 
     # UI colors
     bg_secondary = "#44475a";
+    selection = "#44475a";
     border = "#6272a4";
     accent = "#bd93f9";
 

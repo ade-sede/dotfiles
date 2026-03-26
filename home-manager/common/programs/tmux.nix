@@ -44,6 +44,7 @@
       set -g set-clipboard on
 
       set -g default-command "${fishPath}"
+      set -g mode-style "fg=${theme.fg},bg=${theme.selection}"
     '';
   };
 }

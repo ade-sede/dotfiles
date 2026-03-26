@@ -18,6 +18,7 @@
       else "dark"
     }"
     vim.cmd("colorscheme ${theme.neovim_colorscheme}")
+    vim.api.nvim_set_hl(0, "Visual", { bg = "${theme.selection}" })
     EOF
   '';
 }

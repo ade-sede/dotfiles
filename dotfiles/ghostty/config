@@ -7,7 +7,7 @@ font-style = bold
 background = #0d1117
 foreground = #f0f6fc
 cursor-color = #58a6ff
-selection-background = #161b22
+selection-background = #264f78
 selection-foreground = #f0f6fc
 
 # Terminal colors
