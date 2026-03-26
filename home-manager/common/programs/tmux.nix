@@ -28,6 +28,8 @@
     ];
     extraConfig = ''
       set-option -g automatic-rename off
+      set-option -g set-titles on
+      set-option -g set-titles-string "#S:#W"
       bind-key s run-shell -b ~/.dotfiles/scripts/tmux-switch-pane.sh
       bind-key L switch-client -l
       set-option -g visual-activity off
