@@ -28,6 +28,15 @@
     bat_theme = "GitHub";
     tmux_theme = "day";
     fish_theme = "light";
+    atuin_theme = {
+      Base = "black";
+      Important = "royalblue";
+      AlertInfo = "royalblue";
+      AlertWarn = "goldenrod";
+      AlertError = "firebrick";
+      Guidance = "mediumpurple";
+      Annotation = "cadetblue";
+    };
 
     # Plasma desktop theme
     plasma_look_and_feel = "org.kde.breeze.desktop";
@@ -67,6 +76,15 @@
     bat_theme = "base16";
     tmux_theme = "night";
     fish_theme = "dark";
+    atuin_theme = {
+      Base = "ghostwhite";
+      Important = "cornflowerblue";
+      AlertInfo = "cornflowerblue";
+      AlertWarn = "goldenrod";
+      AlertError = "tomato";
+      Guidance = "mediumpurple";
+      Annotation = "mediumturquoise";
+    };
 
     # Plasma desktop theme
     plasma_look_and_feel = "org.kde.breezedark.desktop";
@@ -107,6 +125,15 @@
     tmux_theme = "night";
     fish_theme = "dark";
     variant = "dracula";
+    atuin_theme = {
+      Base = "ghostwhite";
+      Important = "mediumpurple";
+      AlertInfo = "skyblue";
+      AlertWarn = "burlywood";
+      AlertError = "tomato";
+      Guidance = "orchid";
+      Annotation = "skyblue";
+    };
 
     # Plasma desktop theme
     plasma_look_and_feel = "org.kde.breezedark.desktop";
