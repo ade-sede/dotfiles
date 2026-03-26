@@ -47,6 +47,7 @@
     clipboard-paste-bracketed-safe = true
     copy-on-select = true
     term = "xterm-256color"
+    desktop-notifications = true
     EOF
   '';
 }

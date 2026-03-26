@@ -64,5 +64,17 @@
   "feedbackSurveyState": {
     "lastShownTime": 1753954982052
   },
-  "effortLevel": "high"
+  "effortLevel": "high",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.dotfiles/scripts/claude-notify.sh"
+          }
+        ]
+      }
+    ]
+  }
 }
