@@ -33,6 +33,9 @@ dotfiles/claude/stats-cache.json
 dotfiles/claude/cache/
 dotfiles/claude/paste-cache/
 dotfiles/claude/telemetry/
+dotfiles/claude/commands/
+dotfiles/claude/plugins/cache/
+dotfiles/claude/plugins/install-counts-cache.json
 dotfiles/claude/plugins/blocklist.json
 dotfiles/claude/plugins/installed_plugins.json
 dotfiles/claude/backups/
