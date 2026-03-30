@@ -59,12 +59,6 @@
     "deny": []
   },
   "model": "opusplan",
-  "alwaysThinkingEnabled": false,
-  "voiceEnabled": true,
-  "feedbackSurveyState": {
-    "lastShownTime": 1753954982052
-  },
-  "effortLevel": "high",
   "hooks": {
     "Stop": [
       {
@@ -76,5 +70,29 @@
         ]
       }
     ]
+  },
+  "enabledPlugins": {
+    "alan-skills@alan-skills": true,
+    "plannotator@plannotator": true
+  },
+  "extraKnownMarketplaces": {
+    "alan-skills": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/alan-eu/alan-skills.git"
+      }
+    },
+    "plannotator": {
+      "source": {
+        "source": "github",
+        "repo": "backnotprop/plannotator"
+      }
+    }
+  },
+  "alwaysThinkingEnabled": false,
+  "effortLevel": "high",
+  "voiceEnabled": true,
+  "feedbackSurveyState": {
+    "lastShownTime": 1753954982052
   }
 }
