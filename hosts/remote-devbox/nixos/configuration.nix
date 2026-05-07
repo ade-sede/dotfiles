@@ -1,4 +1,4 @@
-{inputs, ...}: let
+{inputs, pkgs, ...}: let
   constants = import ../constants.nix;
   inherit (constants) username allowUnfree;
   inherit (inputs) home-manager;
@@ -14,6 +14,8 @@ in {
     ../../../nixos/common/configuration.nix
     home-manager.nixosModules.home-manager
   ];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   home-manager.extraSpecialArgs =
     constants
