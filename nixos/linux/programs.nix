@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   programs = {
     fish.enable = true;
     nix-ld = {
@@ -60,15 +55,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    pinentry-qt
     home-manager
   ];
-
-  programs.gnupg = {
-    agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
-    package = pkgs.gnupg;
-  };
 }
