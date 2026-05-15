@@ -77,7 +77,4 @@
     '';
   };
 
-  home.sessionVariables = {
-    GPG_TTY = "$(tty)";
-  };
 }
