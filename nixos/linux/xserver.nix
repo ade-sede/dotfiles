@@ -1,3 +1,4 @@
+# Display server config for Linux — SDDM with Wayland, KDE Plasma 6, and US keyboard with compose key.
 {
   config,
   pkgs,

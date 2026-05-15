@@ -1,3 +1,4 @@
+# SSH and GPG base config — SSH match blocks, GPG settings, and activation to wake gpg-agent and cache the SSH key.
 {
   config,
   pkgs,
@@ -76,5 +77,4 @@
       fi
     '';
   };
-
 }

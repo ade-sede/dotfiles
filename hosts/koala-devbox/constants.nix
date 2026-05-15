@@ -1,3 +1,4 @@
+# Per-host constants for koala-devbox — username, paths, system arch, and active theme variant.
 {
   username = "ade-sede";
   homeDirectory = "/home/ade-sede";

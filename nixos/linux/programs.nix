@@ -1,3 +1,4 @@
+# Linux NixOS programs — enables fish system-wide, nix-ld with broad library support, and installs home-manager.
 {pkgs, ...}: {
   programs = {
     fish.enable = true;

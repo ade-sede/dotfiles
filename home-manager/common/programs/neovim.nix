@@ -1,3 +1,4 @@
+# Neovim theme wiring — writes dotfiles/nvim/after/plugin/color.lua via activation script with the active colorscheme.
 {
   config,
   pkgs,

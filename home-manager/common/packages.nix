@@ -1,3 +1,4 @@
+# Packages installed on every host — CLI tools, dev utilities, language runtimes, and LLM agent wrappers.
 {
   pkgs,
   lib,

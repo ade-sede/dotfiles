@@ -1,3 +1,4 @@
+# alan-macbook Home Manager entry point — also serves as the standalone entry; wires common, macOS GPG, and alan-bin.
 nixpkgs: let
   constants = import ../constants.nix;
   pkgs = import nixpkgs {

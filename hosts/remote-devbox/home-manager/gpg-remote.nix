@@ -1,3 +1,4 @@
+# GPG agent for remote-devbox — curses pinentry, SSH support, maximised cache TTLs for long remote sessions.
 {
   config,
   pkgs,

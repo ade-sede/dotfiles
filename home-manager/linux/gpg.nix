@@ -1,3 +1,4 @@
+# GPG agent for Linux desktop — Qt pinentry, SSH support, smart card daemon, long SSH cache TTL.
 {
   config,
   pkgs,

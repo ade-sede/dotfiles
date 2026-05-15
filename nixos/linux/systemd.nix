@@ -1,3 +1,4 @@
+# systemd settings for Linux hosts — reduced timeouts, disabled network-online wait, and dbus burst limit.
 {
   config,
   pkgs,

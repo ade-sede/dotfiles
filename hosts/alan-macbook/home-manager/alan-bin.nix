@@ -1,3 +1,4 @@
+# alan-macbook activation — symlinks all nix-profile binaries (except git) into ~/.alan/bin for corporate tooling.
 {
   config,
   pkgs,

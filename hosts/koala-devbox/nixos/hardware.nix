@@ -1,3 +1,4 @@
+# Hardware config for koala-devbox — Bluetooth with A2DP, high-quality codecs, and fast-connect settings.
 {
   config,
   pkgs,

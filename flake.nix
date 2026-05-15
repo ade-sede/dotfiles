@@ -1,3 +1,4 @@
+# Flake entry point — defines all NixOS and Home Manager configuration outputs for every host.
 {
   description = "NixOS and Home Manager Configurations";
 

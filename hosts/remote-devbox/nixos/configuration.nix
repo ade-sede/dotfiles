@@ -1,4 +1,9 @@
-{inputs, pkgs, ...}: let
+# remote-devbox NixOS entry point — assembles system modules, injects Home Manager, and passes theme/constants.
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   constants = import ../constants.nix;
   inherit (constants) username allowUnfree;
   inherit (inputs) home-manager;

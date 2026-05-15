@@ -1,3 +1,4 @@
+# Locale and timezone config — Europe/Paris timezone, English UI locale, French formatting conventions.
 {
   config,
   pkgs,

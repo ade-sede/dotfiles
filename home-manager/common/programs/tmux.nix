@@ -1,3 +1,4 @@
+# tmux config — keybindings, vi mode, tokyo-night-tmux plugin themed from the active palette.
 {
   config,
   pkgs,

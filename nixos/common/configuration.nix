@@ -1,3 +1,4 @@
+# Shared NixOS root — imported by every NixOS host; wires common system modules and sets stateVersion.
 {
   config,
   pkgs,

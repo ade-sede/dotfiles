@@ -1,3 +1,4 @@
+# Docker daemon config — log rotation, overlay2 storage driver, and adds the user to the docker group.
 {
   config,
   pkgs,

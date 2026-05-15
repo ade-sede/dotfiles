@@ -1,3 +1,4 @@
+# Universal Home Manager root — imported by every host; wires all common program modules and base settings.
 {
   config,
   pkgs,

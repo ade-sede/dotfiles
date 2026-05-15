@@ -1,3 +1,4 @@
+# Networking config for koala-devbox — hostname, NetworkManager, and firewall rules for Steam Remote Play.
 {
   config,
   pkgs,

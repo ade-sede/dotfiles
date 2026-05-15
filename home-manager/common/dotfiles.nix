@@ -1,3 +1,4 @@
+# Symlinks all managed dotfiles from ~/.dotfiles/dotfiles/ into their expected locations in $HOME.
 {
   config,
   pkgs,

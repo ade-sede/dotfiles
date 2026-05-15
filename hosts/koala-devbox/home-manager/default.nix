@@ -1,3 +1,4 @@
+# koala-devbox Home Manager entry point — assembles common, Linux, desktop, and Plasma modules; applies theme to KDE.
 {
   config,
   pkgs,

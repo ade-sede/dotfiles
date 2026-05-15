@@ -1,3 +1,4 @@
+# Central color palette — defines all theme variants (light, dark, dracula) consumed by every program module.
 {
   light = {
     # Base colors

@@ -1,3 +1,4 @@
+# Bootloader config for koala-devbox — systemd-boot, Plymouth splash screen with colorful_loop theme.
 {
   config,
   pkgs,

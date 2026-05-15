@@ -1,3 +1,4 @@
+# Fun/cosmetic CLI packages installed on every host (cowsay, neofetch, etc.).
 {
   config,
   pkgs,

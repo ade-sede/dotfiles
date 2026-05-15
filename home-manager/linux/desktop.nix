@@ -1,3 +1,4 @@
+# Linux desktop GUI packages — Wayland/Plasma apps, OBS Studio, and a patched Vivaldi browser.
 {
   pkgs,
   lib,
