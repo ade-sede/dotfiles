@@ -14,12 +14,12 @@
     enable = true;
     enableSshSupport = true;
     enableScDaemon = true;
-    defaultCacheTtl = 3600;
-    defaultCacheTtlSsh = 3600;
-    maxCacheTtl = 3600;
-    maxCacheTtlSsh = 3600;
+    defaultCacheTtl = 86400;
+    defaultCacheTtlSsh = 86400;
+    maxCacheTtl = 86400;
+    maxCacheTtlSsh = 86400;
     pinentry = {
-      package = pkgs.pinentry-tty;
+      package = pkgs.pinentry-curses;
     };
     extraConfig = ''
       allow-loopback-pinentry
