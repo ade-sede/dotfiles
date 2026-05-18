@@ -1,3 +1,4 @@
+# Services for remote-devbox — OpenSSH, ttyd web terminal, nginx reverse proxy with ACME TLS.
 {
   config,
   pkgs,

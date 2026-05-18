@@ -1,101 +1,38 @@
-# NixOS Configuration
+# nixos
 
-This directory contains the NixOS configuration for the systems managed by this repository.
+NixOS system configuration for Linux hosts.
 
-## Getting Started
+Split into three scopes:
 
-### Prerequisites
+- `common/` — applied to every NixOS host
+- `linux/` — applied to Linux NixOS hosts (display server, systemd, programs)
+- `hosts/<name>/nixos/` — applied to a single host only
 
-- Must be a NixOS machine.
+To apply changes, run `sudo nixos-rebuild switch --flake .#<flake-name>` from the repo root. Available flake names: `koala-devbox`, `remote-devbox`.
 
-#### Enable flakes
+## Managing generations and storage
 
-```bash
-# For NixOS
-sudo mkdir -p /etc/nixos/
-echo "{ nix.settings.experimental-features = [ 'nix-command' 'flakes' ]; }" | sudo tee /etc/nixos/flakes.nix
-```
-
-#### Install home-manager via nix channels
-
-```bash
-nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-nix-channel --update
-```
-
-#### Remove legacy config (optional)
-
-When using flakes the entirety of the system is stored in `/var/nix/*`.
-You can safely remove your config at `/etc/nixos/configuration.nix`.
-Copy the hardware config to `hardware-configs` directory
-You must keep the `flakes.nix`
-
-### Installation
-
-To re-build the system (if the system is a NixOS machine)
-
-```bash
-sudo nixos-rebuild switch --flake .#<flake-name>
-```
-
-Available NixOs flakes:
-
-- `koala-devbox` for a desktop or laptop setup
-
-## Managing NixOS Generations and Storage Space
-
-### Listing Generations
-
-List all available system generations:
+List generations:
 
 ```bash
 sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
 ```
 
-### Cleaning Up Nix Store
-
-When your Nix setup is taking too much space, you have several options to free up storage:
-
-#### Quick Garbage Collection
-
-The fastest way to reclaim space:
+Garbage collect old generations:
 
 ```bash
-# Remove all generations except the current one, with -d flag to delete old generations
 sudo nix-collect-garbage -d
-```
-
-#### Optimize the Nix Store
-
-After garbage collection, optimize the store to save additional space:
-
-```bash
 sudo nix-store --optimize
 ```
 
-This command deduplicates identical files in the Nix store using hard links.
-
-#### Deleting Old Generations
-
-Remove old system generations to free up disk space:
+Remove generations older than a given timeframe:
 
 ```bash
-# Delete generations older than a specific timeframe
 sudo nix-collect-garbage --delete-older-than 14d
-
-# Delete specific generations
-sudo nix-env --delete-generations --profile /nix/var/nix/profiles/system 123 124 125
-
-# Delete all generations except the current one
-sudo nix-env --delete-generations --profile /nix/var/nix/profiles/system old
 ```
 
-### Updating Boot Menu After Cleanup
-
-After deleting old generations, update the boot menu to remove entries for deleted generations:
+After cleanup, update the boot menu:
 
 ```bash
-sudo nixos-rebuild boot --flake .#<flake name>
+sudo nixos-rebuild boot --flake .#<flake-name>
 ```
-
-This removes old entries from the boot menu and finalizes the reclamation of disk space used by old system configurations.

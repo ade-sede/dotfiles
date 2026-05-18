@@ -1,4 +1,9 @@
-{inputs, ...}: let
+# koala-devbox NixOS entry point — assembles all system modules, injects Home Manager, and passes theme/constants.
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   constants = import ../constants.nix;
   inherit (constants) username allowUnfree;
   inherit (inputs) home-manager plasma-manager;
@@ -22,6 +27,8 @@ in {
     home-manager.nixosModules.home-manager
     inputs.nix-flatpak.nixosModules.nix-flatpak
   ];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   home-manager.extraSpecialArgs =
     constants

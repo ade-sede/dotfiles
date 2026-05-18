@@ -1,3 +1,4 @@
+# Per-host constants for remote-devbox — username, paths, system arch, domain, and active theme variant.
 {
   username = "ade-sede";
   homeDirectory = "/home/ade-sede";

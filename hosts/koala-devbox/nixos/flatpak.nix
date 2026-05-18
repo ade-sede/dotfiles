@@ -1,3 +1,4 @@
+# Flatpak config for koala-devbox — enables Flatpak with nix-flatpak and installs SteamLink.
 {lib, ...}: {
   services.flatpak.enable = true;
 

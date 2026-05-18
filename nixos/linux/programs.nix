@@ -1,9 +1,5 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
+# Linux NixOS programs — enables fish system-wide, nix-ld with broad library support, and installs home-manager.
+{pkgs, ...}: {
   programs = {
     fish.enable = true;
     nix-ld = {
@@ -60,15 +56,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    pinentry-qt
     home-manager
   ];
-
-  programs.gnupg = {
-    agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
-    package = pkgs.gnupg;
-  };
 }

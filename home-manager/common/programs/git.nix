@@ -1,3 +1,4 @@
+# Git config — identity, GPG signing, aliases, merge tool, and gh credential helper.
 {
   config,
   pkgs,

@@ -1,3 +1,4 @@
+# Kitty terminal theme — writes ~/.config/kitty/theme.conf with the active color palette; included by kitty.conf.
 {
   config,
   pkgs,

@@ -1,3 +1,4 @@
+# Ghostty terminal config — writes dotfiles/ghostty/config via activation script with the active color palette.
 {
   config,
   lib,

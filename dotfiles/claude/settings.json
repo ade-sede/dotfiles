@@ -94,5 +94,6 @@
   "voiceEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1753954982052
-  }
+  },
+  "editorMode": "vim"
 }

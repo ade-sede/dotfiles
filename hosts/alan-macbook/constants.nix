@@ -1,3 +1,4 @@
+# Per-host constants for alan-macbook — username, paths, system arch (aarch64-darwin), and active theme variant.
 {
   username = "ade-sede";
   homeDirectory = "/Users/ade-sede";

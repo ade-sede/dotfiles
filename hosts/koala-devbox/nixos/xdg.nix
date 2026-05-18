@@ -1,3 +1,4 @@
+# XDG portal config for koala-devbox — KDE portal, xdg-open via portal, and autostart.
 {pkgs, ...}: {
   xdg = {
     portal = {

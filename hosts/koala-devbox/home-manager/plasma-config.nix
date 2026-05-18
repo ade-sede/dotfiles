@@ -1,3 +1,7 @@
+# Machine-generated KDE Plasma configuration for koala-devbox — do not hand-edit.
+# Regenerate with: nix run github:nix-community/plasma-manager > hosts/koala-devbox/home-manager/plasma-config.nix
+# Note: remove the `shortcuts` attribute before committing — it does not import correctly.
+# Keyboard shortcuts are backed up separately in KDE/ and imported via System Settings.
 {
   config,
   lib,

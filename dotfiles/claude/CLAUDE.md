@@ -12,6 +12,7 @@ The goal of a docstring is to document how a function works and for what purpose
 # Interaction with the user
 
 Most of our interactions should happen through:
+
 - the `TodoWrite` tool, for planning and tracking changes
 - the `AskUserQuestion` tool, for asking the user's input when you are not reasonably able to infer their intent or when a decision needs to be taken
 
@@ -50,7 +51,9 @@ Short, descriptive title; bullet points for details:
 - First line: concise summary (50 chars or less)
 - Blank line, then bullet points for context
 - Focus on why, not what
+
 <!-- - --> Do not try to be exhaustive
+
 - Use imperative mood (e.g., "Add feature" not "Added feature")
 
 ## GitHub
@@ -66,9 +69,9 @@ Interact with GitHub using the command `gh` (github CLI):
 - Always open the PRs as draft
 - Ask me if I want to use the 'ai-generated' label
 - Check for existing PR templates in standard GitHub locations:
-    - `.github/pull_request_template.md`
-    - `.github/PULL_REQUEST_TEMPLATE.md`
-    - `docs/pull_request_template.md`
-    - `./PULL_REQUEST_TEMPLATE.md`
+  - `.github/pull_request_template.md`
+  - `.github/PULL_REQUEST_TEMPLATE.md`
+  - `docs/pull_request_template.md`
+  - `./PULL_REQUEST_TEMPLATE.md`
 
 Follow the PR format given explicitly in every repo.

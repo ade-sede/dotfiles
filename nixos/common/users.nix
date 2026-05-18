@@ -1,3 +1,4 @@
+# NixOS user definition — creates the ade-sede user with fish shell, wheel, and networkmanager groups.
 {
   config,
   pkgs,

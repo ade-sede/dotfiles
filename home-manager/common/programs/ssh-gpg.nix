@@ -1,3 +1,4 @@
+# SSH and GPG base config — SSH match blocks, GPG settings, and activation to wake gpg-agent and cache the SSH key.
 {
   config,
   pkgs,
@@ -75,9 +76,5 @@
         $DRY_RUN_CMD $SSH_ADD ~/.ssh/id_ed25519 || true
       fi
     '';
-  };
-
-  home.sessionVariables = {
-    GPG_TTY = "$(tty)";
   };
 }

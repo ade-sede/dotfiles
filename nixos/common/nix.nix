@@ -1,3 +1,4 @@
+# Nix daemon settings — flakes, store optimisation, build concurrency, and garbage collection thresholds.
 {
   config,
   pkgs,

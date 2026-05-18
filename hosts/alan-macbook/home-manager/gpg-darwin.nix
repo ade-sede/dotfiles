@@ -1,3 +1,4 @@
+# GPG agent for alan-macbook — macOS pinentry dialog, SSH support, standard cache TTLs.
 {
   config,
   pkgs,

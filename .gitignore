@@ -62,5 +62,8 @@ dotfiles/codex/update-check.json
 dotfiles/emacs/eln-cache/
 dotfiles/emacs/straight/
 
-# OpenCode
-.opencode
+# OpenCode - ignore runtime/cache, track skills and agents
+.opencode/*
+!.opencode/skills/
+!.opencode/agents/
+

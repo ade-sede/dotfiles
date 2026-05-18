@@ -1,3 +1,4 @@
+# bat config — sets the syntax-highlighting theme from the active color palette.
 {
   config,
   pkgs,

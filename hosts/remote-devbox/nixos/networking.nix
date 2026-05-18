@@ -1,3 +1,4 @@
+# Networking config for remote-devbox — hostname, NetworkManager, and open ports for SSH/HTTP/HTTPS/dev.
 {
   config,
   pkgs,

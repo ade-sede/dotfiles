@@ -1,3 +1,4 @@
+# Standalone Home Manager entry point for koala-devbox — wires nixpkgs, theme, and plasma-manager for `home-manager switch`.
 {
   nixpkgs,
   plasma-manager,

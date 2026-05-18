@@ -1,3 +1,4 @@
+# Starship prompt config — format, colors from the active palette, and a custom SSH/devbox context tree segment.
 {
   config,
   pkgs,

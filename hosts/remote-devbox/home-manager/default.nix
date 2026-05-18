@@ -1,3 +1,4 @@
+# remote-devbox Home Manager entry point — assembles common and Linux modules with remote GPG config.
 {
   config,
   pkgs,

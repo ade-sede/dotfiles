@@ -1,3 +1,5 @@
+# Machine-generated hardware configuration for remote-devbox — do not hand-edit.
+# Regenerate with: sudo nixos-generate-config --show-hardware-config > hosts/remote-devbox/nixos/hardware-config.nix
 {modulesPath, ...}: {
   imports = [(modulesPath + "/profiles/qemu-guest.nix")];
   boot.loader.grub = {

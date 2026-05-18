@@ -1,3 +1,4 @@
+# Audio config for koala-devbox — PipeWire with ALSA, PulseAudio, JACK, and Bluetooth A2DP codec tuning.
 {
   config,
   pkgs,

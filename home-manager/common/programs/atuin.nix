@@ -1,3 +1,4 @@
+# Atuin shell history sync — config and themed color roles written to ~/.config/atuin/themes/shell.toml.
 {
   config,
   pkgs,

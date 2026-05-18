@@ -1,3 +1,4 @@
+# Fish shell config — theme selection, plugins (bass, z), and EZA_COLORS/LS_COLORS from the active palette.
 {
   config,
   pkgs,

@@ -1,3 +1,4 @@
+# NixOS Home Manager integration — shared HM module options (useGlobalPkgs, useUserPackages, extraSpecialArgs).
 {
   config,
   pkgs,
