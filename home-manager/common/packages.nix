@@ -64,6 +64,7 @@
     silver-searcher
 
     # Other
+    _1password-cli
     asciinema
     bc
     fzf

@@ -22,5 +22,6 @@ in {
     ../../../home-manager/common/home.nix
     ./gpg-darwin.nix
     ./alan-bin.nix
+    ./packages.nix
   ];
 }
