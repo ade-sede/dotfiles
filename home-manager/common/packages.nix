@@ -104,6 +104,8 @@
       export ANTHROPIC_API_KEY=$(cat ~/.dotfiles/secrets/anthropic_api_key.txt)
       export OPENAI_API_KEY=$(cat ~/.dotfiles/secrets/openai_api_key.txt)
       export GEMINI_API_KEY=$(cat ~/.dotfiles/secrets/gemini_api_key.txt)
+      export SCW_SECRET_KEY=$(cat ~/.dotfiles/secrets/scaleway_api_key.txt)
+      export SCW_PROJECT_ID=$(cat ~/.dotfiles/secrets/scaleway_project_id.txt)
 
       exec "${pkgs.nodePackages.npm}/bin/npx" opencode-ai@latest "$@"
     '')

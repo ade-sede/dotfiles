@@ -3,5 +3,13 @@
   "autoshare": false,
   "autoupdate": false,
   "model": "anthropic/claude-sonnet-4.5",
-  "theme": "system"
+  "theme": "system",
+  "provider": {
+    "scaleway": {
+      "options": {
+        "apiKey": "{env:SCW_SECRET_KEY}",
+        "baseURL": "https://api.scaleway.ai/{env:SCW_PROJECT_ID}/v1"
+      }
+    }
+  }
 }
