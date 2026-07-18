@@ -1,3 +1,5 @@
+.env
+
 # Result from Nix builds
 result
 result-*
@@ -46,6 +48,14 @@ dotfiles/claude/plugins/marketplaces/
 dotfiles/claude/plans/
 dotfiles/claude/sessions/
 dotfiles/claude/tasks/
+dotfiles/claude/remote-settings.json
+dotfiles/claude/daemon/
+dotfiles/claude/jobs/
+dotfiles/claude/image-cache/
+dotfiles/claude/.last-cleanup
+dotfiles/claude/.last-update-result.json
+dotfiles/claude/plugins/.last_inuse_sweep
+dotfiles/claude/plugins/plugin-catalog-cache.json
 .claude/projects/
 .claude/statsig/
 .claude/todos/
