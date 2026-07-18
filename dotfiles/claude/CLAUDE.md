@@ -16,6 +16,18 @@ Most of our interactions should happen through:
 - the `TodoWrite` tool, for planning and tracking changes
 - the `AskUserQuestion` tool, for asking the user's input when you are not reasonably able to infer their intent or when a decision needs to be taken
 
+# Model delegation (token/latency optimization)
+
+Delegate implementation to subagents by complexity; orchestration, review of subagent diffs, and final verification stay in the main loop.
+
+| Complexity | Model |
+|---|---|
+| Delicate (security invariants, race rewrites, subtle domain logic) | main loop |
+| Medium (multi-file logic) | `opus` subagent |
+| Small/mechanical (single-subsystem, additive, searches, formatting) | `sonnet` subagent |
+
+Each delegated task gets: tight file-level spec, exact verify commands (targeted tests + lint), and its diff is reviewed in the main loop.
+
 # Patterns
 
 - Follow existing naming conventions

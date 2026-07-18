@@ -58,14 +58,14 @@
     ],
     "deny": []
   },
-  "model": "opusplan",
+  "model": "claude-fable-5[1m]",
   "hooks": {
-    "Stop": [
+    "SessionStart": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "~/.dotfiles/scripts/claude-notify.sh"
+            "command": "{ cat ~/.claude/plugins/marketplaces/caveman/skills/caveman/SKILL.md 2>/dev/null || cat ~/.claude/plugins/cache/caveman/caveman/*/caveman/SKILL.md 2>/dev/null; echo 'Caveman mode active from session start. User default level: ultra.'; } || true"
           }
         ]
       }
@@ -73,6 +73,7 @@
   },
   "enabledPlugins": {
     "alan-skills@alan-skills": true,
+    "caveman@caveman": true,
     "plannotator@plannotator": true
   },
   "extraKnownMarketplaces": {
@@ -80,6 +81,13 @@
       "source": {
         "source": "git",
         "url": "https://github.com/alan-eu/alan-skills.git"
+      },
+      "autoUpdate": true
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
       }
     },
     "plannotator": {
@@ -91,9 +99,13 @@
   },
   "alwaysThinkingEnabled": false,
   "effortLevel": "high",
+  "autoCompactWindow": 1000000,
+  "tui": "fullscreen",
+  "theme": "dark-daltonized",
+  "editorMode": "vim",
+  "preferredNotifChannel": "ghostty",
   "voiceEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1753954982052
-  },
-  "editorMode": "vim"
+  }
 }
