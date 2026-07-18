@@ -2,7 +2,7 @@
 
 - **Build/Update User:** `home-manager switch --flake .#<flake-name>`
 - **Build/Update System:** `sudo nixos-rebuild switch --flake .#<flake-name>` You do not have permission to use this command
-- **Finding out which flake to use on a given machine:** `hostname`
+- **Finding out which flake to use on a given machine:** Check `homeConfigurations` keys in `flake.nix`. Run `hostname` as a hint, but the actual name must match a key in `homeConfigurations`.
 - **Lint:** Pre-commit hooks handle linting with `alejandra` (Nix) and `mdformat` (Markdown). Run `pre-commit install`.
 - **Test:** No dedicated test command. Builds are the primary validation.
 
