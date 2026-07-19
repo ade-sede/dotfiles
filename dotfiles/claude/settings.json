@@ -60,6 +60,18 @@
   },
   "model": "claude-fable-5[1m]",
   "hooks": {
+    "PermissionRequest": [
+      {
+        "matcher": "ExitPlanMode",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "plannotator",
+            "timeout": 345600
+          }
+        ]
+      }
+    ],
     "SessionStart": [
       {
         "hooks": [

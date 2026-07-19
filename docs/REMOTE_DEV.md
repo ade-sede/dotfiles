@@ -104,6 +104,22 @@ scw instance security-group create-rule security-group-id=<security-group-id> di
 # Access web terminal at http://<server-ip>:3000
 ```
 
+## SSH Port Forwarding
+
+Forward these ports for remote development:
+
+```bash
+ssh -L 19432:localhost:19432 -L 19433:localhost:19433 -L 8080:localhost:8080 ade-sede@<server-ip>
+```
+
+| Port | Service |
+|------|---------|
+| `19432` | Plannotator plan review / annotation UI |
+| `19433` | Plannotator paste service (optional, for sharing) |
+| `8080` | Blog (`make serve`) |
+
+To force a fixed port for Plannotator, set `export PLANNATOR_PORT=9999` before it starts.
+
 ## Server management
 
 ```bash
