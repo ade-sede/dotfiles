@@ -20,10 +20,12 @@
 - **Types:** Not strictly applicable; Nix is a dynamically typed language.
 - **Naming Conventions:** Use `camelCase` for variables and `kebab-case` for file names.
 - **Error Handling:** Ensure Nix expressions are valid and evaluate correctly.
-- **Packages:** Add new packages to `home-manager/common/packages.nix` or `home-manager/desktop-linux`.
+- **Packages:** Add new packages to `home-manager/common/packages.nix` or `home-manager/linux/packages.nix`.
 - **Dotfiles:** Add new dotfiles to `dotfiles/` and symlink in `home-manager/common/dotfiles.nix`.
-- **Secrets:** Use `gitleaks` for secret scanning (part of pre-commit) and store secrets in `dotfiles/secrets` which is gitignored
+- **Secrets:** Use `gitleaks` for secret scanning (part of pre-commit) and store secrets in `secrets/` at the repo root which is gitignored
 
 ## Documentation
 
 - **Opencode:** Read online at https://opencode.ai/docs/
+
+> **Note:** This file governs how agents interact with *this repository*. Agent docs under `dotfiles/claude/` and `dotfiles/opencode/` are application configs symlinked to `~/.config/` that govern AI agent behavior on the machine itself.

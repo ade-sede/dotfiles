@@ -1,4 +1,23 @@
 # Flake entry point — defines all NixOS and Home Manager configuration outputs for every host.
+#
+# Structure:
+#   nixosConfigurations: Linux hosts managed via `sudo nixos-rebuild switch --flake .#<name>`
+#   homeConfigurations:   All hosts (Linux + macOS) managed via `home-manager switch --flake .#<name>`
+#
+# How modules compose:
+#   1. constants.nix (per-host) provides username, system arch, theme variant, etc.
+#   2. configuration.nix (per-host NixOS) imports shared modules from nixos/common/ and nixos/linux/,
+#      wires home-manager via home-manager.nixosModules.home-manager, and passes constants+theme
+#      as extraSpecialArgs.
+#   3. home-manager/standalone.nix (per-host) is the entry for standalone `home-manager switch`.
+#      It loads nixpkgs with the host's system, injects constants+theme as extraSpecialArgs,
+#      and lists modules to import.
+#   4. home-manager/default.nix (per-host) is the entry called from NixOS configuration.
+#      It imports common, linux, and host-specific modules, applying any host overrides.
+#   5. home-manager/common/home.nix is the universal root module imported by every host.
+#
+# macOS hosts (alan-macbook) have no NixOS configuration. Their home-manager/default.nix
+# serves as both the NixOS-style entry point and the standalone entry (no standalone.nix).
 {
   description = "NixOS and Home Manager Configurations";
 

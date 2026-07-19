@@ -27,6 +27,8 @@ Hooks available:
 
 For coding agents, see the [AGENTS.md](./AGENTS.md) file.
 
+> **Note:** There are two sets of agent docs. `AGENTS.md` at the repo root governs how agents interact with *this repository*. Files under `dotfiles/claude/` and `dotfiles/opencode/` are application configs that get symlinked to `~/.config/` and govern how AI agents behave on the *machine itself*.
+
 ### Key Management
 
 For generating and uploading GPG and SSH keys, see the [Key Management README](./docs/KEY_MANAGEMENT.md).
@@ -60,6 +62,68 @@ For setting up a remote development server, see the [Remote Development Guide](.
 ├── profile-images/
 └── wallpapers/
 ```
+
+### Adding a New Host
+
+1. **Create the host directory:**
+   ```bash
+   mkdir -p hosts/<name>/nixos hosts/<name>/home-manager
+   ```
+
+2. **Create `hosts/<name>/constants.nix`:**
+   ```nix
+   {
+     username = "user";
+     homeDirectory = "/home/user";
+     fullName = "Full Name";
+     userEmail = "user@example.com";
+     system = "x86_64-linux";  # or "aarch64-darwin" for macOS
+     allowUnfree = true;
+     fishPath = "/etc/profiles/per-user/user/bin/fish";
+     theme = {
+       variant = "dark";  # or "light"
+     };
+   }
+   ```
+   macOS hosts omit `domain`. Server hosts may include a `domain` for TLS.
+
+3. **Linux hosts — create `hosts/<name>/nixos/configuration.nix`:**
+   - Import shared modules from `nixos/common/` and `nixos/linux/`
+   - Import host-specific modules (hardware, networking, etc.)
+   - Wire Home Manager via `home-manager.nixosModules.home-manager`
+   - Pass `home-manager.users.${username}` pointing to `../home-manager`
+   - Set `home-manager.extraSpecialArgs` with constants + theme
+   See `hosts/koala-devbox/nixos/configuration.nix` or `hosts/remote-devbox/nixos/configuration.nix` as templates.
+
+4. **Linux hosts — create `hosts/<name>/home-manager/standalone.nix`:**
+   - Entry point for `home-manager switch --flake .#<name>` (standalone, outside NixOS)
+   - Import nixpkgs with the host's system, pass constants + theme as `extraSpecialArgs`
+   - List modules to import (common, linux, host-specific)
+   See `hosts/remote-devbox/home-manager/standalone.nix` as template.
+
+5. **Linux hosts — create `hosts/<name>/home-manager/default.nix`:**
+   - Entry point when called from NixOS configuration
+   - Import common, linux, and host-specific modules
+   - Apply any host-specific overrides (e.g., KDE theme settings)
+
+6. **macOS hosts — create `hosts/<name>/home-manager/default.nix`:**
+   - Serves as both the NixOS-style entry point and the standalone entry
+   - No `standalone.nix` needed
+   See `hosts/alan-macbook/home-manager/default.nix` as template.
+
+7. **Register in `flake.nix`:**
+   - Linux hosts: add to `nixosConfigurations` and `homeConfigurations`
+   - macOS hosts: add to `homeConfigurations` only
+
+8. **Copy hardware config (Linux only):**
+   ```bash
+   scp root@<server-ip>:/etc/nixos/hardware-configuration.nix ./hosts/<name>/nixos/hardware-config.nix
+   ```
+
+9. **Rebuild:**
+   ```bash
+   home-manager switch --flake .#<name>
+   ```
 
 ### Theme Switching
 
