@@ -22,6 +22,12 @@ in {
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  users.users.pancho = {
+    isNormalUser = true;
+    description = "Pancho";
+    shell = pkgs.bash;
+  };
+
   home-manager.extraSpecialArgs =
     constants
     // {
@@ -32,4 +38,5 @@ in {
         };
     };
   home-manager.users.${username} = import ../home-manager;
+  home-manager.users.pancho = import ../../../home-manager-pancho;
 }

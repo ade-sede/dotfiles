@@ -66,11 +66,13 @@ For setting up a remote development server, see the [Remote Development Guide](.
 ### Adding a New Host
 
 1. **Create the host directory:**
+
    ```bash
    mkdir -p hosts/<name>/nixos hosts/<name>/home-manager
    ```
 
-2. **Create `hosts/<name>/constants.nix`:**
+1. **Create `hosts/<name>/constants.nix`:**
+
    ```nix
    {
      username = "user";
@@ -85,42 +87,50 @@ For setting up a remote development server, see the [Remote Development Guide](.
      };
    }
    ```
+
    macOS hosts omit `domain`. Server hosts may include a `domain` for TLS.
 
-3. **Linux hosts — create `hosts/<name>/nixos/configuration.nix`:**
+1. **Linux hosts — create `hosts/<name>/nixos/configuration.nix`:**
+
    - Import shared modules from `nixos/common/` and `nixos/linux/`
    - Import host-specific modules (hardware, networking, etc.)
    - Wire Home Manager via `home-manager.nixosModules.home-manager`
    - Pass `home-manager.users.${username}` pointing to `../home-manager`
    - Set `home-manager.extraSpecialArgs` with constants + theme
-   See `hosts/koala-devbox/nixos/configuration.nix` or `hosts/remote-devbox/nixos/configuration.nix` as templates.
+     See `hosts/koala-devbox/nixos/configuration.nix` or `hosts/remote-devbox/nixos/configuration.nix` as templates.
 
-4. **Linux hosts — create `hosts/<name>/home-manager/standalone.nix`:**
+1. **Linux hosts — create `hosts/<name>/home-manager/standalone.nix`:**
+
    - Entry point for `home-manager switch --flake .#<name>` (standalone, outside NixOS)
    - Import nixpkgs with the host's system, pass constants + theme as `extraSpecialArgs`
    - List modules to import (common, linux, host-specific)
-   See `hosts/remote-devbox/home-manager/standalone.nix` as template.
+     See `hosts/remote-devbox/home-manager/standalone.nix` as template.
 
-5. **Linux hosts — create `hosts/<name>/home-manager/default.nix`:**
+1. **Linux hosts — create `hosts/<name>/home-manager/default.nix`:**
+
    - Entry point when called from NixOS configuration
    - Import common, linux, and host-specific modules
    - Apply any host-specific overrides (e.g., KDE theme settings)
 
-6. **macOS hosts — create `hosts/<name>/home-manager/default.nix`:**
+1. **macOS hosts — create `hosts/<name>/home-manager/default.nix`:**
+
    - Serves as both the NixOS-style entry point and the standalone entry
    - No `standalone.nix` needed
-   See `hosts/alan-macbook/home-manager/default.nix` as template.
+     See `hosts/alan-macbook/home-manager/default.nix` as template.
 
-7. **Register in `flake.nix`:**
+1. **Register in `flake.nix`:**
+
    - Linux hosts: add to `nixosConfigurations` and `homeConfigurations`
    - macOS hosts: add to `homeConfigurations` only
 
-8. **Copy hardware config (Linux only):**
+1. **Copy hardware config (Linux only):**
+
    ```bash
    scp root@<server-ip>:/etc/nixos/hardware-configuration.nix ./hosts/<name>/nixos/hardware-config.nix
    ```
 
-9. **Rebuild:**
+1. **Rebuild:**
+
    ```bash
    home-manager switch --flake .#<name>
    ```

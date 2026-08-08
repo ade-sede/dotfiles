@@ -34,6 +34,7 @@ Theme audit for variant "<variant>":
 ```
 
 Flag any program that:
+
 - Is themed but references a key missing from `colors.nix` for the target variant
 - Is a GUI/terminal app but has no theme support at all
 
@@ -50,6 +51,7 @@ If programs reference keys that don't exist in `colors.nix`:
 Read `README.md#theme-switching` for the procedure.
 
 Edit `hosts/<name>/constants.nix`:
+
 ```nix
 theme = {
   variant = "<new-variant>";
@@ -61,6 +63,7 @@ theme = {
 Auto-detect the flake name from `hostname` by matching against `flake.nix`'s `homeConfigurations` keys.
 
 Rebuild both scopes (NixOS if Linux, Home Manager):
+
 ```bash
 # Linux desktop: both
 sudo nixos-rebuild switch --flake .#<name>
@@ -79,6 +82,7 @@ If hostname doesn't match any key, ask the user.
 ### 6. Report
 
 Tell the user:
+
 - Previous variant → new variant
 - Theme audit results (complete / any gaps)
 - What was rebuilt

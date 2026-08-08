@@ -69,6 +69,10 @@
         home-manager.lib.homeManagerConfiguration
         (import ./hosts/remote-devbox/home-manager/standalone.nix {inherit nixpkgs;});
 
+      pancho =
+        home-manager.lib.homeManagerConfiguration
+        (import ./home-manager-pancho/standalone.nix {inherit nixpkgs;});
+
       alan-macbook =
         home-manager.lib.homeManagerConfiguration
         (import ./hosts/alan-macbook/home-manager/default.nix nixpkgs);

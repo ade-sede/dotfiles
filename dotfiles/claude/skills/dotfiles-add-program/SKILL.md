@@ -64,6 +64,7 @@ If the rebuild fails, read the error, fix the issue, and retry. Do not ask the u
 ### 7. Report
 
 Tell the user:
+
 - What was created
 - Which programs/hosts it applies to (common = all hosts)
 - Whether theme coverage is complete or has gaps

@@ -20,6 +20,7 @@ Read `flake.nix` (documented in-file, see the top comment block) to identify all
 ### 2. Update Inputs
 
 Run:
+
 ```bash
 nix flake update
 ```
@@ -29,6 +30,7 @@ This updates all inputs to their latest committed versions and rewrites `flake.l
 ### 3. Check for Conflicts
 
 Read `flake.lock` and compare the new revs against the old ones. Note:
+
 - Which inputs moved
 - Whether nixpkgs moved to a new channel (e.g., `nixos-24.11` → `nixos-25.05`) — this may require module option changes
 
@@ -41,6 +43,7 @@ home-manager build --flake .#alan-macbook
 ```
 
 If any build fails, read the error. Common issues:
+
 - **Module option changed**: nixpkgs channel bump may rename/remove options. Check the nixpkgs migration guide for the target channel.
 - **Missing attribute**: a module may have been restructured. Compare with the template hosts.
 - **Version incompatibility**: home-manager or plasma-manager may require a minimum nixpkgs version.
@@ -50,6 +53,7 @@ Fix the issue and retry. If you cannot resolve it, report the error and stop —
 ### 5. Report
 
 Tell the user:
+
 - Which inputs were updated (old rev → new rev)
 - Whether all builds succeeded
 - Any breaking changes detected

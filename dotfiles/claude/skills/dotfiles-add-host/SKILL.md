@@ -9,6 +9,7 @@ Use this skill when creating a new machine configuration from scratch.
 ## Prerequisites
 
 Before starting, confirm with the user:
+
 - The hostname (used for flake name and directory name)
 - OS type: Linux (NixOS) or macOS (Home Manager only)
 - Architecture: `x86_64-linux`, `aarch64-linux`, or `aarch64-darwin`
@@ -44,6 +45,7 @@ Read `README.md#adding-a-new-host` for the full schema. Create `hosts/<name>/con
 ```
 
 Ask the user about:
+
 - `domain` — needed for TLS (servers only, omit for desktops)
 - `theme.variant` — default to "dark", ask if different
 
@@ -52,10 +54,12 @@ Ask the user about:
 Read `hosts/koala-devbox/nixos/configuration.nix` and `hosts/remote-devbox/nixos/configuration.nix` as templates.
 
 Ask the user:
+
 - Is this a desktop (needs X11/Wayland, display manager, DE) or server (SSH only)?
 - Does it need Flatpak, Bluetooth, or other desktop features?
 
 Assemble the module imports based on answers:
+
 - **Desktop**: `nixos/linux/xserver.nix`, `nixos/linux/systemd.nix`, `nixos/linux/programs.nix`, `nixos/common/configuration.nix`
 - **Server**: `nixos/linux/systemd.nix`, `nixos/linux/programs.nix`, `nixos/common/configuration.nix`
 
@@ -97,11 +101,13 @@ If not, note that this step comes after the initial infect deployment (see `docs
 ### 7. Verify
 
 Run:
+
 ```bash
 home-manager switch --flake .#<name> --dry-run
 ```
 
 If dry-run succeeds, rebuild:
+
 ```bash
 home-manager switch --flake .#<name>
 ```
@@ -109,6 +115,7 @@ home-manager switch --flake .#<name>
 ### 8. Report
 
 Tell the user:
+
 - Host name and OS type
 - What was created (list all files)
 - Flake name for future rebuilds

@@ -9,6 +9,7 @@ Use this skill to create a new remote development server on Scaleway and deploy 
 ## Prerequisites
 
 Confirm with the user that the Scaleway CLI is configured:
+
 ```bash
 scw instance server list
 ```
@@ -39,6 +40,7 @@ scw instance server list zone=fr-par-2
 ```
 
 Note the server ID and IP. Monitor progress:
+
 ```bash
 ssh root@<server-ip> "tail -f /tmp/infect.log"
 ```
@@ -79,11 +81,13 @@ expect -c "
 ```
 
 Then set up passwordless access:
+
 ```bash
 ssh-copy-id ade-sede@<server-ip>
 ```
 
 And change the default password:
+
 ```bash
 ssh ade-sede@<server-ip> "passwd ade-sede"
 ```
@@ -113,6 +117,7 @@ scw instance security-group create-rule security-group-id=<id> \
 ### 8. Report
 
 Tell the user:
+
 - Server IP and ID
 - NixOS version installed
 - SSH access status (passwordless: yes/no)
