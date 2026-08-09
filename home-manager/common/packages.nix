@@ -107,6 +107,10 @@
       export SCW_SECRET_KEY=$(cat ~/.dotfiles/secrets/scaleway_api_key.txt)
       export SCW_PROJECT_ID=$(cat ~/.dotfiles/secrets/scaleway_project_id.txt)
 
+      if ! gpg-connect-agent 'KEYINFO --list' /bye 2>/dev/null | awk '/^S KEYINFO/ && $8=="P" && $7=="1"{f=1} END{exit !f}'; then
+        gpg --sign -o /dev/null /dev/null 2>/dev/null
+      fi
+
       exec "${pkgs.nodePackages.npm}/bin/npx" opencode-ai@latest "$@"
     '')
 
