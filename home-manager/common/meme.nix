@@ -1,4 +1,4 @@
-# Fun/cosmetic CLI packages installed on every host (cowsay, neofetch, etc.).
+# Fun/cosmetic CLI packages installed on every host (cowsay, fastfetch, etc.).
 {
   config,
   pkgs,
@@ -18,6 +18,6 @@
     nyancat
     boxes
     doge
-    neofetch
+    fastfetch
   ];
 }

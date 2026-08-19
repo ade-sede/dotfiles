@@ -1,31 +1,19 @@
-# Linux desktop GUI packages — Wayland/Plasma apps, OBS Studio, and a patched Vivaldi browser.
+# Linux desktop GUI packages — Wayland/Plasma apps, OBS Studio, and the Vivaldi browser.
 {
   pkgs,
   lib,
   ...
 }: {
   home.packages = with pkgs; [
-    whatsapp-for-linux
+    karere
     xclip
     discord
     ghostty
-    (
-      let
-        customVivaldi = vivaldi.overrideAttrs (oldAttrs: {
-          buildPhase =
-            builtins.replaceStrings
-            ["for f in libGLESv2.so libqt5_shim.so ; do"]
-            ["for f in libGLESv2.so libqt5_shim.so libqt6_shim.so ; do"]
-            oldAttrs.buildPhase;
-        });
-      in
-        customVivaldi.override {
-          qt5 = qt6;
-          commandLineArgs = ["--ozone-platform=wayland"];
-          proprietaryCodecs = true;
-          enableWidevine = true;
-        }
-    )
+    (vivaldi.override {
+      commandLineArgs = ["--ozone-platform=wayland"];
+      proprietaryCodecs = true;
+      enableWidevine = true;
+    })
   ];
 
   programs.obs-studio = {

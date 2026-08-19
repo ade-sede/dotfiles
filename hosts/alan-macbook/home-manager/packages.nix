@@ -3,7 +3,7 @@
     afsctool
 
     (pkgs.writeShellScriptBin "dust" ''
-      exec "${pkgs.nodePackages.npm}/bin/npx" @dust-tt/dust-cli "$@"
+      exec "${pkgs.nodejs_22}/bin/npx" @dust-tt/dust-cli "$@"
     '')
   ];
 }

@@ -61,7 +61,7 @@
     delta
     jq
     ripgrep
-    silver-searcher
+    silver-searcher-ng
 
     # Other
     _1password-cli
@@ -94,11 +94,11 @@
 
     # LLM Agents CLI
     (pkgs.writeShellScriptBin "claude" ''
-      exec "${pkgs.nodePackages.npm}/bin/npx" @anthropic-ai/claude-code "$@"
+      exec "${pkgs.nodejs_22}/bin/npx" @anthropic-ai/claude-code "$@"
     '')
     (pkgs.writeShellScriptBin "gemini" ''
       export GEMINI_API_KEY=$(cat ~/.dotfiles/secrets/gemini_api_key.txt)
-      exec "${pkgs.nodePackages.npm}/bin/npx" @google/gemini-cli "$@"
+      exec "${pkgs.nodejs_22}/bin/npx" @google/gemini-cli "$@"
     '')
     (pkgs.writeShellScriptBin "opencode" ''
       export ANTHROPIC_API_KEY=$(cat ~/.dotfiles/secrets/anthropic_api_key.txt)
@@ -111,7 +111,7 @@
         gpg --sign -o /dev/null /dev/null 2>/dev/null
       fi
 
-      exec "${pkgs.nodePackages.npm}/bin/npx" opencode-ai@latest "$@"
+      exec "${pkgs.nodejs_22}/bin/npx" opencode-ai@latest "$@"
     '')
 
     # Custom Scripts & Wrappers

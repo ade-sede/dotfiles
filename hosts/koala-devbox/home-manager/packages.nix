@@ -6,7 +6,7 @@
     wl-clipboard
     plex-desktop
     qbittorrent
-    plasma5Packages.kdeconnect-kde
+    kdePackages.kdeconnect-kde
     gnome-network-displays
   ];
 }
