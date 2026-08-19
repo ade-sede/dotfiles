@@ -1,7 +1,7 @@
 # Comments and docstrings
 
 Do not write any comments whatsoever.
-However, docstrings are allowed.
+Do not write docstrings. Only Fable is allowed to write them.
 When writing docstrings, focus on what the function or variable does.
 Do not include information about where the function is used.
 Do not include information that only the user you are conversing with would understand.
