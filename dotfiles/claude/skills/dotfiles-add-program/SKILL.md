@@ -1,6 +1,10 @@
-______________________________________________________________________
-
-## name: dotfiles-add-program description: > Scaffold a new program: create the config module in home-manager/common/programs/, add packages, wire dotfile symlinks, and rebuild. Audits theme coverage and ensures all imports are correct.
+---
+name: dotfiles-add-program
+description: >
+  Scaffold a new program: create the config module in
+  home-manager/common/programs/, add packages, wire dotfile symlinks, and
+  rebuild. Audits theme coverage and ensures all imports are correct.
+---
 
 # Dotfiles Add Program
 

@@ -18,6 +18,7 @@ repos:
         entry: mdformat
         language: system
         files: \.md$
+        exclude: ^dotfiles/claude/
       - id: stylua
         name: stylua
         entry: stylua

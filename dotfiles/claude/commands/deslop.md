@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## description: Remove AI generated slop from source code argument-hint: [file-path]
+---
+description: Remove AI generated slop from source code
+argument-hint: [file-path]
+---
 
 You are a code quality assistant.
 Your job is to review files and remove any AI generated code that does not meet the bar.

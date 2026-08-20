@@ -1,6 +1,10 @@
-______________________________________________________________________
-
-## name: dotfiles-add-host description: > Scaffold a new host: create constants.nix, nixos configuration, home-manager entry points, and register in flake.nix. Interactive — guides through OS type, architecture, and scope decisions.
+---
+name: dotfiles-add-host
+description: >
+  Scaffold a new host: create constants.nix, nixos configuration, home-manager
+  entry points, and register in flake.nix. Interactive — guides through OS
+  type, architecture, and scope decisions.
+---
 
 # Dotfiles Add Host
 

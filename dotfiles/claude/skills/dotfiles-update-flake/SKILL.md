@@ -1,6 +1,10 @@
-______________________________________________________________________
-
-## name: dotfiles-update-flake description: > Update all flake inputs (nixpkgs, home-manager, plasma-manager, nix-flatpak), resolve conflicts, and rebuild. Handles follow chains and lock file management.
+---
+name: dotfiles-update-flake
+description: >
+  Update all flake inputs (nixpkgs, home-manager, plasma-manager,
+  nix-flatpak), resolve conflicts, and rebuild. Handles follow chains and lock
+  file management.
+---
 
 # Dotfiles Update Flake
 
