@@ -66,6 +66,7 @@
     # Other
     _1password-cli
     asciinema
+    bash
     bc
     fzf
     gh
