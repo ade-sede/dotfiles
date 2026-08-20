@@ -8,55 +8,55 @@
   home.packages = [pkgs.openssh];
   programs.ssh = {
     enable = true;
-    matchBlocks."*" = {
-      identityFile = "~/.ssh/id_ed25519";
+    enableDefaultConfig = false;
+
+    settings = {
+      "*" = {
+        IdentityFile = "~/.ssh/id_ed25519";
+        AddKeysToAgent = "yes";
+        UserKnownHostsFile = "~/.ssh/known_hosts";
+      };
+
+      "devbox.ade-sede.dev" = {
+        User = "ade-sede";
+        LocalForward = [
+          {
+            bind.port = 8080;
+            host.address = "127.0.0.1";
+            host.port = 8080;
+          }
+          {
+            bind.port = 3000;
+            host.address = "127.0.0.1";
+            host.port = 3000;
+          }
+        ];
+      };
+
+      devbox = {
+        HostName = "devbox.ade-sede.dev";
+        User = "ade-sede";
+        ForwardX11 = true;
+        ForwardX11Trusted = true;
+        LocalForward = [
+          {
+            bind.port = 8080;
+            host.address = "127.0.0.1";
+            host.port = 8080;
+          }
+          {
+            bind.port = 3000;
+            host.address = "127.0.0.1";
+            host.port = 3000;
+          }
+        ];
+      };
+
+      steamdeck = {
+        HostName = "192.168.1.177";
+        User = "deck";
+      };
     };
-
-    matchBlocks."devbox.ade-sede.dev" = {
-      user = "ade-sede";
-      localForwards = [
-        {
-          bind.port = 8080;
-          host.address = "127.0.0.1";
-          host.port = 8080;
-        }
-        {
-          bind.port = 3000;
-          host.address = "127.0.0.1";
-          host.port = 3000;
-        }
-      ];
-    };
-
-    matchBlocks."devbox" = {
-      hostname = "devbox.ade-sede.dev";
-      user = "ade-sede";
-      forwardX11 = true;
-      forwardX11Trusted = true;
-      localForwards = [
-        {
-          bind.port = 8080;
-          host.address = "127.0.0.1";
-          host.port = 8080;
-        }
-        {
-          bind.port = 3000;
-          host.address = "127.0.0.1";
-          host.port = 3000;
-        }
-      ];
-    };
-
-    matchBlocks."steamdeck" = {
-      hostname = "192.168.1.177";
-      user = "deck";
-    };
-
-    extraConfig = ''
-      AddKeysToAgent yes
-    '';
-
-    userKnownHostsFile = "~/.ssh/known_hosts";
   };
 
   programs.gpg = {
