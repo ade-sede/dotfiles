@@ -85,7 +85,6 @@ body {
 ## Typography
 
 **Headings** — `var(--font-display)`, weight 500, `var(--foreground)`.
-
 - H1: `2rem` page title
 - H2: `1.4rem` section headers
 - H3: `1.15rem` subsection headers

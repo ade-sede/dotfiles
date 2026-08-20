@@ -1,6 +1,12 @@
-______________________________________________________________________
-
-## name: plannotator-compound disable-model-invocation: true description: > Analyze a user's Plannotator plan archive to extract denial patterns, feedback taxonomy, evolution over time, and actionable prompt improvements — then produce a polished HTML dashboard report. Falls back to Claude Code ExitPlanMode denial reasons when Plannotator data is unavailable.
+---
+name: plannotator-compound
+disable-model-invocation: true
+description: >
+  Analyze a user's Plannotator plan archive to extract denial patterns, feedback
+  taxonomy, evolution over time, and actionable prompt improvements — then produce
+  a polished HTML dashboard report. Falls back to Claude Code ExitPlanMode denial
+  reasons when Plannotator data is unavailable.
+---
 
 # Compound Planning Analysis
 
@@ -15,11 +21,12 @@ Research integrity is paramount — every file must be read, no skipping.
 
 Before starting the analysis, determine which data source is available.
 
-1. **Plannotator mode (first-class)** — Check `~/.plannotator/plans/`. If it
-   exists and contains `*-denied.md` files, use this mode. The entire workflow
-   below is written for Plannotator data.
+1. **Plannotator mode (first-class)** — Determine the Plannotator data directory:
+   use `$PLANNOTATOR_DATA_DIR` if set, otherwise `~/.plannotator`. Check the
+   `plans/` subdirectory there. If it exists and contains `*-denied.md` files,
+   use this mode. The entire workflow below is written for Plannotator data.
 
-1. **Claude Code fallback mode** — If the Plannotator archive is absent or
+2. **Claude Code fallback mode** — If the Plannotator archive is absent or
    contains no denied plans, check `~/.claude/projects/`. If present, read
    [references/claude-code-fallback.md](references/claude-code-fallback.md)
    before continuing. That reference explains how to use the bundled parser at
@@ -28,7 +35,7 @@ Before starting the analysis, determine which data source is available.
    below has a short note explaining what changes in fallback mode — the
    reference file has the details.
 
-1. **Neither available** — Ask the user for their Plannotator plans directory or
+3. **Neither available** — Ask the user for their Plannotator plans directory or
    Claude Code projects directory. Do not guess.
 
 ## Phase 0: Locate Plans & Check for Previous Reports
@@ -48,11 +55,10 @@ In either mode, proceed to Previous Report Detection below.
 After locating the plans directory, check for existing reports:
 
 ```
-ls ~/.plannotator/plans/compound-planning-report*.html
+ls ${PLANNOTATOR_DATA_DIR:-~/.plannotator}/plans/compound-planning-report*.html
 ```
 
 Reports follow a versioned naming scheme:
-
 - First report: `compound-planning-report.html`
 - Subsequent reports: `compound-planning-report-v2.html`, `compound-planning-report-v3.html`, etc.
 
@@ -67,7 +73,7 @@ Present the user with a choice:
 >
 > 1. **Incremental** — Only analyze files dated after {CUTOFF_DATE}, saving tokens
 >    and building on previous findings
-> 1. **Full** — Re-analyze the entire archive from scratch
+> 2. **Full** — Re-analyze the entire archive from scratch
 >
 > Which would you prefer?"
 
@@ -115,7 +121,6 @@ New since {CUTOFF_DATE}:
 ```
 
 If fewer than 3 new denied files exist since the cutoff, warn the user:
-
 > "Only {N} new denied plans since the last report. The incremental analysis may
 > be thin. Would you like to proceed or switch to a full analysis?"
 
@@ -272,7 +277,7 @@ extraction files and produce the full analysis. This covers most datasets.
    analysis with the same sections listed below. Each writes to
    `/tmp/compound-planning/partial-reduce-{N}.md`.
 
-1. **Stage 2 — Final reduce:** A single Sonnet agent reads all partial reduce
+2. **Stage 2 — Final reduce:** A single Sonnet agent reads all partial reduce
    files and synthesizes them into the final comprehensive analysis. This agent
    merges taxonomies, combines counts, deduplicates patterns, and reconciles any
    conflicting categorizations across partials.
@@ -309,40 +314,33 @@ The reduction agent's job is to let the data speak. Do not impose a predetermine
 framework — discover what's actually there. The analysis must produce:
 
 ### 1. Denial Reason Taxonomy
-
 Categorize every denial into a finite set of types that emerge from the data. Count
 occurrences. Show percentages. Include real example quotes for each type. Aim for
 8-15 categories — enough to be specific, few enough to be scannable. Let the user's
 actual feedback determine what the categories are.
 
 ### 2. Top Feedback Patterns (ranked by frequency)
-
 The 5-10 most recurring patterns. For each: what the reviewer consistently asks for,
 3+ example quotes from different files, and whether the pattern changed over time.
 
 ### 3. Recurring Phrases
-
 Exact phrases the reviewer uses repeatedly, with counts and what they signal. These
 are the reviewer's vocabulary — their shorthand for what they care about.
 
 ### 4. What the Reviewer Values (implicit preferences)
-
 Derived from patterns — what does this specific person care about most? Quality?
 Speed? Narrative? Architecture? Process? Simplicity? Rank by evidence strength.
 This section should feel like a personality profile of the reviewer's standards.
 
 ### 5. What Agents Consistently Get Wrong
-
 The flip side — what recurring mistakes trigger denials? What should agents stop
 doing for this reviewer?
 
 ### 6. Structural Requests
-
 What plan structure does the reviewer consistently demand? Required sections,
 ordering, format preferences, level of detail expected.
 
 ### 7. Evolution Over Time
-
 How feedback patterns changed across the time span. Group by whatever natural time
 boundaries exist in the data (weeks for short spans, months for longer ones). Did
 expectations mature? Did new patterns emerge? What shifted? If the dataset spans
@@ -350,7 +348,6 @@ less than a month, note that evolution analysis is limited but still look for an
 progression from early to late files.
 
 ### 8. Actionable Prompt Instructions
-
 The most important output. Based on all patterns: specific numbered instructions
 that could be embedded in a planning prompt to prevent the most common denial
 reasons. Write these as actual directives an agent could follow. Be specific to
@@ -422,26 +419,26 @@ one — the flow moves from "what happened" through "why" to "what to do about i
    rate, and the number of distinct denial categories found). Use an amber inline
    highlight on the most striking number in the narrative.
 
-1. **Why plans get denied** — The taxonomy as a ranked list. Each row: rank number
+2. **Why plans get denied** — The taxonomy as a ranked list. Each row: rank number
    (mono), category label, a thin 4px progress bar (top item in amber-500, rest
    in slate-300), percentage (mono), and for the top entries, a real italic quote
    from the data below the label. Show the top 10 categories or however many the
    data supports (minimum 5).
 
-1. **How expectations evolved** — One card per natural time period. Each card has:
+3. **How expectations evolved** — One card per natural time period. Each card has:
    the period name in serif, a theme phrase in colored uppercase (different color
    per period to show progression), a description paragraph, and a stat line at
    the bottom (e.g., "X denials · Y narrative requests"). If the data spans less
    than 3 distinct periods, use 2 cards or even a single card with internal
    progression noted.
 
-1. **What works vs what doesn't** — Two side-by-side cards. Left: green-tinted
+4. **What works vs what doesn't** — Two side-by-side cards. Left: green-tinted
    (emerald-50/50 bg, emerald-100 border) with traits of plans that succeed for
    this reviewer. Right: red-tinted (rose-50/50 bg, rose-100 border) with what
    agents keep getting wrong. Both derived from the reduction analysis. Bulleted
    with small colored dots. 5-8 items per card.
 
-1. **The actionable output** — The diagnostic payoff. Opens with a Playfair
+5. **The actionable output** — The diagnostic payoff. Opens with a Playfair
    Display narrative sentence stating how many prompt instructions were derived
    and what estimated percentage of denials they address (use the real calculated
    percentage from Phase 3, not a generic number). Then the top 3 most impactful
@@ -449,12 +446,12 @@ one — the flow moves from "what happened" through "why" to "what to do about i
    one-line description. This section bridges the analysis and the full prompt
    that follows.
 
-1. **Your most-used phrases** — Grid of chips (2-col mobile, 3-col desktop). Each
+6. **Your most-used phrases** — Grid of chips (2-col mobile, 3-col desktop). Each
    chip: monospace quoted phrase on the left, frequency count on the right. White
    bg, slate-200 border, rounded-12px. Show 9-12 of the most recurring phrases
    found. These should be the reviewer's actual words — their verbal fingerprint.
 
-1. **The corrective prompt** — Dark panel (slate-900 bg, white text, rounded-3xl,
+7. **The corrective prompt** — Dark panel (slate-900 bg, white text, rounded-3xl,
    shadow-xl). Opens with a Playfair intro sentence about the instructions. Then
    a dark code block (slate-800/80 bg, amber-200 monospace text) containing the
    full numbered prompt instructions from Phase 3. Include a copy-to-clipboard
@@ -484,17 +481,16 @@ one — the flow moves from "what happened" through "why" to "what to do about i
 ### Key Rules
 
 1. Every number must come from the real analysis — no fabricated data
-1. Every quote must be a real quote from a real file
-1. The taxonomy percentages must be calculated from real counts
-1. The prompt instructions must trace back to actual denial patterns
-1. The copy button on the prompt block must work (include the JS)
+2. Every quote must be a real quote from a real file
+3. The taxonomy percentages must be calculated from real counts
+4. The prompt instructions must trace back to actual denial patterns
+5. The copy button on the prompt block must work (include the JS)
 
 After generating, open the file in the user's browser.
 
 ## Phase 5: Summary
 
 Tell the user:
-
 - How many denied files were analyzed
 - If incremental: how many were new since the last report
 - The top 3 denial patterns found
@@ -523,10 +519,10 @@ every future planning session automatically.
 The hook file lives at:
 
 ```
-~/.plannotator/hooks/compound/enterplanmode-improve-hook.txt
+${PLANNOTATOR_DATA_DIR:-~/.plannotator}/hooks/compound/enterplanmode-improve-hook.txt
 ```
 
-Create the `~/.plannotator/hooks/compound/` directory if it doesn't exist.
+Create the `hooks/compound/` directory inside the data directory if it doesn't exist.
 
 The file contents should be the corrective prompt instructions from Phase 3 —
 the same numbered list that appears in section 7 of the HTML report. Write them
@@ -541,9 +537,9 @@ Read the existing file and present the user with a choice:
 > "An improvement hook already exists from a previous analysis. I can:
 >
 > 1. **Replace** — Overwrite with the new instructions (the old ones are gone)
-> 1. **Merge** — Combine both, deduplicating overlapping instructions and
+> 2. **Merge** — Combine both, deduplicating overlapping instructions and
 >    keeping the best version of each
-> 1. **Keep existing** — Leave the current hook as-is, skip this step
+> 3. **Keep existing** — Leave the current hook as-is, skip this step
 >
 > Which would you prefer?"
 
