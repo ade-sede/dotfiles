@@ -91,3 +91,62 @@ provider = "gemini"
 alias = "gemini-flash"
 input_price = 0.35
 output_price = 1.05
+
+[tools.bash]
+allowlist = [
+    "/home/ade-sede/.vibe/*",
+    "basename",
+    "cat",
+    "cd",
+    "comm",
+    "cut",
+    "date",
+    "diff",
+    "dirname",
+    "du",
+    "echo",
+    "file",
+    "find",
+    "fmt",
+    "fold",
+    "git diff",
+    "git log",
+    "git status",
+    "grep",
+    "head",
+    "join",
+    "less",
+    "ls",
+    "md5sum",
+    "more",
+    "nl",
+    "od",
+    "paste",
+    "pwd",
+    "readlink",
+    "sha1sum",
+    "sha256sum",
+    "shasum",
+    "sort",
+    "stat",
+    "sum",
+    "tac",
+    "tail",
+    "tr",
+    "tree",
+    "uname",
+    "uniq",
+    "wc",
+    "which",
+    "whoami",
+]
+
+[tools.read_file]
+allowlist = [
+    "/home/ade-sede/.vibe/*",
+]
+
+[tools.web_fetch]
+allowlist = [
+    "raw.githubusercontent.com",
+]
