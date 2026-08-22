@@ -117,7 +117,11 @@
       exec "${pkgs.nodejs_22}/bin/npx" opencode-ai@latest "$@"
     '')
     (pkgs.writeShellScriptBin "vibe" ''
+      export ANTHROPIC_API_KEY=$(cat ~/.dotfiles/secrets/anthropic_api_key.txt)
+      export OPENAI_API_KEY=$(cat ~/.dotfiles/secrets/openai_api_key.txt)
+      export GEMINI_API_KEY=$(cat ~/.dotfiles/secrets/gemini_api_key.txt)
       export MISTRAL_API_KEY=$(cat ~/.dotfiles/secrets/mistral_api_key.txt)
+      export SCALEWAY_API_KEY=$(cat ~/.dotfiles/secrets/scaleway_api_key.txt)
       exec "${pkgs.uv}/bin/uvx" --from mistral-vibe vibe "$@"
     '')
 
