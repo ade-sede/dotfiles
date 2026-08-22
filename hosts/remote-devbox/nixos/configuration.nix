@@ -21,6 +21,7 @@ in {
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.loader.grub.configurationLimit = 3;
 
   users.users.pancho = {
     isNormalUser = true;
