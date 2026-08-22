@@ -9,34 +9,34 @@ active_model = "scaleway-mistral-large"
 name = "mistral"
 api_base = "https://api.mistral.ai/v1"
 api_key_env_var = "MISTRAL_API_KEY"
-backend = "MISTRAL"
+backend = "mistral"
 
 [[providers]]
 name = "scaleway"
 api_base = "https://api.scaleway.ai/v1"
 api_key_env_var = "SCALEWAY_API_KEY"
-backend = "GENERIC"
+backend = "generic"
 api_style = "openai"
 
 [[providers]]
 name = "anthropic"
 api_base = "https://api.anthropic.com/v1"
 api_key_env_var = "ANTHROPIC_API_KEY"
-backend = "GENERIC"
+backend = "generic"
 api_style = "openai"
 
 [[providers]]
 name = "openai"
 api_base = "https://api.openai.com/v1"
 api_key_env_var = "OPENAI_API_KEY"
-backend = "GENERIC"
+backend = "generic"
 api_style = "openai"
 
 [[providers]]
 name = "gemini"
 api_base = "https://generativelanguage.googleapis.com/v1beta"
 api_key_env_var = "GEMINI_API_KEY"
-backend = "GENERIC"
+backend = "generic"
 api_style = "google"
 
 # Models configuration
