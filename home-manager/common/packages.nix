@@ -18,6 +18,7 @@
     alejandra
     devbox
     direnv
+    uv
     docker-client
     docker-compose
     gitleaks
@@ -105,6 +106,7 @@
       export ANTHROPIC_API_KEY=$(cat ~/.dotfiles/secrets/anthropic_api_key.txt)
       export OPENAI_API_KEY=$(cat ~/.dotfiles/secrets/openai_api_key.txt)
       export GEMINI_API_KEY=$(cat ~/.dotfiles/secrets/gemini_api_key.txt)
+      export MISTRAL_API_KEY=$(cat ~/.dotfiles/secrets/mistral_api_key.txt)
       export SCW_SECRET_KEY=$(cat ~/.dotfiles/secrets/scaleway_api_key.txt)
       export SCW_PROJECT_ID=$(cat ~/.dotfiles/secrets/scaleway_project_id.txt)
 
@@ -113,6 +115,10 @@
       fi
 
       exec "${pkgs.nodejs_22}/bin/npx" opencode-ai@latest "$@"
+    '')
+    (pkgs.writeShellScriptBin "vibe" ''
+      export MISTRAL_API_KEY=$(cat ~/.dotfiles/secrets/mistral_api_key.txt)
+      exec "${pkgs.uv}/bin/uvx" --from mistral-vibe vibe "$@"
     '')
 
     # Custom Scripts & Wrappers
