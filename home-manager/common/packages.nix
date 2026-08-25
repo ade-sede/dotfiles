@@ -18,6 +18,7 @@
     alejandra
     devbox
     direnv
+    uv
     docker-client
     docker-compose
     gitleaks
@@ -95,6 +96,10 @@
 
     # LLM Agents CLI
     (pkgs.writeShellScriptBin "claude" ''
+      if ! gpg-connect-agent 'KEYINFO --list' /bye 2>/dev/null | awk '/^S KEYINFO/ && $8=="P" && $7=="1"{f=1} END{exit !f}'; then
+        gpg --sign -o /dev/null /dev/null 2>/dev/null
+      fi
+
       exec "${pkgs.nodejs_22}/bin/npx" @anthropic-ai/claude-code "$@"
     '')
     (pkgs.writeShellScriptBin "gemini" ''
@@ -105,6 +110,7 @@
       export ANTHROPIC_API_KEY=$(cat ~/.dotfiles/secrets/anthropic_api_key.txt)
       export OPENAI_API_KEY=$(cat ~/.dotfiles/secrets/openai_api_key.txt)
       export GEMINI_API_KEY=$(cat ~/.dotfiles/secrets/gemini_api_key.txt)
+      export MISTRAL_API_KEY=$(cat ~/.dotfiles/secrets/mistral_api_key.txt)
       export SCW_SECRET_KEY=$(cat ~/.dotfiles/secrets/scaleway_api_key.txt)
       export SCW_PROJECT_ID=$(cat ~/.dotfiles/secrets/scaleway_project_id.txt)
 
@@ -113,6 +119,19 @@
       fi
 
       exec "${pkgs.nodejs_22}/bin/npx" opencode-ai@latest "$@"
+    '')
+    (pkgs.writeShellScriptBin "vibe" ''
+      export ANTHROPIC_API_KEY=$(cat ~/.dotfiles/secrets/anthropic_api_key.txt)
+      export OPENAI_API_KEY=$(cat ~/.dotfiles/secrets/openai_api_key.txt)
+      export GEMINI_API_KEY=$(cat ~/.dotfiles/secrets/gemini_api_key.txt)
+      export MISTRAL_API_KEY=$(cat ~/.dotfiles/secrets/mistral_api_key.txt)
+      export SCALEWAY_API_KEY=$(cat ~/.dotfiles/secrets/scaleway_api_key.txt)
+
+      if ! gpg-connect-agent 'KEYINFO --list' /bye 2>/dev/null | awk '/^S KEYINFO/ && $8=="P" && $7=="1"{f=1} END{exit !f}'; then
+        gpg --sign -o /dev/null /dev/null 2>/dev/null
+      fi
+
+      exec "${pkgs.uv}/bin/uvx" --from mistral-vibe vibe "$@"
     '')
 
     # Custom Scripts & Wrappers
