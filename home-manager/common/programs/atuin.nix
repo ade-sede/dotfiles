@@ -29,7 +29,7 @@ in {
       show_tabs = false;
       filter_mode = "host";
       filter_mode_shell_up_key_binding = "session";
-      search_mode = "skim";
+      search_mode = "fuzzy";
       workspaces = true;
       secrets_filter = true;
       max_preview_height = 4;

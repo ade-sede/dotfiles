@@ -103,6 +103,7 @@
   "tui": "fullscreen",
   "theme": "dark-daltonized",
   "editorMode": "vim",
+  "verbose": false,
   "preferredNotifChannel": "ghostty",
   "voiceEnabled": true,
   "feedbackSurveyState": {
