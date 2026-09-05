@@ -69,6 +69,17 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|Bash|mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/enforce-writing-style.sh"
+          }
+        ]
+      }
     ]
   },
   "enabledPlugins": {
