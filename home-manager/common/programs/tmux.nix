@@ -40,6 +40,7 @@
       set-option -g bell-action none
 
       set -ag terminal-overrides ",*:RGB"
+      set -ga terminal-features "*:hyperlinks"
       set -g default-terminal "tmux-256color"
 
       # OSC52 clipboard support

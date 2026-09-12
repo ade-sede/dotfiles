@@ -119,5 +119,7 @@
   "voiceEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1753954982052
-  }
+  },
+  "enableWorkflows": true,
+  "outputStyle": "Concise"
 }
