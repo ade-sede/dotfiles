@@ -100,7 +100,7 @@
         gpg --sign -o /dev/null /dev/null 2>/dev/null
       fi
 
-      exec "${pkgs.nodejs_22}/bin/npx" @anthropic-ai/claude-code "$@"
+      exec "${pkgs.claude-code}/bin/claude" "$@"
     '')
     (pkgs.writeShellScriptBin "gemini" ''
       export GEMINI_API_KEY=$(cat ~/.dotfiles/secrets/gemini_api_key.txt)
@@ -118,7 +118,7 @@
         gpg --sign -o /dev/null /dev/null 2>/dev/null
       fi
 
-      exec "${pkgs.nodejs_22}/bin/npx" opencode-ai@latest "$@"
+      exec "${pkgs.opencode}/bin/opencode" "$@"
     '')
     (pkgs.writeShellScriptBin "pi" ''
       export ANTHROPIC_API_KEY=$(cat ~/.dotfiles/secrets/anthropic_api_key.txt)
@@ -128,13 +128,11 @@
       export SCW_SECRET_KEY=$(cat ~/.dotfiles/secrets/scaleway_api_key.txt)
       export SCW_PROJECT_ID=$(cat ~/.dotfiles/secrets/scaleway_project_id.txt)
 
-      export npm_config_ignore_scripts=true
-
       if ! gpg-connect-agent 'KEYINFO --list' /bye 2>/dev/null | awk '/^S KEYINFO/ && $8=="P" && $7=="1"{f=1} END{exit !f}'; then
         gpg --sign -o /dev/null /dev/null 2>/dev/null
       fi
 
-      exec "${pkgs.nodejs_22}/bin/npx" @earendil-works/pi-coding-agent@latest "$@"
+      exec "${pkgs.pi-coding-agent}/bin/pi" "$@"
     '')
     (pkgs.writeShellScriptBin "vibe" ''
       export ANTHROPIC_API_KEY=$(cat ~/.dotfiles/secrets/anthropic_api_key.txt)
