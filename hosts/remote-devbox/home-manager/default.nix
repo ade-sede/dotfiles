@@ -9,5 +9,6 @@
     ../../../home-manager/common/home.nix
     ../../../home-manager/linux/packages.nix
     ./gpg-remote.nix
+    ./plannotator.nix
   ];
 }
