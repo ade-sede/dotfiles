@@ -6,16 +6,16 @@ Prose style for comments, docstrings, PR descriptions, and docs. Gives substance
 
 Plain everyday words: readers include non-native speakers and people outside the domain. Swap fancy phrasing:
 
-| Instead of | Write |
-|---|---|
-| lands as | shows up as |
-| kicks in | starts, applies |
-| mirrors | is the same as, same shape as |
-| untouched | not changed |
-| leverages | uses |
-| essentially, worth noting, flip side | (just say the thing) |
-| eyeball | check, look at |
-| delve | look into |
+| Instead of                           | Write                         |
+|--------------------------------------|-------------------------------|
+| lands as                             | shows up as                   |
+| kicks in                             | starts, applies               |
+| mirrors                              | is the same as, same shape as |
+| untouched                            | not changed                   |
+| leverages                            | uses                          |
+| essentially, worth noting, flip side | (just say the thing)          |
+| eyeball                              | check, look at                |
+| delve                                | look into                     |
 
 ## Short and simple
 
@@ -30,6 +30,7 @@ The reader sees what the code or the diff does. Say why it is that way, and the 
 ## Structure
 
 - Bullets over dense paragraphs, one fact per bullet. Tables when comparing several things.
+- Pad markdown tables with spaces so the pipes line up and the raw text reads as a table.
 - Skip the implicit: do not list what did not change.
 - Humans need whitespace, cut sentences and use newlines instead of writing 140 chars back to back.
 
@@ -53,4 +54,5 @@ Text.
 Blah Blah blah is much better for humans.
 """
 ```
+
 - Never: narrating the next line, restating the name of the thing below it, or arguing the change to the reviewer (that is PR-description material). In backend tests, `# arrange` / `# act` / `# assert` markers are bare by default; a short appended clause is for saying which case the block covers when a test walks several, not for describing the fixture.

@@ -9,6 +9,10 @@ Do not include anything an actual human being would not include.
 
 The goal of a docstring is to document how a function works and for what purpose, nothing less, nothing more.
 
+# Writing style
+
+Follow `~/.config/docs/writing-style.md` for all prose: comments, docstrings, PR descriptions, and docs.
+
 # Interaction with the user
 
 Most of our interactions should happen through:

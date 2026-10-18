@@ -5,6 +5,7 @@
   "autoupdate": false,
   "model": "anthropic/claude-sonnet-4.5",
   "theme": "system",
+  "instructions": ["~/.config/docs/writing-style.md"],
   "provider": {
     "scaleway": {
       "options": {

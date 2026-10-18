@@ -7,7 +7,7 @@ set -euo pipefail
 INPUT=$(cat)
 TOOL=$(echo "$INPUT" | jq -r '.tool_name // ""')
 
-PERSONAL_STYLE="$HOME/.claude/writing-style.md"
+PERSONAL_STYLE="$HOME/.config/docs/writing-style.md"
 REPO_STYLE="${CLAUDE_PROJECT_DIR:-}/docs/writing_style.md"
 
 NUDGE="Prose written or edited. Check it against ${PERSONAL_STYLE} before finishing (plain words, short sentences, no hedging, say why not what)."

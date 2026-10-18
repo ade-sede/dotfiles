@@ -2,6 +2,10 @@
 
 Never comment code or configuration, unless explicitely asked to
 
+# Writing style
+
+Follow `~/.config/docs/writing-style.md` for all prose: comments, docstrings, PR descriptions, and docs.
+
 # Patterns
 
 When writing new code, base coding style on existing code.
