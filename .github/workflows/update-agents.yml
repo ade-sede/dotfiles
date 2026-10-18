@@ -1,0 +1,22 @@
+name: Update agent tools
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@v23
+      - uses: DeterminateSystems/update-flake-lock@v29
+        with:
+          inputs: nixpkgs-auto-update
+          pr-title: "flake.lock: update nixpkgs-auto-update"
+          pr-body: "Automated weekly bump of the agent tools (opencode, claude-code, pi-coding-agent)."
