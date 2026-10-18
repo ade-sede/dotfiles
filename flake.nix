@@ -23,6 +23,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-auto-update.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,6 +39,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-auto-update,
     home-manager,
     plasma-manager,
     nix-flatpak,
@@ -63,11 +65,11 @@
     homeConfigurations = {
       koala-devbox =
         home-manager.lib.homeManagerConfiguration
-        (import ./hosts/koala-devbox/home-manager/standalone.nix {inherit nixpkgs plasma-manager;});
+        (import ./hosts/koala-devbox/home-manager/standalone.nix {inherit nixpkgs nixpkgs-auto-update plasma-manager;});
 
       remote-devbox =
         home-manager.lib.homeManagerConfiguration
-        (import ./hosts/remote-devbox/home-manager/standalone.nix {inherit nixpkgs;});
+        (import ./hosts/remote-devbox/home-manager/standalone.nix {inherit nixpkgs nixpkgs-auto-update;});
 
       pancho =
         home-manager.lib.homeManagerConfiguration
@@ -75,7 +77,7 @@
 
       alan-macbook =
         home-manager.lib.homeManagerConfiguration
-        (import ./hosts/alan-macbook/home-manager/default.nix nixpkgs);
+        (import ./hosts/alan-macbook/home-manager/default.nix {inherit nixpkgs nixpkgs-auto-update;});
     };
   };
 }

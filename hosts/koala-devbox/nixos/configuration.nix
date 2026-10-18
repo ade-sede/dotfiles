@@ -9,6 +9,7 @@
   inherit (inputs) home-manager plasma-manager;
 in {
   nixpkgs.config.allowUnfree = allowUnfree;
+  nixpkgs.overlays = [(import ../../../overlays/rolling.nix inputs.nixpkgs-auto-update)];
 
   programs.kdeconnect.enable = true;
 

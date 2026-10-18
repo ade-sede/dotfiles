@@ -1,8 +1,12 @@
 # Standalone Home Manager entry point for remote-devbox — wires nixpkgs and theme for `home-manager switch`.
-{nixpkgs}: let
+{
+  nixpkgs,
+  nixpkgs-auto-update,
+}: let
   constants = import ../constants.nix;
   pkgs = import nixpkgs {
     system = constants.system;
+    overlays = [(import ../../../overlays/rolling.nix nixpkgs-auto-update)];
     config = {
       allowUnfree = constants.allowUnfree;
     };

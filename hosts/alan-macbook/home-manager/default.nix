@@ -1,8 +1,12 @@
 # alan-macbook Home Manager entry point — also serves as the standalone entry; wires common, macOS GPG, and alan-bin.
-nixpkgs: let
+{
+  nixpkgs,
+  nixpkgs-auto-update,
+}: let
   constants = import ../constants.nix;
   pkgs = import nixpkgs {
     system = constants.system;
+    overlays = [(import ../../../overlays/rolling.nix nixpkgs-auto-update)];
     config = {
       allowUnfree = constants.allowUnfree;
     };

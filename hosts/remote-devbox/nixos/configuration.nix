@@ -9,6 +9,7 @@
   inherit (inputs) home-manager;
 in {
   nixpkgs.config.allowUnfree = allowUnfree;
+  nixpkgs.overlays = [(import ../../../overlays/rolling.nix inputs.nixpkgs-auto-update)];
 
   imports = [
     ./hardware-config.nix
