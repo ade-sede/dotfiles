@@ -29,6 +29,21 @@ For coding agents, see the [AGENTS.md](./AGENTS.md) file.
 
 > **Note:** There are two sets of agent docs. `AGENTS.md` at the repo root governs how agents interact with *this repository*. Files under `dotfiles/claude/` and `dotfiles/opencode/` are application configs that get symlinked to `~/.config/` and govern how AI agents behave on the *machine itself*.
 
+### Updating Agent Tools
+
+`claude`, `opencode`, and `pi` are installed from nixpkgs through a dedicated flake input, `nixpkgs-auto-update` (applied via `overlays/rolling.nix`). It is a separate lock entry, so these three tools roll independently of everything else.
+
+- To bump them manually:
+
+  ```bash
+  nix flake update nixpkgs-auto-update
+  home-manager switch --flake .#<flake-name>
+  ```
+
+- A weekly GitHub Action (`.github/workflows/update-agents.yml`) opens a PR with the same bump. Merge it, and every machine picks the new versions at its next rebuild.
+
+- A full `nix flake update` also moves this input, which is fine.
+
 ### Key Management
 
 For generating and uploading GPG and SSH keys, see the [Key Management README](./docs/KEY_MANAGEMENT.md).

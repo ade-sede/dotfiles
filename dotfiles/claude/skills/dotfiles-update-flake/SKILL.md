@@ -1,9 +1,9 @@
 ---
 name: dotfiles-update-flake
 description: >
-  Update all flake inputs (nixpkgs, home-manager, plasma-manager,
-  nix-flatpak), resolve conflicts, and rebuild. Handles follow chains and lock
-  file management.
+  Update all flake inputs (nixpkgs, nixpkgs-auto-update, home-manager,
+  plasma-manager, nix-flatpak), resolve conflicts, and rebuild. Handles follow
+  chains and lock file management.
 ---
 
 # Dotfiles Update Flake
@@ -17,6 +17,7 @@ Use this skill to update flake inputs and keep the dotfiles current.
 Read `flake.nix` (documented in-file, see the top comment block) to identify all inputs:
 
 - `nixpkgs` — tracks `nixos-unstable`
+- `nixpkgs-auto-update` — tracks `nixos-unstable` too, but is a separate lock entry. It only carries the agent CLIs (`claude`, `opencode`, `pi`) via `overlays/rolling.nix`. A weekly GitHub Action bumps it on its own; a full update moving it too is fine
 - `home-manager` — follows nixpkgs
 - `plasma-manager` — follows nixpkgs, home-manager follows home-manager
 - `nix-flatpak` — standalone

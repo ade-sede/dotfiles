@@ -32,6 +32,7 @@ Quick links organized by what you want to do.
 ## Development
 
 - [AGENTS.md](../AGENTS.md) — rules for coding agents working on this repo
+- [Updating Agent Tools](../README.md#updating-agent-tools) — rolling input + weekly CI bump for claude/opencode/pi
 - [flake.nix](../flake.nix) — main entry point (documented in-file)
 
 ## Application Agent Configs (symlinked to ~/.config/)
