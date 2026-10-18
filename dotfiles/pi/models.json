@@ -1,0 +1,18 @@
+{
+  "$schema": "https://pi.dev/schemas/models.schema.json",
+  "providers": {
+    "scaleway": {
+      "baseUrl": "https://api.scaleway.ai/${SCW_PROJECT_ID}/v1",
+      "api": "openai-completions",
+      "apiKey": "${SCW_SECRET_KEY}",
+      "models": [
+        { "id": "glm-5.3" },
+        { "id": "glm-5.2" },
+        { "id": "gpt-oss-120b" },
+        { "id": "qwen3.5-397b-a17b" },
+        { "id": "qwen3-coder-30b-a3b-instruct" },
+        { "id": "mistral-medium-3.5-128b" }
+      ]
+    }
+  }
+}

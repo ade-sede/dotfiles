@@ -1,0 +1,10 @@
+{
+  "$schema": "https://pi.dev/schemas/settings.schema.json",
+  "defaultProvider": "scaleway",
+  "defaultModel": "glm-5.3",
+  "packages": [
+    "npm:@plannotator/pi-extension",
+    "npm:@juicesharp/rpiv-todo",
+    "npm:@juicesharp/rpiv-ask-user-question"
+  ]
+}
