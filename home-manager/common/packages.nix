@@ -120,6 +120,22 @@
 
       exec "${pkgs.nodejs_22}/bin/npx" opencode-ai@latest "$@"
     '')
+    (pkgs.writeShellScriptBin "pi" ''
+      export ANTHROPIC_API_KEY=$(cat ~/.dotfiles/secrets/anthropic_api_key.txt)
+      export OPENAI_API_KEY=$(cat ~/.dotfiles/secrets/openai_api_key.txt)
+      export GEMINI_API_KEY=$(cat ~/.dotfiles/secrets/gemini_api_key.txt)
+      export MISTRAL_API_KEY=$(cat ~/.dotfiles/secrets/mistral_api_key.txt)
+      export SCW_SECRET_KEY=$(cat ~/.dotfiles/secrets/scaleway_api_key.txt)
+      export SCW_PROJECT_ID=$(cat ~/.dotfiles/secrets/scaleway_project_id.txt)
+
+      export npm_config_ignore_scripts=true
+
+      if ! gpg-connect-agent 'KEYINFO --list' /bye 2>/dev/null | awk '/^S KEYINFO/ && $8=="P" && $7=="1"{f=1} END{exit !f}'; then
+        gpg --sign -o /dev/null /dev/null 2>/dev/null
+      fi
+
+      exec "${pkgs.nodejs_22}/bin/npx" @earendil-works/pi-coding-agent@latest "$@"
+    '')
     (pkgs.writeShellScriptBin "vibe" ''
       export ANTHROPIC_API_KEY=$(cat ~/.dotfiles/secrets/anthropic_api_key.txt)
       export OPENAI_API_KEY=$(cat ~/.dotfiles/secrets/openai_api_key.txt)
