@@ -1,6 +1,10 @@
-______________________________________________________________________
-
-## name: dotfiles-switch-theme description: > Switch the active theme variant (light/dark/dracula) for a host, audit all programs for missing theme coverage, and rebuild. Reports any programs that don't yet read from the theme system.
+---
+name: dotfiles-switch-theme
+description: >
+  Switch the active theme variant (light/dark/dracula) for a host, audit all
+  programs for missing theme coverage, and rebuild. Reports any programs that
+  don't yet read from the theme system.
+---
 
 # Dotfiles Switch Theme
 

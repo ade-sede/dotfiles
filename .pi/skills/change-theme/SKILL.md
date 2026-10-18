@@ -1,6 +1,11 @@
-______________________________________________________________________
-
-## name: change-theme description: > Use when changing the UI color theme, switching between dark mode and light mode, enabling the dracula colorscheme, updating the visual appearance of terminals, editors, and the desktop environment, or adding a brand new theme variant to the dotfiles.
+---
+name: change-theme
+description: >
+  Use when changing the UI color theme, switching between dark mode and light
+  mode, enabling the dracula colorscheme, updating the visual appearance of
+  terminals, editors, and the desktop environment, or adding a brand new theme
+  variant to the dotfiles.
+---
 
 # Change Theme
 

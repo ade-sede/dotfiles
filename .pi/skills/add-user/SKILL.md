@@ -1,6 +1,11 @@
-______________________________________________________________________
-
-## name: add-user description: > Add a new independent user to a NixOS host with their own self-contained Home Manager config. Creates the NixOS user, a dedicated home-manager-<user>/ directory, registers a flake output, and documents how the new user manages their own config.
+---
+name: add-user
+description: >
+  Add a new independent user to a NixOS host with their own self-contained
+  Home Manager config. Creates the NixOS user, a dedicated
+  home-manager-<user>/ directory, registers a flake output, and documents how
+  the new user manages their own config.
+---
 
 # Add User
 

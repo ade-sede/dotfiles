@@ -1,6 +1,10 @@
-______________________________________________________________________
-
-## name: dotfiles-deploy-remote description: > Provision and deploy a remote development server on Scaleway end-to-end: create server, wait for NixOS install, deploy dotfiles, set up SSH access, and optionally enable the web terminal.
+---
+name: dotfiles-deploy-remote
+description: >
+  Provision and deploy a remote development server on Scaleway end-to-end:
+  create server, wait for NixOS install, deploy dotfiles, set up SSH access,
+  and optionally enable the web terminal.
+---
 
 # Dotfiles Deploy Remote
 

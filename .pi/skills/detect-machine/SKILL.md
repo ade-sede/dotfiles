@@ -1,6 +1,11 @@
-______________________________________________________________________
-
-## name: detect-machine description: > Use when the current machine, hostname, or flake target needs to be identified before running a Nix or Home Manager operation. Runs hostname, maps the result to one of the three known flake names, and confirms with the user before returning the flake name for use in subsequent steps.
+---
+name: detect-machine
+description: >
+  Use when the current machine, hostname, or flake target needs to be
+  identified before running a Nix or Home Manager operation. Runs hostname,
+  maps the result to one of the three known flake names, and confirms with the
+  user before returning the flake name for use in subsequent steps.
+---
 
 # Detect Machine
 

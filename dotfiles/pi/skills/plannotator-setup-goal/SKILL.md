@@ -1,6 +1,8 @@
-______________________________________________________________________
-
-## name: plannotator-setup-goal disable-model-invocation: true description: Turn an idea or objective into a goal package for /goal. Interviews the user, builds a reviewed fact sheet via Plannotator, then explores the codebase to produce an execution plan.
+---
+name: plannotator-setup-goal
+disable-model-invocation: true
+description: Turn an idea or objective into a goal package for /goal. Interviews the user, builds a reviewed fact sheet via Plannotator, then explores the codebase to produce an execution plan.
+---
 
 # Setup Goal
 
@@ -103,7 +105,7 @@ Before moving to facts, read every answer and note carefully:
 
 ### 3. Fact Sheet
 
-A fact is a simple description of each outcome of a goal. It should be easily testable and verifiable. A fact may describe the function of a specific feature or aspect of a system. A fact may determine specific UI and UX. Again, a fact is literally anything that can be tested and verified in automated or manual testing. Keep fact language simple. In a way, a fact sheet is a design spec, but less verbose & using language the human user can easily visualize & rationalize.
+A fact is a simple description of each outcome of a goal. It should be easily testable and verifiable. A fact may describe the function of a specific feature or aspect of a system. A fact may determine specific UI and UX. Again, a fact is literally anything that can be tested and verified in automated or manual testing. Keep fact language simple. In a way, a fact sheet is a design spec, but less verbose & using language the human user can easily visualize & rationalize. 
 
 Prepare a facts review bundle from `goals/<slug>/interview-result.json`. Each fact should include whether automated verification is recommended and preselected.
 

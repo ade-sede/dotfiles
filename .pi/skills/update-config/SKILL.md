@@ -1,6 +1,11 @@
-______________________________________________________________________
-
-## name: update-config description: > Use when making any configuration change to the dotfiles — adding or removing packages, changing program settings, editing dotfiles, creating new Nix modules, or modifying any existing Nix file. Guides the agent to identify the correct scope and target file for the change before editing anything.
+---
+name: update-config
+description: >
+  Use when making any configuration change to the dotfiles — adding or removing
+  packages, changing program settings, editing dotfiles, creating new Nix
+  modules, or modifying any existing Nix file. Guides the agent to identify the
+  correct scope and target file for the change before editing anything.
+---
 
 # Update Config
 

@@ -3,17 +3,16 @@
 Component patterns specific to PR explainer documents. For the base design system (colors, typography, layout), see `../../plannotator-visual-plan/references/design-system.md`.
 
 ## Table of Contents
-
 1. [PR Header](#pr-header)
-1. [TL;DR Box](#tldr-box)
-1. [Diff Rendering](#diff-rendering)
-1. [Review Comments](#review-comments)
-1. [Risk Map](#risk-map)
-1. [File Cards](#file-cards)
-1. [Before / After](#before--after)
-1. [Where to Focus](#where-to-focus)
-1. [Test Plan](#test-plan)
-1. [File Badges](#file-badges)
+2. [TL;DR Box](#tldr-box)
+3. [Diff Rendering](#diff-rendering)
+4. [Review Comments](#review-comments)
+5. [Risk Map](#risk-map)
+6. [File Cards](#file-cards)
+7. [Before / After](#before--after)
+8. [Where to Focus](#where-to-focus)
+9. [Test Plan](#test-plan)
+10. [File Badges](#file-badges)
 
 ## PR header
 

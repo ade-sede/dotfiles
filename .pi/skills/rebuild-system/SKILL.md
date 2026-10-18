@@ -1,6 +1,12 @@
-______________________________________________________________________
-
-## name: rebuild-system description: > Use when applying dotfile changes, activating a new Nix or Home Manager configuration, running home-manager switch, or after any edit to .nix files that needs to take effect. Identifies the correct flake target and checks for interactive steps before deciding whether to run autonomously or hand off to the user.
+---
+name: rebuild-system
+description: >
+  Use when applying dotfile changes, activating a new Nix or Home Manager
+  configuration, running home-manager switch, or after any edit to .nix files
+  that needs to take effect. Identifies the correct flake target and checks for
+  interactive steps before deciding whether to run autonomously or hand off to
+  the user.
+---
 
 # Rebuild System
 

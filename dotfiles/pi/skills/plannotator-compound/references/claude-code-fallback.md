@@ -227,8 +227,8 @@ The Plannotator version uses a revision-rate KPI that may not exist here.
 In fallback mode, prefer this KPI trio:
 
 1. top denial category percentage
-1. total human denial reasons recovered
-1. number of distinct denial categories
+2. total human denial reasons recovered
+3. number of distinct denial categories
 
 If a better third metric emerges from the data, use it, but do not invent one.
 

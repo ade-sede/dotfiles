@@ -5,13 +5,12 @@ Building blocks for creating diagrams in implementation plans. All SVGs are inli
 All colors reference Plannotator theme tokens. In SVG, use the CSS custom property values directly via `style` attributes or the corresponding CSS classes.
 
 ## Table of Contents
-
 1. [Arrow Markers](#arrow-markers)
-1. [Architecture Diagrams](#architecture-diagrams)
-1. [Flowcharts](#flowcharts)
-1. [Data Flow](#data-flow)
-1. [Bar Charts](#bar-charts)
-1. [Positioning & Layout](#positioning--layout)
+2. [Architecture Diagrams](#architecture-diagrams)
+3. [Flowcharts](#flowcharts)
+4. [Data Flow](#data-flow)
+5. [Bar Charts](#bar-charts)
+6. [Positioning & Layout](#positioning--layout)
 
 ## Arrow markers
 
@@ -323,13 +322,11 @@ For routing flow from a decision to a side branch:
 ## Positioning & layout
 
 ### SVG container sizing
-
 - Use `viewBox` with fixed coordinates; set `style="width:100%;max-width:NNNpx"` for responsive scaling
 - Standard widths: `720px` full-width, `480px` half-width, `360px` sidebar
 - Standard heights: `180–320px` for most diagrams
 
 ### Box sizing
-
 - Standard node: `120–160px` wide, `48–56px` tall
 - Minimum gap between nodes: `60px` horizontal, `40px` vertical
 - Arrow label offset: `8–12px` above the line
