@@ -158,3 +158,10 @@ if status is-interactive
         set -x TERM xterm-256color
     end
 end
+
+# remote-devbox only: keep plannotator from printing its "session ready" stderr notice in opencode over SSH
+if test $hostname = remote-devbox
+    set -x PLANNOTATOR_REMOTE 0
+    set -x PLANNOTATOR_SKIP_BROWSER_OPEN 1
+    set -x PLANNOTATOR_PORT 19432
+end
