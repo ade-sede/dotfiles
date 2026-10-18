@@ -18,6 +18,12 @@
       max-free = 1000000000;
     };
 
+    gc = {
+      automatic = true;
+      dates = ["03:15"];
+      options = "--delete-older-than 15d";
+    };
+
     daemonCPUSchedPolicy = "batch";
     daemonIOSchedPriority = 7;
     extraOptions = ''
