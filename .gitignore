@@ -77,3 +77,12 @@ dotfiles/emacs/straight/
 !.opencode/skills/
 !.opencode/agents/
 
+# Pi - ignore runtime/state, track config, extensions, and skills
+dotfiles/pi/auth.json
+dotfiles/pi/sessions/
+dotfiles/pi/npm/
+dotfiles/pi/git/
+dotfiles/pi/tmp/
+dotfiles/pi/node_modules/
+
+
