@@ -30,6 +30,8 @@ in {
     shell = pkgs.bash;
   };
 
+  users.users.${username}.linger = true;
+
   home-manager.extraSpecialArgs =
     constants
     // {
