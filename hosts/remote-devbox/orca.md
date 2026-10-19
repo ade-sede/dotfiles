@@ -13,7 +13,7 @@ reboots.
   avoided).
 - Service: `orca-serve`, a home-manager user unit defined in
   `hosts/remote-devbox/home-manager/orca.nix`. It runs
-  `orca-ide serve --port 6768 --supervise --no-pairing`, mirroring the unit Orca's
+  `orca-ide serve --port 6769 --supervise --no-pairing`, mirroring the unit Orca's
   own `orca serve service install` would write.
 - Always online: `users.users.ade-sede.linger = true` in
   `hosts/remote-devbox/nixos/configuration.nix` starts the user manager (and the
@@ -21,9 +21,9 @@ reboots.
 
 ```mermaid
 flowchart LR
-  laptop[Orca desktop client] -- "SSH tunnel, LocalForward 6768" --> sshd[sshd :22, login:password]
-  sshd -- "127.0.0.1:6768" --> orcad[orca-serve :6768]
-  internet((internet)) -. "6768 dropped by firewall" .-> orcad
+  laptop[Orca desktop client] -- "SSH tunnel, LocalForward 6769" --> sshd[sshd :22, login:password]
+  sshd -- "127.0.0.1:6769" --> orcad[orca-serve :6769]
+  internet((internet)) -. "6769 dropped by firewall" .-> orcad
 ```
 
 ## Ports to forward when SSHing
@@ -35,15 +35,18 @@ already carries these for `ssh devbox`:
 | ---- | ----------------------------------- |
 | 8080 | dev server (existing) |
 | 3000 | ttyd web terminal behind nginx |
-| 6768 | Orca server (this setup) |
+| 6769 | Orca server (this setup) |
 
-Orca listens on `0.0.0.0:6768` (hardcoded upstream), but the firewall only allows
+The server uses 6769 rather than Orca's default 6768 because the desktop app's
+own local server claims 6768 on the laptop, which would collide with the tunnel.
+
+Orca listens on `0.0.0.0:6769` (bind hardcoded upstream), but the firewall only allows
 `22 80 443 3000`, so the port exists solely through the SSH forward. Anyone
 without the SSH login has no route to the WebSocket. Clients additionally
 authenticate with a per-client pairing token, revocable in Settings → Shared
 Server Access.
 
-Never open 6768 in `hosts/remote-devbox/nixos/networking.nix` and never proxy it
+Never open 6769 in `hosts/remote-devbox/nixos/networking.nix` and never proxy it
 through the public nginx vhost: the token would become the only gate on a public
 endpoint. If mobile access is ever needed, use Tailscale instead.
 
@@ -54,7 +57,7 @@ lands in the journal:
 
 ```bash
 systemctl --user stop orca-serve
-orca-ide serve --port 6768 --pairing-address 127.0.0.1   # prints the pairing URL, Ctrl-C when done
+orca-ide serve --port 6769 --pairing-address 127.0.0.1   # prints the pairing URL, Ctrl-C when done
 systemctl --user start orca-serve
 ```
 
