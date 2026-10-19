@@ -15,7 +15,7 @@ in {
 
     Service = {
       Type = "simple";
-      ExecStart = "${orca-ide}/bin/orca-ide serve --port 6769 --supervise --no-pairing";
+      ExecStart = "${orca-ide}/bin/orca-ide serve --port 6768 --pairing-address https://devbox.ade-sede.dev/orca --supervise --no-pairing";
       Environment = "PATH=/etc/profiles/per-user/${username}/bin:/run/current-system/sw/bin";
       Restart = "on-failure";
       RestartSec = 10;

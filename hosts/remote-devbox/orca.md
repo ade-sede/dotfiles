@@ -13,18 +13,36 @@ reboots.
   avoided).
 - Service: `orca-serve`, a home-manager user unit defined in
   `hosts/remote-devbox/home-manager/orca.nix`. It runs
-  `orca-ide serve --port 6769 --supervise --no-pairing`, mirroring the unit Orca's
-  own `orca serve service install` would write.
+  `orca-ide serve --port 6768 --pairing-address https://devbox.ade-sede.dev/orca --supervise --no-pairing`,
+  mirroring the unit Orca's own `orca serve service install` would write.
+- Public endpoint: nginx (`hosts/remote-devbox/nixos/services.nix`) proxies
+  `devbox.ade-sede.dev/orca` to `127.0.0.1:6768`, with ACME TLS and WebSocket
+  support.
 - Always online: `users.users.ade-sede.linger = true` in
   `hosts/remote-devbox/nixos/configuration.nix` starts the user manager (and the
   unit) at boot with no login session.
 
 ```mermaid
 flowchart LR
-  laptop[Orca desktop client] -- "SSH tunnel, LocalForward 6769" --> sshd[sshd :22, login:password]
-  sshd -- "127.0.0.1:6769" --> orcad[orca-serve :6769]
-  internet((internet)) -. "6769 dropped by firewall" .-> orcad
+  laptop[Orca desktop client] -- "wss, devbox.ade-sede.dev/orca" --> nginx[nginx :443, ACME TLS]
+  nginx -- "127.0.0.1:6768" --> orcad[orca-serve :6768]
+  internet((internet)) -. "6768 dropped by firewall" .-> orcad
 ```
+
+## Why the public endpoint instead of an SSH tunnel
+
+Orca's Add Server flow classifies endpoint hostnames and refuses loopback ones
+(`localhost`, `127.x`, `::1`), so a LocalForward tunnel can never be entered in
+the GUI. The public domain classifies as `public` and is accepted.
+
+Orca listens on `0.0.0.0:6768` (bind hardcoded upstream), but the firewall only
+allows `22 80 443 3000`, so the port is reachable solely through nginx. Clients
+authenticate with a per-client pairing token, revocable in Settings → Shared
+Server Access.
+
+The pairing token is the only gate on a public endpoint. Orca's docs recommend
+keeping remote servers on a private network path (Tailscale and similar); this
+setup knowingly deviates.
 
 ## Ports to forward when SSHing
 
@@ -32,23 +50,9 @@ flowchart LR
 already carries these for `ssh devbox`:
 
 | Port | What it reaches |
-| ---- | ----------------------------------- |
+| ---- | ----------------------------- |
 | 8080 | dev server (existing) |
 | 3000 | ttyd web terminal behind nginx |
-| 6769 | Orca server (this setup) |
-
-The server uses 6769 rather than Orca's default 6768 because the desktop app's
-own local server claims 6768 on the laptop, which would collide with the tunnel.
-
-Orca listens on `0.0.0.0:6769` (bind hardcoded upstream), but the firewall only allows
-`22 80 443 3000`, so the port exists solely through the SSH forward. Anyone
-without the SSH login has no route to the WebSocket. Clients additionally
-authenticate with a per-client pairing token, revocable in Settings → Shared
-Server Access.
-
-Never open 6769 in `hosts/remote-devbox/nixos/networking.nix` and never proxy it
-through the public nginx vhost: the token would become the only gate on a public
-endpoint. If mobile access is ever needed, use Tailscale instead.
 
 ## One-time pairing
 
@@ -57,13 +61,12 @@ lands in the journal:
 
 ```bash
 systemctl --user stop orca-serve
-orca-ide serve --port 6769 --pairing-address 127.0.0.1   # prints the pairing URL, Ctrl-C when done
+orca-ide serve --port 6768 --pairing-address https://devbox.ade-sede.dev/orca   # prints the pairing URL, Ctrl-C when done
 systemctl --user start orca-serve
 ```
 
-Then on the laptop, with `ssh devbox` connected (the tunnel is the pairing
-address), in Orca: Settings → Remote Orca Servers → Add Server → paste the URL.
-Grants persist across restarts.
+Then on the laptop, in Orca: Settings → Remote Orca Servers → Add Server →
+paste the URL. Grants persist across restarts.
 
 Agent subscriptions live on this box, not the laptop:
 

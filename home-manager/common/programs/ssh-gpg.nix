@@ -30,11 +30,6 @@
             host.address = "127.0.0.1";
             host.port = 3000;
           }
-          {
-            bind.port = 6769;
-            host.address = "127.0.0.1";
-            host.port = 6769;
-          }
         ];
       };
 
@@ -53,11 +48,6 @@
             bind.port = 3000;
             host.address = "127.0.0.1";
             host.port = 3000;
-          }
-          {
-            bind.port = 6769;
-            host.address = "127.0.0.1";
-            host.port = 6769;
           }
         ];
       };
