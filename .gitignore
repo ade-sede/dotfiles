@@ -49,6 +49,9 @@ dotfiles/claude/plans/
 dotfiles/claude/sessions/
 dotfiles/claude/tasks/
 dotfiles/claude/remote-settings.json
+dotfiles/claude/remote-settings.json.synced-at
+dotfiles/claude/policy-limits.json.stamp.json
+dotfiles/claude/.caveman-*
 dotfiles/claude/daemon/
 dotfiles/claude/jobs/
 dotfiles/claude/image-cache/
@@ -84,5 +87,5 @@ dotfiles/pi/npm/
 dotfiles/pi/git/
 dotfiles/pi/tmp/
 dotfiles/pi/node_modules/
-
-
+dotfiles/pi/trust.json
+dotfiles/pi/models-store.json
