@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Get the list of outputs and windows
 outputs=$(swaymsg -t get_outputs | jq -r '.[].name')
