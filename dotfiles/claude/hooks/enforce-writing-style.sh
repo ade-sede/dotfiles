@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # PostToolUse hook: nudge to check prose against the personal writing style.
 # Global hook, lives in dotfiles/claude/hooks and applies to every project.
 
