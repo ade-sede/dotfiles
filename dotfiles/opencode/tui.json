@@ -1,0 +1,5 @@
+{
+  "plugin": [
+    "file:///home/ade-sede/.config/opencode/plugins/orca-opencode-status-tui/tui.js"
+  ]
+}
