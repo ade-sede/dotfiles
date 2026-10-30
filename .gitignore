@@ -54,6 +54,9 @@ dotfiles/claude/policy-limits.json.stamp.json
 dotfiles/claude/policy-limits.json.signature.json
 dotfiles/claude/remote-settings.json.signature.json
 dotfiles/claude/skills/synced/
+dotfiles/claude/plugins/synced/
+dotfiles/claude/state/
+dotfiles/claude/orca-agent-view.json
 dotfiles/claude/skills/plannotator*/
 dotfiles/claude/plugins/config.json
 dotfiles/claude/.caveman-*
