@@ -1,3 +1,0 @@
-______________________________________________________________________
-
-## description: Annotate the last assistant message

@@ -51,6 +51,11 @@ dotfiles/claude/tasks/
 dotfiles/claude/remote-settings.json
 dotfiles/claude/remote-settings.json.synced-at
 dotfiles/claude/policy-limits.json.stamp.json
+dotfiles/claude/policy-limits.json.signature.json
+dotfiles/claude/remote-settings.json.signature.json
+dotfiles/claude/skills/synced/
+dotfiles/claude/skills/plannotator*/
+dotfiles/claude/plugins/config.json
 dotfiles/claude/.caveman-*
 dotfiles/claude/daemon/
 dotfiles/claude/jobs/
@@ -80,6 +85,10 @@ dotfiles/emacs/straight/
 .opencode/*
 !.opencode/skills/
 !.opencode/agents/
+dotfiles/opencode/command/plannotator-*
+dotfiles/opencode/commands/
+dotfiles/opencode/plugins/aicodemetrics.js
+dotfiles/opencode/package-lock.json
 
 # Pi - ignore runtime/state, track config, extensions, and skills
 dotfiles/pi/auth.json
@@ -90,3 +99,7 @@ dotfiles/pi/tmp/
 dotfiles/pi/node_modules/
 dotfiles/pi/trust.json
 dotfiles/pi/models-store.json
+dotfiles/pi/skills/plannotator*/
+
+home-manager/scripts/tmux-switch-pane.sh
+home-manager/common/scripts/tmux-switch-pane.sh
